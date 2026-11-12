@@ -8,7 +8,7 @@ How much is known about each machine, and how well it is established. Evidence c
 |---|---|---|---|---|---|---|---|
 | [Akai MPC2000](machines/mpc2000/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
 | [Akai MPC2000XL](machines/mpc2000xl/README.md) | none | 2 | 0 | 0 | 0 | 0 | 1 |
-| [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 11 | 4 | 75 | 7 | 17 |
+| [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 14 | 7 | 186 | 7 | 18 |
 | [Akai MPC60](machines/mpc60/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
 | [Akai S900](machines/s900/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
 | [Akai S950](machines/s950/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
@@ -25,6 +25,9 @@ How much is known about each machine, and how well it is established. Evidence c
 | os | [BIOS software-interrupt services (LCD text, files, program load)](machines/mpc3000/findings/bios-services.md) | static | partial | vailixi-3.50 | 2026-09-25 |
 | os | [Calling conventions used by the OS, kernel and BIOS](machines/mpc3000/findings/calling-conventions.md) | static | no | vailixi-3.50 | 2026-09-21 |
 | os | [Interrupt vector table after boot](machines/mpc3000/findings/interrupt-vectors.md) | static | no | vailixi-3.50 | 2026-09-21 |
+| os | [Two memory defects in stock OS 3.16, and their fixes](machines/mpc3000/findings/os316-defects.md) | emulator | partial | v3.16-sys | 2026-10-17 |
+| os | [OS 3.16 (M3K316.SYS) structure, memory and named routines](machines/mpc3000/findings/os316-structure.md) | static | partial | v3.16-sys | 2026-11-13 |
 | modding | [Recipe: build and run your own program from floppy](machines/mpc3000/findings/build-a-floppy-sys.md) | hardware | partial | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-10-01 |
+| modding | [Recipe: add code to OS 3.16 and load it from floppy](machines/mpc3000/findings/os316-extending.md) | hardware | partial | v3.16-sys | 2026-10-22 |
 | modding | [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md) | static | no | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-11-13 |
 | tooling | [Disassembler pitfalls on V53 firmware](machines/mpc3000/findings/disassembler-pitfalls.md) | static | no | hardware | 2026-09-25 |

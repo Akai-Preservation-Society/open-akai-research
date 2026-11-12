@@ -14,6 +14,8 @@ images are in [firmware.toml](firmware.toml).
 | Read a file from floppy in your program | Described from the code; not exercised outside the ROM's own loader | [findings/bios-services.md](findings/bios-services.md) |
 | Understand any address in the firmware | Documented | [findings/address-model.md](findings/address-model.md) |
 | Plan an EPROM modification | Free space and its catch are documented; nobody has burned one from this information | [findings/rom-free-space.md](findings/rom-free-space.md) |
+| Add pages or behaviour to the OS, from floppy | Works, run on real hardware: extend OS 3.16, using its 111 named routines | [findings/os316-extending.md](findings/os316-extending.md), [findings/os316-structure.md](findings/os316-structure.md) |
+| Run stock OS 3.16 safely on 3.12 / 3.50 EPROMs | Two defects found, with fixes | [findings/os316-defects.md](findings/os316-defects.md) |
 
 ## What you cannot do yet from this repository
 
@@ -21,7 +23,8 @@ Each line is an open question with a plan for answering it.
 
 | You want to | Missing | Question |
 |---|---|---|
-| Add a feature to the existing OS from floppy | A map of OS 3.16, or the stub details for running a stock OS from RAM | [os-3.16-internals](questions/os-3.16-internals.md), [patched-rom-os-from-ram](questions/patched-rom-os-from-ram.md) |
+| Change parts of OS 3.16 that are not mapped | Names for the sequencer, MIDI and most disk code in 3.16 | [os316-unmapped](questions/os316-unmapped.md) |
+| Patch a stock EPROM OS and run it from RAM | The stub details for 3.08, 3.11 and 3.12 | [patched-rom-os-from-ram](questions/patched-rom-os-from-ram.md) |
 | Change behaviour on a 3.11 or 3.12 machine by patching | Named routines for those images | [stock-os-code-map](questions/stock-os-code-map.md) |
 | React to pads, keys or the wheel | The panel protocol | [panel-protocol](questions/panel-protocol.md) |
 | Play, record or process audio | The sample engine | [sample-engine-dsp](questions/sample-engine-dsp.md) |
@@ -41,7 +44,8 @@ The full list, with priorities, is in [../../GAPS.md](../../GAPS.md).
 5. [findings/disassembler-pitfalls.md](findings/disassembler-pitfalls.md): **required** before reading any code.
 6. [findings/floppy-sys-loader.md](findings/floppy-sys-loader.md) and [findings/build-a-floppy-sys.md](findings/build-a-floppy-sys.md): running your own code.
 7. [findings/bios-services.md](findings/bios-services.md), [findings/interrupt-vectors.md](findings/interrupt-vectors.md), [findings/calling-conventions.md](findings/calling-conventions.md): what your code can call, and how the OS is put together.
-8. [findings/rom-free-space.md](findings/rom-free-space.md): for EPROM work.
+8. [findings/os316-structure.md](findings/os316-structure.md), [findings/os316-defects.md](findings/os316-defects.md), [findings/os316-extending.md](findings/os316-extending.md): OS 3.16, the base for floppy-delivered features.
+9. [findings/rom-free-space.md](findings/rom-free-space.md): for EPROM work.
 
 ## Firmware images
 
@@ -52,7 +56,7 @@ The full list, with priorities, is in [../../GAPS.md](../../GAPS.md).
 | `mpc3000-v3.11` | Akai OS 3.11, EPROM pair | Boot path, loader, page tables |
 | `mpc3000-v3.12` | Akai OS 3.12, EPROM pair | Boot path, loader, page tables |
 | `mpc3000-vailixi-3.50` | Vailixi OS 3.50 (independent developer), reference dump | Most code-level findings |
-| `mpc3000-v3.16-sys` | OS 3.16 maintenance upgrade (independent developer), floppy file | Identified only |
+| `mpc3000-v3.16-sys` | OS 3.16 maintenance upgrade (independent developer), floppy file | Structure, two defects, 111 symbols |
 | `mpc3000-panel-v1.0` | Front-panel microcontroller program | Identified only |
 
 Most code-level findings were made on the Vailixi 3.50 reference dump
@@ -63,7 +67,7 @@ that image and must not be assumed for another. Machines that report
 ## Tools
 
 - [tools/sysdisk.py](tools/sysdisk.py): build, check and pack floppy `.SYS` programs.
-- [symbols/](symbols/): named addresses per image. [pins/](pins/): byte-range hashes; run `python3 tools/oar.py verify <id> <linear image>`.
+- [symbols/](symbols/): named addresses per image (for `mpc3000-v3.16-sys`, file offsets are into the `.SYS` file). [pins/](pins/): byte-range hashes; run `python3 tools/oar.py verify <id> <linear image>`.
 
 ## Emulation
 

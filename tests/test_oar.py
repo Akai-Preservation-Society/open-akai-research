@@ -60,14 +60,19 @@ class Repository(unittest.TestCase):
         """ROM code symbols on the MPC3000: file = ((seg << 4) + off) & 0x7FFFF."""
         data = oar.load_all(oar.Problems())
         checked = 0
-        for table in data["machines"]["mpc3000"]["symbols"].values():
+        for firmware, table in data["machines"]["mpc3000"]["symbols"].items():
             for row in table["rows"]:
                 if row["kind"] not in ("code", "vector", "table") or not row["address"] or not row["file_offset"]:
                     continue
                 seg, off = (int(part, 16) for part in row["address"].split(":"))
-                self.assertEqual(((seg << 4) + off) & 0x7FFFF, int(row["file_offset"], 16), row["name"])
+                if firmware == "mpc3000-v3.16-sys":
+                    # Relative seg:off in the load image, which follows the 7A00h-byte MZ header.
+                    expected = 0x7A00 + (seg << 4) + off
+                else:
+                    expected = ((seg << 4) + off) & 0x7FFFF
+                self.assertEqual(expected, int(row["file_offset"], 16), f"{firmware} {row['name']}")
                 checked += 1
-        self.assertGreater(checked, 40)
+        self.assertGreater(checked, 140)
 
 
 class Images(unittest.TestCase):
