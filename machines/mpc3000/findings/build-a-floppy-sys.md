@@ -32,7 +32,7 @@ What it can and cannot do today is spelled out under "Three routes".
 - **[static]** The OS itself uses the 80186-level instructions `PUSH imm16`, `LEAVE` and `OUTSW`, so those are safe to emit. Treat any other instruction beyond the 8086 set as untested here. Never emit the bytes `0F E0` or `0F F0` unless you mean `BRKXA`/`RETXA`.
 - **[emulator]** Route A below has been demonstrated in MAME on the Vailixi 3.50 reference image only.
 - **[hardware]** Route C below has produced feature builds that run on a real MPC3000 (maintainer observation, 2026-10-27; the individual bench steps were not recorded).
-- **[open]** The procedures for routes A and C are not in this repository.
+- **[open]** The procedure for route A is not in this repository. Route C is described in [os316-extending.md](os316-extending.md).
 
 ## Steps
 
@@ -62,12 +62,12 @@ What it can and cannot do today is spelled out under "Three routes".
 |---|---|---|
 | **B. Replacement program** | Your own MZ program is the whole system. | Works on hardware for text output. Everything beyond the BIOS services (pads, audio, MIDI, disk formats) needs hardware knowledge this repository does not have yet. |
 | **A. Patched EPROM OS running from RAM** | A builder on your computer takes the OS code and data from your own EPROM dump, applies byte patches, and packs them into a `.SYS` file with a small stub. On the machine the stub moves them into the RAM that the third page table puts in their place and re-enters the boot path, so the OS runs from RAM with your changes. | Demonstrated in the emulator for one image. The stub, the re-entry point and the copy ranges are specific to each image and are an [open question](../questions/patched-rom-os-from-ram.md) for the stock OS versions. Such a file contains firmware: share the patch, never the file ([LEGAL.md](../../../LEGAL.md)). |
-| **C. Modified OS 3.16** | OS 3.16 is itself a floppy `.SYS` file, so features can be added to it and the result loaded the same way. | Has run on hardware. Needs a map of the 3.16 image, which is [not documented here](../questions/os-3.16-internals.md). |
+| **C. Modified OS 3.16** | OS 3.16 is itself a floppy `.SYS` file, so features can be added to it and the result loaded the same way. | Has run on hardware. The image is mapped in [os316-structure.md](os316-structure.md) and the method is in [os316-extending.md](os316-extending.md). Fix the two stock defects in [os316-defects.md](os316-defects.md) first. |
 
-So, honestly: today this repository lets you put your own program on the
-machine and draw text. Adding a feature to the existing sequencer or
-sampler needs routes A or C, and the knowledge for those is listed in
-[GAPS.md](../../../GAPS.md).
+So, honestly: a replacement program can draw text today, and route C lets
+you add pages and behaviour to a working OS 3.16 using the routines named
+in its symbol table. Anything touching an area 3.16's map does not cover
+(see [GAPS.md](../../../GAPS.md)) still needs research first.
 
 ## Evidence
 
@@ -79,6 +79,6 @@ sampler needs routes A or C, and the knowledge for those is listed in
 ## Open questions
 
 - [Running a patched copy of a stock EPROM OS from RAM](../questions/patched-rom-os-from-ram.md)
-- [OS 3.16 internals](../questions/os-3.16-internals.md)
+- [Unmapped areas of OS 3.16](../questions/os316-unmapped.md)
 - [Front-panel protocol](../questions/panel-protocol.md)
 - [What RAM the BIOS still uses after hand-off](../questions/bios-data-area.md)

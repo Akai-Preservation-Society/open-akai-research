@@ -39,7 +39,7 @@ What this repository does not know. Read this before promising a user that somet
 
 | Priority | Area | Question | Needs |
 |---|---|---|---|
-| high | os | [OS 3.16 internals](machines/mpc3000/questions/os-3.16-internals.md) | analysis, emulator |
+| high | os | [Unmapped areas of OS 3.16](machines/mpc3000/questions/os316-unmapped.md) | analysis, emulator |
 | high | panel | [Front-panel protocol (pads, keys, data wheel)](machines/mpc3000/questions/panel-protocol.md) | firmware-image, analysis, hardware |
 | high | modding | [Running a patched copy of a stock EPROM OS from RAM](machines/mpc3000/questions/patched-rom-os-from-ram.md) | firmware-image, analysis, emulator, hardware |
 | high | audio | [Sample engine and DSP registers](machines/mpc3000/questions/sample-engine-dsp.md) | analysis, emulator, hardware, document |
@@ -51,6 +51,7 @@ What this repository does not know. Read this before promising a user that somet
 | medium | display | [LCD controller commands and graphics](machines/mpc3000/questions/lcd-controller-commands.md) | document, analysis, hardware |
 | medium | midi | [MIDI handling](machines/mpc3000/questions/midi-handling.md) | analysis, emulator |
 | medium | memory | [NVRAM layout and what a RAM program may do to it](machines/mpc3000/questions/nvram-layout.md) | analysis, hardware |
+| medium | boot | [OS 3.16 builds on real 3.08, 3.11 and 3.12 EPROMs](machines/mpc3000/questions/os316-on-other-eproms.md) | hardware |
 | medium | hardware | [PAL address decode](machines/mpc3000/questions/pal-address-decode.md) | document, hardware |
 | low | hardware | [What is on DMA channel 2](machines/mpc3000/questions/dma2-ic31.md) | document, hardware |
 | low | firmware | [OS 3.10 has not been examined](machines/mpc3000/questions/os-3.10-image.md) | firmware-image, analysis |
@@ -79,6 +80,9 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 - [MPC3000 hardware overview](machines/mpc3000/findings/hardware-overview.md): 2
 - [Interrupt vector table after boot](machines/mpc3000/findings/interrupt-vectors.md): 2
 - [MPC3000 memory map, I/O ports, interrupts and DMA](machines/mpc3000/findings/memory-and-io-map.md): 2
+- [Two memory defects in stock OS 3.16, and their fixes](machines/mpc3000/findings/os316-defects.md): 2
+- [Recipe: add code to OS 3.16 and load it from floppy](machines/mpc3000/findings/os316-extending.md): 1
+- [OS 3.16 (M3K316.SYS) structure, memory and named routines](machines/mpc3000/findings/os316-structure.md): 3
 - [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md): 2
 
 ### Machine facts that are not established

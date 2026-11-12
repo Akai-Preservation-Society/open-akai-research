@@ -441,6 +441,74 @@
           "title": "MPC3000 memory map, I/O ports, interrupts and DMA"
         },
         {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.os316-structure"
+          ],
+          "firmware": [
+            "mpc3000-v3.16-sys"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc3000.os316-defects",
+          "last_verified": "2026-10-17",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/os316-defects.md",
+          "status": "emulator",
+          "summary": "On 3.12 and Vailixi 3.50 EPROMs stock OS 3.16 lets sequence data overwrite its own code and hangs at Song. With a SCSI disk its partition reader wraps the stack. Both causes and working fixes are described.",
+          "title": "Two memory defects in stock OS 3.16, and their fixes"
+        },
+        {
+          "area": "modding",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.os316-structure",
+            "mpc3000.os316-defects",
+            "mpc3000.floppy-sys-loader",
+            "mpc3000.build-a-floppy-sys"
+          ],
+          "firmware": [
+            "mpc3000-v3.16-sys"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc3000.os316-extending",
+          "last_verified": "2026-10-22",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/os316-extending.md",
+          "status": "hardware",
+          "summary": "Append a code segment to M3K316.SYS, extend its relocation table, move the new code above 3.16 at load time, and hook 3.16 by far jumps. Builds made this way run on real hardware.",
+          "title": "Recipe: add code to OS 3.16 and load it from floppy"
+        },
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.floppy-sys-loader",
+            "mpc3000.address-model",
+            "mpc3000.calling-conventions"
+          ],
+          "firmware": [
+            "mpc3000-v3.16-sys"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc3000.os316-structure",
+          "last_verified": "2026-11-13",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/os316-structure.md",
+          "sources": [
+            "M3K316.pdf release notes for OS 3.16 (2005)"
+          ],
+          "status": "static",
+          "summary": "OS 3.16 is a self-contained MZ program with its own BIOS and AMX kernel. This gives its layout, address forms, start-up, tasks, memory use and a map of 111 named routines and data objects.",
+          "title": "OS 3.16 (M3K316.SYS) structure, memory and named routines"
+        },
+        {
           "area": "modding",
           "contributors": [
             "open-akai-research"
@@ -602,7 +670,7 @@
           "id": "mpc3000-v3.16-sys",
           "kind": "floppy-sys",
           "label": "OS 3.16 maintenance upgrade (M3K316.SYS, floppy-loaded)",
-          "notes": "A DOS MZ executable loaded into RAM from floppy at power-on; not an EPROM image. Gone at power-off. Its internals are not documented here yet.",
+          "notes": "A DOS MZ executable loaded into RAM from floppy at power-on; not an EPROM image. Gone at power-off. File offsets for this id are offsets into the .SYS file itself (the load image starts at 7A00h). See findings/os316-structure.md.",
           "obtain": "Released in 2005 by its author as a floppy upgrade for the MPC3000 and MPC3000LE. Obtain the file from a source you trust and check the hash.",
           "origin": "community",
           "sha1": "b45b017721f0e59974e50de93040ccd1f973ad23",
@@ -651,6 +719,10 @@
         "mpc3000-v3.12": {
           "count": 13,
           "path": "machines/mpc3000/pins/mpc3000-v3.12.csv"
+        },
+        "mpc3000-v3.16-sys": {
+          "count": 108,
+          "path": "machines/mpc3000/pins/mpc3000-v3.16-sys.csv"
         },
         "mpc3000-vailixi-3.50": {
           "count": 27,
@@ -797,22 +869,41 @@
           "title": "OS 3.10 has not been examined"
         },
         {
+          "area": "boot",
+          "id": "mpc3000.q.os316-on-other-eproms",
+          "machine": "mpc3000",
+          "needs": [
+            "hardware"
+          ],
+          "path": "machines/mpc3000/questions/os316-on-other-eproms.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.os316-extending",
+            "mpc3000.os316-defects"
+          ],
+          "status": "open",
+          "summary": "Stock and modified OS 3.16 have run on hardware only on a machine with a Vailixi 3.50 EPROM. The other EPROM versions, and the load-segment move, are emulator results.",
+          "title": "OS 3.16 builds on real 3.08, 3.11 and 3.12 EPROMs"
+        },
+        {
           "area": "os",
-          "id": "mpc3000.q.os-3.16-internals",
+          "id": "mpc3000.q.os316-unmapped",
           "machine": "mpc3000",
           "needs": [
             "analysis",
             "emulator"
           ],
-          "path": "machines/mpc3000/questions/os-3.16-internals.md",
+          "path": "machines/mpc3000/questions/os316-unmapped.md",
           "priority": "high",
           "related": [
-            "mpc3000.build-a-floppy-sys",
-            "mpc3000.floppy-sys-loader"
+            "mpc3000.os316-structure",
+            "mpc3000.os316-extending",
+            "mpc3000.q.sequencer-model",
+            "mpc3000.q.midi-handling"
           ],
           "status": "open",
-          "summary": "OS 3.16 is a floppy-loaded MZ program and the natural base for floppy-delivered features, but nothing about its inside is documented here.",
-          "title": "OS 3.16 internals"
+          "summary": "OS 3.16's structure, start-up and 111 routines are mapped. Its sequencer, MIDI, most disk code, the Mixer and five of its eight tasks are not.",
+          "title": "Unmapped areas of OS 3.16"
         },
         {
           "area": "cpu",
@@ -980,6 +1071,10 @@
         "mpc3000-v3.12": {
           "count": 12,
           "path": "machines/mpc3000/symbols/mpc3000-v3.12.csv"
+        },
+        "mpc3000-v3.16-sys": {
+          "count": 111,
+          "path": "machines/mpc3000/symbols/mpc3000-v3.16-sys.csv"
         },
         "mpc3000-vailixi-3.50": {
           "count": 39,

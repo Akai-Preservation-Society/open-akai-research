@@ -1,0 +1,112 @@
+name,kind,address,file_offset,size,status,finding,notes
+c_startup,code,0000:0000,0x07A00,,static,mpc3000.os316-structure,"Entry: C start-up. Sets SS:SP 7066:0100 and DS=ES=DGROUP, zeroes BSS, runs the init table, STI, jumps to main"
+bios_init,code,0009:0006,0x07A96,,static,mpc3000.os316-structure,"Init-table entry 0: 3.16's own BIOS (banner MPC-3000 BIOS 02/20/05); programs timer and interrupt controller, installs INT 41/42/43/45/46"
+mul32,code,0009:20C0,0x09B50,,static,mpc3000.os316-structure,DX:AX * CX:BX -> DX:AX (runtime library); first 32+ bytes match Vailixi 3.50 F800:20C4
+div32_signed,code,0009:20F6,0x09B86,,static,mpc3000.os316-structure,Signed 32-bit divide (runtime library); first 32+ bytes match Vailixi 3.50 F800:20FA
+div32_unsigned,code,0009:20FD,0x09B8D,,static,mpc3000.os316-structure,Unsigned 32-bit divide (runtime library); first 32+ bytes match Vailixi 3.50 F800:2101
+ui_main,code,0281:0034,0x0A244,,static,mpc3000.os316-structure,Main loop; also the entry of AMX task 7 (UI)
+field_list_reset,code,02D7:0007,0x0A777,,static,mpc3000.os316-structure,Reset the page field list (run before each mode); mapped from Vailixi 3.50 B060:000D with relocated segment words masked
+field_select,code,02D7:0065,0x0A7D5,,static,mpc3000.os316-structure,Select a live field record; first 15 bytes match Vailixi 3.50 B060:006B
+field_init,code,02D7:0216,0x0A986,,static,mpc3000.os316-structure,Initialise a field's parser and display; mapped from Vailixi 3.50 B060:021C with relocated segment words masked
+field_key_loop,code,02D7:0357,0x0AAC7,,static,mpc3000.os316-structure,"Field editor key loop (flags) -> 0 on commit, else the key; first 9 bytes match Vailixi 3.50 B060:035D"
+field_commit,code,02D7:070F,0x0AE7F,,static,mpc3000.os316-structure,Commit the active entry buffer; first 9 bytes match Vailixi 3.50 B060:0715
+field_redraw,code,02D7:0AD3,0x0B243,,static,mpc3000.os316-structure,Redraw field n; first 21 bytes match Vailixi 3.50 B060:0AD9
+lcd_clear_text,code,0427:000C,0x0BC7C,,static,mpc3000.os316-structure,Clear the text screen (INT 43h AX=1); first 14 bytes match Vailixi 3.50 B1B1:0002
+lcd_cursor_shape,code,0427:0012,0x0BC82,,static,mpc3000.os316-structure,Cursor shape; 0 hides it; first 8 bytes match Vailixi 3.50 B1B1:0008
+lcd_cursor_pos,code,0427:0030,0x0BCA0,,static,mpc3000.os316-structure,Set cursor position (INT 43h AX=3); first 32+ bytes match Vailixi 3.50 B1B1:0026
+lcd_put_char,code,0427:0040,0x0BCB0,,static,mpc3000.os316-structure,Put one character at the cursor (8 = back one column); first 32+ bytes match Vailixi 3.50 B1B1:0036
+lcd_save_text,code,0427:0059,0x0BCC9,,static,mpc3000.os316-structure,Save the text shadow (INT 43h AX=5); first 32+ bytes match Vailixi 3.50 B1B1:004F
+lcd_restore_text,code,0427:005F,0x0BCCF,,static,mpc3000.os316-structure,Restore the text shadow (INT 43h AX=6); first 32+ bytes match Vailixi 3.50 B1B1:0055
+lcd_put_string,code,0427:0065,0x0BCD5,,static,mpc3000.os316-structure,Put a far NUL-terminated string at the cursor; first 32+ bytes match Vailixi 3.50 B1B1:005B
+lcd_printf,code,0432:01F8,0x0BF18,,static,mpc3000.os316-structure,"printf at the cursor (far format, varargs); first 32+ bytes match Vailixi 3.50 B1BC:01EE"
+lcd_pad_spaces,code,0476:0006,0x0C166,,static,mpc3000.os316-structure,Spaces from the cursor to column n; first 17 bytes match Vailixi 3.50 B1FF:000C
+field_numeric_editor,code,058F:000B,0x0D2FB,,static,mpc3000.os316-structure,"Numeric field editor (key, flags); first 12 bytes match Vailixi 3.50 B31B:0007"
+field_add_choice,code,05C8:01CA,0x0D84A,,static,mpc3000.os316-structure,Add a choice field record; first 14 bytes match Vailixi 3.50 B354:01C6
+field_add_numeric,code,05C8:03B5,0x0DA35,,static,mpc3000.os316-structure,"Add a numeric field (label, ptr, width, min, max, flags); first 32+ bytes match Vailixi 3.50 B354:03B1"
+error_box,code,063B:000B,0x0DDBB,,static,mpc3000.os316-structure,Stock error box (error number); first 32+ bytes match Vailixi 3.50 B3C7:0007
+song_page,code,0671:000A,0x0E11A,,static,mpc3000.os316-structure,Song page (mode G); returns the key that leaves it; first 10 bytes match Vailixi 3.50 B3FD:0006
+disk_page,code,077D:042D,0x0F5FD,,static,mpc3000.os316-structure,"Disk mode page; opens a 3652h-byte stack frame, the largest in 3.16"
+file_name_format,code,077D:194D,0x10B1D,,static,mpc3000.os316-structure,"Raw directory name -> NAME.EXT (src far, dst far); first 32+ bytes match Vailixi 3.50 B509:21A1"
+page_new,code,077D:1A35,0x10C05,,static,mpc3000.os316-structure,"New page: reset field list, clear, draw the == title == line (far); mapped from Vailixi 3.50 B509:2289 with relocated segment words masked"
+edit_sound_redraw,code,0B72:132B,0x1444B,,static,mpc3000.os316-structure,Redraw the 17 Edit Sound fields; first 18 bytes match Vailixi 3.50 B99A:16BB
+sound_stereo_tag,code,0B72:134F,0x1446F,,static,mpc3000.os316-structure,"Print (ST) or blanks for a Sound (index, row, col); first 14 bytes match Vailixi 3.50 B99A:16DF"
+sound_delete_frames,code,0B72:1DF1,0x14F11,,static,mpc3000.os316-structure,"Delete frames [from, to) of a Sound (index, from, to); first 10 bytes match Vailixi 3.50 B99A:22C4"
+frames_from_triple,code,0B72:2124,0x15244,,static,mpc3000.os316-structure,Component triple (far) -> frames; first 25 bytes match Vailixi 3.50 B99A:2619
+triple_from_frames,code,0B72:2178,0x15298,,static,mpc3000.os316-structure,Frames -> component triple (far); first 27 bytes match Vailixi 3.50 B99A:266D
+sound_list_rebuild,code,0B72:22FD,0x1541D,,static,mpc3000.os316-structure,Rebuild the sorted Sound list; first 24 bytes match Vailixi 3.50 B99A:27F2
+key_next_filtered,code,0F6B:0009,0x170B9,,static,mpc3000.os316-structure,Next key after the global key filter; first 17 bytes match Vailixi 3.50 BDE3:000E
+mixer_apply_params,code,0F78:0136,0x172B6,,static,mpc3000.os316-structure,Apply parameters; first 8 bytes match Vailixi 3.50 BDF1:012B
+pgm_load,code,1396:0009,0x1B369,,static,mpc3000.os316-structure,Load a Program (PGM file); first 30 bytes match Vailixi 3.50 C20F:0003
+aps_load,code,1396:04FC,0x1B85C,,static,mpc3000.os316-structure,Load All Programs and Sounds (APS file); first 17 bytes match Vailixi 3.50 C20F:04F6
+lcd_text_mode_clear,code,1650:03FD,0x1E2FD,,static,mpc3000.os316-structure,Clear and select text mode (INT 43h AX=1); first 32+ bytes match Vailixi 3.50 C4C8:0409
+lcd_blit,code,1650:0F01,0x1EE01,,static,mpc3000.os316-structure,Copy the graphics framebuffer to the LCD; first 31 bytes match Vailixi 3.50 C4C8:0F0D
+sample_new_sound_page,code,1849:000F,0x1FE9F,,static,mpc3000.os316-structure,Sample New Sound page; first 10 bytes match Vailixi 3.50 C6C2:000B
+program_select,code,19F9:1BF3,0x23583,,static,mpc3000.os316-structure,Select program (index); first 19 bytes match Vailixi 3.50 CA45:0008
+file_close,code,200D:008C,0x27B5C,,static,mpc3000.os316-structure,Close (handle); first 11 bytes match Vailixi 3.50 CEE6:0086
+file_delete,code,200D:00C8,0x27B98,,static,mpc3000.os316-structure,Delete file (raw name far) -> 0 or error; first 8 bytes match Vailixi 3.50 CEE6:00C2
+file_find_first,code,200D:017B,0x27C4B,,static,mpc3000.os316-structure,"Find first (pattern far, 27-byte record far) -> 0 or <0; first 11 bytes match Vailixi 3.50 CEE6:0175"
+file_find_next,code,200D:01E7,0x27CB7,,static,mpc3000.os316-structure,Find next (same arguments); first 11 bytes match Vailixi 3.50 CEE6:01E1
+int41_call,code,2033:000C,0x27D3C,,static,mpc3000.os316-structure,"INT 41h service wrapper (fn, a, b, c); first 29 bytes match Vailixi 3.50 CF0C:0006"
+int41_fn8,code,2033:005C,0x27D8C,,static,mpc3000.os316-structure,"INT 41h AX=8 with three far out-pointers for DX, CX, BX; returns status in AX; first 32+ bytes match Vailixi 3.50 CF0C:0056"
+file_read,code,2033:0079,0x27DA9,,static,mpc3000.os316-structure,"Fixed-size read (buffer, handle, n); first 32+ bytes match Vailixi 3.50 CF0C:0073"
+file_write,code,2033:009C,0x27DCC,,static,mpc3000.os316-structure,"Fixed-size write (buffer, handle, n); first 32+ bytes match Vailixi 3.50 CF0C:0096"
+voice_allocate,code,205E:0008,0x27FE8,,static,mpc3000.os316-structure,Voice allocator; first 14 bytes match Vailixi 3.50 CF37:0002
+wave_transfer,code,20BA:0002,0x285A2,,static,mpc3000.os316-structure,"Wave transfer (dst, wave, count, dir); first 32+ bytes match Vailixi 3.50 CF92:000C"
+note_on,code,20ED:000D,0x288DD,,static,mpc3000.os316-structure,Shared note-on engine (event far); first 32+ bytes match Vailixi 3.50 CFC6:0007
+sound_play_index,code,20ED:0CEF,0x295BF,,static,mpc3000.os316-structure,Start the Sound at index (word); first 18 bytes match Vailixi 3.50 CFC6:0CE9
+voice_any_pending,code,20ED:0D7B,0x2964B,,static,mpc3000.os316-structure,"AX=1 if any voice is pending, else 0; mapped from Vailixi 3.50 CFC6:0D75 with relocated segment words masked"
+voice_stop_all,code,20ED:0D99,0x29669,,static,mpc3000.os316-structure,Stop all 32 channels; mapped from Vailixi 3.50 CFC6:0D93 with relocated segment words masked
+sound_free_words,code,21E7:023C,0x29AAC,,static,mpc3000.os316-structure,Free wave words in DX:AX; first 23 bytes match Vailixi 3.50 D0C0:0236
+sound_allocate,code,21E7:0617,0x29E87,,static,mpc3000.os316-structure,"Allocate a Sound (name, length, stereo); first 32+ bytes match Vailixi 3.50 D0C0:0611"
+sound_free_records,code,21E7:0853,0x2A0C3,,static,mpc3000.os316-structure,Free Sound record count; first 9 bytes match Vailixi 3.50 D0C0:084D
+sound_alloc_rebuild,code,21E7:0875,0x2A0E5,,static,mpc3000.os316-structure,Rebuild Sound allocation state; first 27 bytes match Vailixi 3.50 D0C0:086F
+sound_free,code,21E7:0B1F,0x2A38F,,static,mpc3000.os316-structure,"Free a Sound (index, mode, flag); first 32+ bytes match Vailixi 3.50 D0C0:0B19"
+sound_find,code,21E7:0D1D,0x2A58D,,static,mpc3000.os316-structure,"Find a Sound by name -> index, or -4; first 32+ bytes match Vailixi 3.50 D0C0:0D17"
+wave_copy,code,21E7:0E56,0x2A6C6,,static,mpc3000.os316-structure,"Copy wave words (src, dest, count); first 22 bytes match Vailixi 3.50 D0C0:0E50"
+dsp_reg1_all,code,2338:0000,0x2AD80,,static,mpc3000.os316-structure,Write DSP register 1 (and A unless BX=1) on all 32 channels; first 32+ bytes match Vailixi 3.50 D20A:0008
+dsp_channel_stop,code,234D:0000,0x2AED0,,static,mpc3000.os316-structure,Stop one channel (channel); mapped from Vailixi 3.50 D21F:0008 with relocated segment words masked
+scsi_controller_init,code,2A66:0012,0x32072,,static,mpc3000.os316-structure,MB89352 init sequence on ports A2/A0/AA; AX 0 or 1; first 32+ bytes match Vailixi 3.50 D3A7:0014
+scsi_sector_read,code,2AB2:0202,0x32722,,static,mpc3000.os316-structure,"SCSI READ(6) (unit, lba lo, lba hi, count, buffer far) -> 0 or code; first 25 bytes match Vailixi 3.50 D470:02B5"
+scsi_sector_write,code,2AB2:0222,0x32742,,static,mpc3000.os316-structure,SCSI WRITE(6) (same arguments); first 25 bytes match Vailixi 3.50 D470:02D5
+scsi_read_capacity,code,2AB2:02FA,0x3281A,,static,mpc3000.os316-structure,"SCSI READ CAPACITY (unit) -> DX:AX blocks, 0 if none; first 32+ bytes match Vailixi 3.50 D470:03AD"
+scsi_partition_reader,code,2AB2:04F7,0x32A17,,static,mpc3000.os316-structure,SCSI partition reader; opens a 100Eh-byte frame (see os316-defects)
+scsi_command,code,2B36:000A,0x32D6A,,static,mpc3000.os316-structure,"SCSI command with retries (id, cdb far, 6, buf far, bytes) -> AX; mapped from Vailixi 3.50 D510:0006 with relocated segment words masked"
+scsi_error_map,code,2B36:0091,0x32DF1,,static,mpc3000.os316-structure,SCSI code -> OS error number; first 32+ bytes match Vailixi 3.50 D510:008D
+timer_timestamp,code,2B50:0194,0x33094,,static,mpc3000.os316-structure,"Timer 0 timestamp in DX:AX, 0.5 us units; first 32+ bytes match Vailixi 3.50 D52A:0190"
+io_expansion_probe,code,2CCC:0205,0x348C5,,static,mpc3000.os316-structure,"I/O expansion board probe on port 50h: AX=1 present, 0 absent; first 32+ bytes match Vailixi 3.50 D6A0:0213"
+key_wait,code,2D0B:0002,0x34AB2,,static,mpc3000.os316-structure,Wait for and take one key (AL); mapped from Vailixi 3.50 D6E0:0000 with relocated segment words masked
+key_drop_softkeys,code,2D0B:008D,0x34B3D,,static,mpc3000.os316-structure,Drop queued soft keys; mapped from Vailixi 3.50 D6E0:008B with relocated segment words masked
+key_count,code,2D1F:0000,0x34BF0,,static,mpc3000.os316-structure,AX = keys queued; mapped from Vailixi 3.50 D6F3:000E with relocated segment words masked
+ring_read,code,2EE7:001E,0x3688E,,static,mpc3000.os316-structure,"Ring buffer read (index, buffer far, count) -> AX bytes; first 18 bytes match Vailixi 3.50 D8BC:001C"
+pad_note_effective,code,301D:000A,0x37BDA,,static,mpc3000.os316-structure,Effective pad slot -> note; first 14 bytes match Vailixi 3.50 D9F2:000C
+pad_first_for_note,code,301D:003B,0x37C0B,,static,mpc3000.os316-structure,First pad slot mapped to a note; first 32+ bytes match Vailixi 3.50 D9F2:003D
+program_record,code,302F:0029,0x37D19,,static,mpc3000.os316-structure,"Program record (index) -> DX:AX far pointer, 0 past the count; first 12 bytes match Vailixi 3.50 DA04:002B"
+midi_out_queue_byte,code,3033:000E,0x37D3E,,static,mpc3000.os316-structure,"Queue CL in the DS:BX ring; keeps BX, CX, SI; first 32+ bytes match Vailixi 3.50 DA09:0000"
+pad_event_reader,code,3045:000B,0x37E5B,,static,mpc3000.os316-structure,"Panel pad-event reader, called from the playback tick; mapped from Vailixi 3.50 DA1A:000D with relocated segment words masked"
+midi_in_reader,code,3094:0008,0x38348,,static,mpc3000.os316-structure,"Live MIDI-in reader, called from the playback tick; first 8 bytes match Vailixi 3.50 DA69:000A"
+midi_buffer_send,code,3286:0039,0x3A299,,static,mpc3000.os316-structure,"Buffer sender (buffer far, count, port word); mapped from Vailixi 3.50 DC5B:003B with relocated segment words masked"
+key_filter,code,3481:000E,0x3C21E,,static,mpc3000.os316-structure,"Global key filter (raw key) -> AX key, 0 when handled; first 32+ bytes match Vailixi 3.50 DE5C:000E"
+seq_free_bytes,code,383B:0007,0x3FDB7,,static,mpc3000.os316-structure,Free sequence memory in bytes (DX:AX); mapped from Vailixi 3.50 E21A:000B with relocated segment words masked
+track_slot_map,code,38B1:0382,0x40892,,static,mpc3000.os316-structure,Build the track -> slot map of a sequence header (far header); first 23 bytes match Vailixi 3.50 E291:0376
+track_name,code,3AF7:0009,0x42979,,static,mpc3000.os316-structure,"Track name (seq, slot, far buffer >= 17) -> 0 named, 1 unused; first 32+ bytes match Vailixi 3.50 E4D6:000D"
+transport_stop_wait,code,3D25:0003,0x44C53,,static,mpc3000.os316-structure,Stop the transport and wait; first 8 bytes match Vailixi 3.50 E704:0007
+sound_save,code,3F26:0008,0x46C68,,static,mpc3000.os316-structure,Save Sound (index); first 9 bytes match Vailixi 3.50 E905:000C
+select_option_digit,code,41F3:0002,0x49932,,static,mpc3000.os316-structure,"Select option: digit 1..max (byte far, max, flags) -> 0 or key; first 14 bytes match Vailixi 3.50 EBC8:0003"
+amx_install_vector,code,47BF:0341,0x4F931,,static,mpc3000.os316-structure,AMX: install interrupt vector DL = ES:BX
+amx_post,code,47BF:03AD,0x4F99D,,static,mpc3000.os316-structure,"AMX post message (ES:BX message, CX); first 32+ bytes match Vailixi 3.50 FB00:03B3"
+amx_wake,code,47BF:04A6,0x4FA96,,static,mpc3000.os316-structure,AMX wake task (DL = task); first 32+ bytes match Vailixi 3.50 FB00:04AC
+amx_queue_push_front,code,47BF:06B3,0x4FCA3,,static,mpc3000.os316-structure,AMX queue push-front; first 32+ bytes match Vailixi 3.50 FB00:06B9
+bios_banner,string,001B:0001,0x07BB1,22,static,mpc3000.os316-structure,MPC-3000 BIOS 02/20/05
+kadak_copyright,string,47BF:0009,0x4F5F9,38,static,mpc3000.os316-structure,COPYRIGHT (C) 1983 KADAK PRODUCTS LTD.; 3.16 links its own AMX kernel
+amx_task_table,table,4834:000C,0x4FD4C,144,static,mpc3000.os316-structure,"AMX create table: eight 18-byte task records (entry offset, segment, stack size, SS), FFFFh end at image 483DCh"
+seq_pool_end_imm,data,4852:0015,0x4FF35,2,static,mpc3000.os316-structure,"Immediate of MOV BX,6FFFh: paragraph where the sequence pool ends; read once after start-up (see os316-defects)"
+init_table,table,6098:0004,0x68384,,static,mpc3000.os316-structure,Far pointers to the start-up initialisers; entry 0 is bios_init
+dgroup,data,609C:0000,0x683C0,31104,static,mpc3000.os316-structure,"Initialised data (DS); 7980h bytes in the file, BSS 7980h-FC9Eh zeroed at start-up"
+pad_note_default,table,609C:087F,0x68C3F,64,static,mpc3000.os316-structure,"Default note for each of the 64 pad slots (pad 1 = 37, pad 2 = 36 ... ); copied to pad_notes at start-up"
+key_queue,ram,609C:12A4,0x69664,8,static,mpc3000.os316-structure,"AMX key queue, 8 bytes"
+lcd_framebuffer,ram,609C:1579,0x69939,1920,static,mpc3000.os316-structure,"Graphics framebuffer: 64 rows of 30 bytes (240 x 64 pixels), sent by lcd_blit"
+current_pad,ram,609C:D399,,1,static,mpc3000.os316-structure,Current pad slot (pad + bank)
+current_program,ram,609C:E2FB,,1,static,mpc3000.os316-structure,Selected program 0-23
+mode,ram,609C:D4B8,,1,static,mpc3000.os316-structure,Current mode letter (L = Program/Sounds)
+pad_notes,ram,609C:8064,,64,static,mpc3000.os316-structure,Live pad slot notes
+sound_segment,ram,539D:0000,,,static,mpc3000.os316-structure,"Segment of the Sound buffer (offset 0000) and Sound records (offset 4800h, 24h bytes each)"
