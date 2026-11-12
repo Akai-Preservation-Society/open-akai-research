@@ -29,7 +29,7 @@ depends_on: ["mpc2000xl.address-model", "mpc2000xl.rom-and-flash"]
   | `0x7C000-0x7FFFF` | Boot and recovery block; an update never writes it |
 
 - **[static]** File `0x75C00-0x76800` has been proposed as a code bank but is not proven unused.
-- **[hardware]** The proven way to make room is to retire a feature: disable its entry points, show by an execution watch that its code is never run or read, then reuse it. Retiring the MIDI Sample Dump engine (segment `35B0`, around file `0x3D510-0x3DFB1`) and its user-interface code gave room that released images use.
+- **[hardware]** The proven way to make room is to retire a feature: disable its entry points, show by an execution watch that its code is never run or read, then reuse it.
 - **[hardware]** Code placed in the RAM copy of segment `7400` (file `0x74800` onward, outside the ranges above) runs on hardware when it is entered through a gate that checks the module's header ([address-model.md](address-model.md)).
 - **[hypothesis]** That RAM copy stays writable and mapped the same way on every unit.
 - **[open]** A census of every range that OS 1.20 never executes or reads.
@@ -37,7 +37,7 @@ depends_on: ["mpc2000xl.address-model", "mpc2000xl.rom-and-flash"]
 ## Evidence
 
 - **Static:** the reserved ranges from the update's write range, the `.ALL` loader (`0x1DA43`) and the Program-pool bounds.
-- **Hardware:** PGR5-gap freezes in July 2026; the retired-feature space and the gated `7400` code in every 2KXL PLUS image from v1.1 (September 2026) on.
+- **Hardware:** PGR5-gap freezes in July 2026; space reclaimed by retiring a feature, and gated `7400` code, in every 2KXL PLUS image from v1.1 (September 2026) on.
 
 ## Open questions
 
