@@ -1,0 +1,20 @@
+port_start,port_end,device,function,status,source
+0x0000,0x001E,MB89352A SCSI controller,"Direct registers, byte-wide at even ports",documented,"Schematic IC80; Fujitsu register table; firmware 0x0A087"
+0x0060,0x0062,LCD controller 1 (LCD1N),"0x60 / 0x62 command and data; bit 7 = busy",static,"Firmware 0x1AA74, 0x1AB9B; schematic LCD1N"
+0x0080,0x008C,L6028 DSP,"Per-voice word-register interface",static,Firmware 0x0F245 and 0x41846
+0x00A0,0x00A2,EB16 effects board (optional),"Word writes only (0xA2 address, 0xA0 data); no presence check",hypothesis,"Firmware 0x361D4-0x361F8; J330 carries FXCS"
+0x00C0,0x00C0,Sampling input latch,"Bits 6/7 select input channels (40h mono L, 80h mono R, C0h stereo); bit 3 input reset pulse",static,Firmware 0x490AC and 0x4914D
+0x0100,0x0102,LCD controller 2 (LCD2N),"Command and data; bit 7 = busy",static,"Firmware 0x1ABB7; schematic LCD2N, decoder IC73 Y0"
+0x0120,0x0120,Contrast latch,"LCD contrast, 0-1Fh",static,Firmware 0x04364
+0x0140,0x015F,IC220 74HC259 (LOLEDN),"Panel LEDs AFTER, REC, UNDO SEQ, PLAY, OVER DUB. Write port base+2Q lights LED Q, +10h puts it out; data ignored",hardware,"Schematic IC73 Y2; findings/panel-protocol.md"
+0x0160,0x017F,IC520 74HC259 (HILEDN),"Panel LEDs FULL LEVEL, BANK A-D, TRACK MUTE, NEXT SEQ, 16 LEVELS; same scheme",hardware,"Schematic IC73 Y3; findings/panel-protocol.md"
+0x0180,0x0186,MB89371A SIO1,"Data / status-command / baud / mode at +0/+2/+4/+6; MIDI OUT A transmit",static,"Firmware 0x0066D, 0x00B22; schematic IC100"
+0x01A0,0x01A6,MB89371A SIO2,"Same register layout; drives MIDI OUT B",hardware,"Firmware 0x0069D, 0x00B42; findings/midi-output.md"
+0x01C0,0x01C6,ICS2008 SMPTE (optional IC150),"1C0 status/control, 1C4 index, 1C6 data; absent on a stock unit",static,Firmware 0x08004-0x08058
+0x01E0,0x01EE,IDE / ATAPI port,"ATA task file at 1E0+2n (ZIP 250 or CompactFlash option); INTRQ to INTP3",static,Firmware 0x0F6E9-0x0F81B
+0xC000,0xC002,Panel link receive,"0xC002 bit 1 = byte ready; read the byte at 0xC000",static,"Firmware 0x00B62 and boot 0x7CBF0; board decode not identified"
+0xC010,0xC016,V53 timer unit (relocated),TCT0/TCT1/TCT2 and mode register,static,Firmware 0x00605 and boot 0x7C474
+0xC020,0xC022,V53 interrupt controller (relocated),"C020 command, C022 mask; vectors 20h-27h",static,"Firmware 0x0063D-0x0065A; NEC V53 user's manual"
+0xC030,0xC03F,V53 DMA unit (relocated),"uPD71071 mode; C03F mask: ch0 SCSI, ch1 floppy/IDE, ch2 sample input, ch3 L6028",static,Firmware 0x0A584-0x0A5A2
+0xFF00,0xFF7E,V53 page registers,"PGR1-64, one word per 16 KiB page; do not read while XA mode is on",documented,"NEC V53 user's manual; boot 0x7C4FA-0x7C512"
+0xFFE0,0xFFFE,V53 system I/O,On-chip configuration (relocation and wait states),documented,"NEC V53 user's manual; boot 0x7C40D-0x7C473"

@@ -1,0 +1,23 @@
+file_offset,length,sha256,label,finding
+0x000A8,4,ebc3c7836ec95aa35ad45f971e102ec1d10c90b0edfb3f2bc69f99dfb36ea3c5,magic pointer,mpc2000xl.rom-and-flash
+0x00461,9,a8e3a946cce4121e65e5b8a056faf04d6eab17cee93f2365ca91943e2dd5b2fc,magic text,mpc2000xl.rom-and-flash
+0x0063D,30,b2dd2ab1f4476bcf22e4d0b506d48f8341cdda4ab8a5ffda97c8e47760b7324d,interrupt controller set-up,mpc2000xl.memory-and-io-map
+0x0084D,108,304af1201e1d8d3ae8c6eb71f5145d94e043cb2741df197aed879794acb34487,tick handler mask and re-arm,mpc2000xl.abi-and-hooks
+0x00B62,470,34f55b21a79c15933d1b8a85c9eb041fc4d507054cfbb5b0911cbcf91f0f18ce,panel report receive and dispatch,mpc2000xl.panel-protocol
+0x0113B,229,a28bf27c0c93b7c7a0b82dcc91c249847fcc1ecabb5eaedbf6f1dbab7daa3da9,LED refresh,mpc2000xl.panel-protocol
+0x0168D,14,7aca429fd3c1232bb3b3ca4dba644e3a88d98c2043e8a75ad5ec0911e10a2e86,millisecond delay,mpc2000xl.abi-and-hooks
+0x0180B,16,22871034e8517e7358b29295cd3ea1bdc3f1b40625c58d573866be4c3ed4a826,"INT E7h, first bytes",mpc2000xl.address-model
+0x01838,16,6d21fad151fd629b34ad7ba397e5df0e3c3fe04102e6c0229bc0b2f46d34f47b,"INT E8h, first bytes",mpc2000xl.address-model
+0x03BD6,16,e0f91b8507164a46e1a91538fcdecb5c99767fd5f7083a8587abfbeb97bf4730,"MIDI OUT A send, first bytes",mpc2000xl.midi-output
+0x03C3C,16,fa363ef4079b01e7a99b0d489d603d15c3c86d0637db2874a23dc6ceef6edd74,"MIDI OUT B send, first bytes",mpc2000xl.midi-output
+0x10036,1149,57fa3b18115b552b9918db8fab0e76ff1121308e9e944a82241abb1d233e061d,PGR5 gap (zero),mpc2000xl.code-space
+0x1DA43,16,54255eef7690a2f66694720fcbc991c7eef5309bbd03b429d1482c3b68a8976c,"ALL loader, first bytes",mpc2000xl.file-formats
+0x30E43,7,3f1743f4954d741358c728e7ab28a76be5f76b0738070bd6bf4ea81112e08bc0,VER version text,mpc2000xl.build-a-patch
+0x39342,16,4ef905ff5b203e62c029c6ba3300f2071928320233a66a47b576290d3c5e0012,"PGM dispatcher, first bytes",mpc2000xl.file-formats
+0x396E0,16,01574fb7c90d2b5ee1d89f0f878f68d46cd756ec4baaba8b59e63b773d036409,"0Ah dispatcher, first bytes",mpc2000xl.file-formats
+0x77FFE,2,a5a8779d46eb94713b496d1794c0b1e18b9fafa0a2f39368d21514f8624f196e,checksum word,mpc2000xl.rom-and-flash
+0x7C000,16384,4a933383d070a6658e619415997192231cabe1241fab622e33fbac639a75910d,boot and recovery block,mpc2000xl.rom-and-flash
+0x7C557,24,52ebce517bb269dc673de6abacb3f68c16bad386261575c29c663a4a863a1934,panel ID wait,mpc2000xl.boot-and-panel-handshake
+0x7C7BD,128,3b5eceebb30250c548347f2ff304fe1e5d4c60733e8604f94ea8a8a52f4e332f,boot integrity check,mpc2000xl.rom-and-flash
+0x7CBF0,32,6d8d2ddce86ebf20d5079b4bd5c9abfee56142c2d15c742d5718f3a96cf072c1,boot panel receive handler,mpc2000xl.boot-and-panel-handshake
+0x7FFF0,5,fa9d197b26db6f65feb60531be1b0282bce16fd319f9451192898dc9ccda869f,reset vector,mpc2000xl.rom-and-flash

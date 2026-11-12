@@ -1,0 +1,44 @@
+# Firmware registry for the Akai MPC2000XL.
+#
+# This file identifies images. It never contains them. File offsets in this
+# machine's folder are offsets into the 512 KiB OS image (which is also the
+# update file MPC2KXL.BIN). Physical address = 0x80000 + file offset.
+
+[[image]]
+id = "mpc2000xl-os1.20"
+label = "OS 1.20 (MPC2KXL.BIN / flash image)"
+origin = "manufacturer"
+kind = "flash"
+obtain = "Akai's final OS update file for this model, MPC2KXL.BIN. Obtain it from a source you trust and check the hash, or read IC20 of a machine you own."
+notes = "Its internal build string still reads 1.14c -74 Jul. 15,2004. The update file is this image byte for byte. Every code-level finding in this folder is keyed to it."
+size = 524288
+crc32 = "c082f188"
+sha1 = "382be688972fe3d85caeca99abff4b6c391347fb"
+sha256 = "100e3375b45072c209ffa2b1dbaecbf740c8c4ea29162827ac11cc6bf9cc7bab"
+source = "Computed from the file."
+
+[[image]]
+id = "mpc2000xl-os1.14"
+label = "OS 1.14 (flash image)"
+origin = "manufacturer"
+kind = "flash"
+obtain = "An earlier Akai OS update file for this model, or a read of IC20 from a unit that carries it."
+notes = "Internal string 1.14 -72 May. 15,2001. Used here only for comparison: its boot block (0x7C000-0x7FFFF) is byte-identical to 1.20's."
+size = 524288
+crc32 = "7b4fe8af"
+sha1 = "f272ef2b1948730446fe260e4c0c830884832d3a"
+sha256 = "c100b5820a7d953470554d271d5aac8661a0f6c9b4f6fb6525a52f2b4711e81a"
+source = "Computed from the file."
+
+[[image]]
+id = "mpc2000xl-panel-v1.00"
+label = "Panel MCU program PAD CPU V1.00 Feb.15,1999 (uPD78C10, M27C256B, IC270)"
+origin = "manufacturer"
+kind = "eprom"
+obtain = "Read the 27C256 at IC270 on the OPERATION board of a machine you own."
+notes = "32 KiB, of which about 1.2 KiB is program and the rest FF. Byte sum & FFFFh = 3267h."
+size = 32768
+crc32 = "24382ade"
+sha1 = "b02ca9b8a4ae41f4414e12d5188f638dbb99f36c"
+sha256 = "9042180fb9d8ba845abf4984aa7486869b8f9fcff642ede369e3709abd316f1f"
+source = "Computed from the file."

@@ -1,0 +1,6 @@
+start,end,device,function,status,source
+0x080000,0x0FFFFF,IC20 flash (27C040 class),"OS image, 512 KiB. Physical = 0x80000 + file offset",static,"Schematic BROMN/IC20; reset vector at file 0x7FFF0 executes from physical 0xFFFF0"
+0x0FC000,0x0FFFFF,IC20 flash,"Boot and recovery block (file 0x7C000-0x7FFFF); never written by an OS update",static,findings/rom-and-flash.md
+0x000000,0x07FFFF,DRAM (via XC9572 CPLD IC40),"After boot: RAM copy of file 0x00000-0x77FFF at linear address = file offset, plus OS data. Exact physical split not on the schematics",static,findings/address-model.md
+0x100000,0x103FFF,CPU/program DRAM,"Private R/W workspace reached through page registers 0x40+ when XA is on",static,"Boot PGR table at file 0x7C4FA-0x7C512; findings/address-model.md"
+0x0F8000,0x0F9FFF,IC20 flash,"Firmware parameter-log window, inside the range an update erases and leaves blank",hypothesis,findings/rom-and-flash.md

@@ -7,11 +7,28 @@ How much is known about each machine, and how well it is established. Evidence c
 | Machine | Coverage | Facts | Findings | Hardware-tested findings | Symbols | Firmware images | Open questions |
 |---|---|---|---|---|---|---|---|
 | [Akai MPC2000](machines/mpc2000/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
-| [Akai MPC2000XL](machines/mpc2000xl/README.md) | none | 2 | 0 | 0 | 0 | 0 | 1 |
+| [Akai MPC2000XL](machines/mpc2000xl/README.md) | partial | 14 | 12 | 12 | 48 | 3 | 8 |
 | [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 14 | 7 | 186 | 7 | 18 |
 | [Akai MPC60](machines/mpc60/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
 | [Akai S900](machines/s900/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
 | [Akai S950](machines/s950/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
+
+## Akai MPC2000XL
+
+| Area | Finding | Evidence | Hardware tested | Firmware | Last verified |
+|---|---|---|---|---|---|
+| hardware | [MPC2000XL hardware overview](machines/mpc2000xl/findings/hardware-overview.md) | documented | partial | hardware | 2026-10-07 |
+| cpu | [How addresses work on the MPC2000XL (file, physical, runtime)](machines/mpc2000xl/findings/address-model.md) | static | partial | os1.20 | 2026-10-07 |
+| memory | [MPC2000XL memory map, I/O ports, interrupts and DMA](machines/mpc2000xl/findings/memory-and-io-map.md) | static | partial | os1.20 | 2026-10-07 |
+| boot | [Boot path and the panel ID handshake](machines/mpc2000xl/findings/boot-and-panel-handshake.md) | static | partial | os1.20, panel-v1.00 | 2026-09-21 |
+| firmware | [The OS image, the flash update, the boot checksum and recovery](machines/mpc2000xl/findings/rom-and-flash.md) | hardware | yes | os1.20 | 2026-09-30 |
+| os | [Calling conventions, OS services and hook patterns proven on hardware](machines/mpc2000xl/findings/abi-and-hooks.md) | hardware | partial | os1.20 | 2026-10-07 |
+| panel | [Front-panel input reports and the LED latches](machines/mpc2000xl/findings/panel-protocol.md) | hardware | partial | os1.20 | 2026-10-07 |
+| midi | [MIDI ports and how to send MIDI from added code](machines/mpc2000xl/findings/midi-output.md) | hardware | partial | os1.20 | 2026-10-07 |
+| file-format | [SND, PGM and ALL file layouts](machines/mpc2000xl/findings/file-formats.md) | hardware | yes | os1.20 | 2026-07-17 |
+| modding | [Recipe: patch OS 1.20, flash it, and roll it back](machines/mpc2000xl/findings/build-a-patch.md) | hardware | yes | os1.20 | 2026-09-30 |
+| modding | [Where added code can and cannot go in OS 1.20](machines/mpc2000xl/findings/code-space.md) | hardware | partial | os1.20 | 2026-10-07 |
+| tooling | [Assembler and disassembler pitfalls on the MPC2000XL](machines/mpc2000xl/findings/disassembler-pitfalls.md) | hardware | partial | hardware | 2026-10-07 |
 
 ## Akai MPC3000
 

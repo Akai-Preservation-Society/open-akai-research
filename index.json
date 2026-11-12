@@ -50,48 +50,573 @@
       "symbols": {}
     },
     {
-      "coverage": "none",
+      "coverage": "partial",
       "facts": [
         {
           "key": "main_cpu",
-          "source": "Reported by a contributor from unpublished notes; no evidence is in this repository yet",
-          "status": "hypothesis",
-          "value": "NEC V53 family, as in the MPC3000"
+          "source": "MPC2000XL main-board schematic (CPU marked V53A); NEC V53 user's manual",
+          "status": "documented",
+          "value": "NEC uPD70236 (V53A): 8086-compatible core with on-chip DMA, timers, interrupt controller and page registers"
         },
         {
-          "key": "rom_mapping",
-          "source": "Reported by a contributor from unpublished notes; no evidence is in this repository yet",
+          "key": "main_cpu_clock",
+          "source": "Schematic marks the crystal; the NEC data sheet's 32 MHz in / 16 MHz CPU option is assumed, not measured",
           "status": "hypothesis",
-          "value": "The 512 KiB OS image is visible only in the top half of the first megabyte (20-bit address = 0x80000 + file offset), unlike the MPC3000 where it appears twice"
+          "value": "32 MHz crystal (X10); the core is believed to run at 16 MHz"
+        },
+        {
+          "key": "os_storage",
+          "source": "Main-board schematic (IC20, JP20, BROMN); findings/rom-and-flash.md",
+          "status": "documented",
+          "value": "One 512 KiB 27C040-footprint flash (IC20), updated in the unit from floppy or SCSI. JP20 selects flash or EPROM"
+        },
+        {
+          "key": "os_image",
+          "source": "findings/rom-and-flash.md",
+          "status": "static",
+          "value": "The OS update file MPC2KXL.BIN is the flat 512 KiB flash image, byte for byte, with no container"
+        },
+        {
+          "key": "address_space",
+          "source": "findings/address-model.md",
+          "status": "static",
+          "value": "ROM at physical 0x80000-0xFFFFF; after boot the OS runs from a RAM copy where runtime seg*16+off equals the file offset (see findings/address-model.md)"
+        },
+        {
+          "key": "panel_cpu",
+          "source": "OPERATION schematic; findings/panel-protocol.md",
+          "status": "documented",
+          "value": "NEC uPD78C10 (IC250 on the OPERATION sheet) with its own 32 KiB EPROM (IC270); sends two-byte reports to the main CPU"
+        },
+        {
+          "key": "sample_dsp",
+          "source": "Main-board schematic; MPC2000XL user manual",
+          "status": "documented",
+          "value": "Akai L6028 DSP (IC200) with its own wave DRAM; AK5340 ADC, PCM69AP DAC; 2 MB sample memory standard, 32 MB maximum"
+        },
+        {
+          "key": "display",
+          "source": "findings/memory-and-io-map.md",
+          "status": "static",
+          "value": "248 x 60 graphic LCD on two controllers at I/O 0x60/0x62 and 0x100/0x102; contrast latch at 0x120"
+        },
+        {
+          "key": "midi",
+          "source": "findings/midi-output.md",
+          "status": "hardware",
+          "value": "Fujitsu MB89371A dual SIO (IC100): SIO1 at I/O 0x180, SIO2 at 0x1A0. SIO2 drives MIDI OUT B"
+        },
+        {
+          "key": "scsi_controller",
+          "source": "Main-board schematic; Fujitsu data sheet register table; firmware accesses",
+          "status": "documented",
+          "value": "Fujitsu MB89352A (IC80), byte registers at even I/O ports 0x0000-0x001E"
+        },
+        {
+          "key": "floppy_controller",
+          "source": "Main-board schematic",
+          "status": "documented",
+          "value": "NEC uPD72068 (IC50), 8 MHz, DMA channel 1"
+        },
+        {
+          "key": "battery_backed_ram",
+          "source": "Search of all schematic sheets for BAT, NVRAM and RTC parts: no match",
+          "status": "documented",
+          "value": "None found on the schematics"
+        },
+        {
+          "key": "code_model",
+          "source": "findings/abi-and-hooks.md",
+          "status": "hardware",
+          "value": "Segmented 80186-level code; far calls with arguments pushed right to left, caller cleans the stack. Assemble with CPU 186: 386 encodings fault"
+        },
+        {
+          "key": "user_code_entry",
+          "source": "findings/rom-and-flash.md; findings/build-a-patch.md",
+          "status": "hardware",
+          "value": "Patch the OS image, repair its checksum and install it with the stock OS update (SHIFT+LOAD of MPC2KXL.BIN). The boot block is never written, and a bad image falls back to a disk recovery loader"
         }
       ],
       "family": "mpc",
-      "findings": [],
-      "firmware": [],
-      "hardware_tables": {},
-      "id": "mpc2000xl",
-      "name": "Akai MPC2000XL",
-      "pins": {},
-      "questions": [
+      "findings": [
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.address-model",
+            "mpc2000xl.memory-and-io-map"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.abi-and-hooks",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/abi-and-hooks.md",
+          "sources": [
+            "NEC V53 user's manual (interrupt controller, timer unit)",
+            "Akai MPC2000XL main-board schematic"
+          ],
+          "status": "hardware",
+          "summary": "How OS 1.20 code calls and is called, the inline-operand software interrupts, the interrupt controller and tick rules that keep a mod from freezing the machine, and five ways of hooking the OS that have run on hardware.",
+          "title": "Calling conventions, OS services and hook patterns proven on hardware"
+        },
+        {
+          "area": "cpu",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.rom-and-flash"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.address-model",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/address-model.md",
+          "sources": [
+            "NEC V53 user's manual (page registers, printed pp.67-71 and 121-123)"
+          ],
+          "status": "static",
+          "summary": "The OS runs from a RAM copy where segment × 16 + offset equals the file offset. This gives the address forms, the boot page-register map, and the run-time remapping of the top half of that copy that every mod must respect.",
+          "title": "How addresses work on the MPC2000XL (file, physical, runtime)"
+        },
+        {
+          "area": "boot",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.rom-and-flash",
+            "mpc2000xl.address-model"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20",
+            "mpc2000xl-panel-v1.00"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.boot-and-panel-handshake",
+          "last_verified": "2026-09-21",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/boot-and-panel-handshake.md",
+          "status": "static",
+          "summary": "From the reset vector to the OS. The boot block sets up the V53, waits for the panel MCU to send the ID bytes E0 11, checks the OS image and copies it to RAM. An emulator must answer the ID wait to boot.",
+          "title": "Boot path and the panel ID handshake"
+        },
+        {
+          "area": "modding",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.rom-and-flash",
+            "mpc2000xl.code-space",
+            "mpc2000xl.abi-and-hooks",
+            "mpc2000xl.disassembler-pitfalls"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "yes",
+          "id": "mpc2000xl.build-a-patch",
+          "last_verified": "2026-09-30",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/build-a-patch.md",
+          "status": "hardware",
+          "summary": "Step-by-step route for changing OS 1.20 - patch a copy of the image, repair its checksum, check protected regions, flash it with the stock updater and keep a stock image ready to roll back. Each step has been done on hardware.",
+          "title": "Recipe: patch OS 1.20, flash it, and roll it back"
+        },
+        {
+          "area": "modding",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.address-model",
+            "mpc2000xl.rom-and-flash"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.code-space",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/code-space.md",
+          "status": "hardware",
+          "summary": "OS 1.20 has no documented free space. Ranges that must never be written are listed with the reason. Room has been made by retiring features whose code is proven never to run; zero bytes alone do not make a range safe.",
+          "title": "Where added code can and cannot go in OS 1.20"
+        },
+        {
+          "area": "tooling",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.abi-and-hooks"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.disassembler-pitfalls",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/disassembler-pitfalls.md",
+          "status": "hardware",
+          "summary": "Assemble for the 80186; 386 encodings fault on the V53A. Inline-operand interrupts, V53-only instructions and screen programs that mix code and data all break linear disassembly.",
+          "title": "Assembler and disassembler pitfalls on the MPC2000XL"
+        },
+        {
+          "area": "file-format",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "yes",
+          "id": "mpc2000xl.file-formats",
+          "last_verified": "2026-07-17",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/file-formats.md",
+          "status": "hardware",
+          "summary": "Byte layouts of the .SND sound file (complete), the .PGM program file (framing and record layout) and the .ALL sequence container (framing), checked against files written by a real MPC2000XL and against the OS's loaders.",
+          "title": "SND, PGM and ALL file layouts"
+        },
         {
           "area": "hardware",
-          "id": "mpc2000xl.q.first-steps",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.hardware-overview",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/hardware-overview.md",
+          "sources": [
+            "Akai MPC2000XL main-board schematic (MAIN 1-3 and OPERATION sheets)",
+            "Akai MPC2000XL analog-board schematic",
+            "Akai MPC2000XL user manual",
+            "NEC V53 user's manual"
+          ],
+          "status": "documented",
+          "summary": "The chips on the MPC2000XL main and operation boards and what each one does, from the schematics, the user manual and board photographs.",
+          "title": "MPC2000XL hardware overview"
+        },
+        {
+          "area": "memory",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.hardware-overview"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.memory-and-io-map",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/memory-and-io-map.md",
+          "sources": [
+            "Akai MPC2000XL main-board schematic",
+            "NEC V53 user's manual"
+          ],
+          "status": "static",
+          "summary": "Where the flash, RAM and every peripheral sit, the interrupt and DMA lines each uses, and how the OS programs them, from the schematics and the OS 1.20 code.",
+          "title": "MPC2000XL memory map, I/O ports, interrupts and DMA"
+        },
+        {
+          "area": "midi",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.memory-and-io-map",
+            "mpc2000xl.abi-and-hooks"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.midi-output",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/midi-output.md",
+          "status": "hardware",
+          "summary": "The two MIDI outputs are the two channels of an MB89371A. The OS's enqueue routines take a status byte and data in registers, handle running status, and are safe to call from added code inside a short critical section. SIO2 drives MIDI OUT B on hardware.",
+          "title": "MIDI ports and how to send MIDI from added code"
+        },
+        {
+          "area": "panel",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.memory-and-io-map",
+            "mpc2000xl.boot-and-panel-handshake"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc2000xl.panel-protocol",
+          "last_verified": "2026-10-07",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/panel-protocol.md",
+          "status": "hardware",
+          "summary": "Every key, pad, wheel and slider event reaches the main CPU as a two-byte report from the panel MCU; this gives each header and its handler. The 13 LEDs are written directly by the main CPU through two latches; each LED's port is confirmed on hardware.",
+          "title": "Front-panel input reports and the LED latches"
+        },
+        {
+          "area": "firmware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc2000xl.memory-and-io-map"
+          ],
+          "firmware": [
+            "mpc2000xl-os1.20"
+          ],
+          "hardware_tested": "yes",
+          "id": "mpc2000xl.rom-and-flash",
+          "last_verified": "2026-09-30",
+          "machine": "mpc2000xl",
+          "path": "machines/mpc2000xl/findings/rom-and-flash.md",
+          "status": "hardware",
+          "summary": "The OS update file is the flat 512 KiB flash image. An update never writes the boot block, every cold boot checks a magic string and a word sum, and a failed image drops to a disk recovery loader rather than bricking the unit.",
+          "title": "The OS image, the flash update, the boot checksum and recovery"
+        }
+      ],
+      "firmware": [
+        {
+          "crc32": "c082f188",
+          "id": "mpc2000xl-os1.20",
+          "kind": "flash",
+          "label": "OS 1.20 (MPC2KXL.BIN / flash image)",
+          "notes": "Its internal build string still reads 1.14c -74 Jul. 15,2004. The update file is this image byte for byte. Every code-level finding in this folder is keyed to it.",
+          "obtain": "Akai's final OS update file for this model, MPC2KXL.BIN. Obtain it from a source you trust and check the hash, or read IC20 of a machine you own.",
+          "origin": "manufacturer",
+          "sha1": "382be688972fe3d85caeca99abff4b6c391347fb",
+          "sha256": "100e3375b45072c209ffa2b1dbaecbf740c8c4ea29162827ac11cc6bf9cc7bab",
+          "size": 524288,
+          "source": "Computed from the file."
+        },
+        {
+          "crc32": "7b4fe8af",
+          "id": "mpc2000xl-os1.14",
+          "kind": "flash",
+          "label": "OS 1.14 (flash image)",
+          "notes": "Internal string 1.14 -72 May. 15,2001. Used here only for comparison: its boot block (0x7C000-0x7FFFF) is byte-identical to 1.20's.",
+          "obtain": "An earlier Akai OS update file for this model, or a read of IC20 from a unit that carries it.",
+          "origin": "manufacturer",
+          "sha1": "f272ef2b1948730446fe260e4c0c830884832d3a",
+          "sha256": "c100b5820a7d953470554d271d5aac8661a0f6c9b4f6fb6525a52f2b4711e81a",
+          "size": 524288,
+          "source": "Computed from the file."
+        },
+        {
+          "crc32": "24382ade",
+          "id": "mpc2000xl-panel-v1.00",
+          "kind": "eprom",
+          "label": "Panel MCU program PAD CPU V1.00 Feb.15,1999 (uPD78C10, M27C256B, IC270)",
+          "notes": "32 KiB, of which about 1.2 KiB is program and the rest FF. Byte sum & FFFFh = 3267h.",
+          "obtain": "Read the 27C256 at IC270 on the OPERATION board of a machine you own.",
+          "origin": "manufacturer",
+          "sha1": "b02ca9b8a4ae41f4414e12d5188f638dbb99f36c",
+          "sha256": "9042180fb9d8ba845abf4984aa7486869b8f9fcff642ede369e3709abd316f1f",
+          "size": 32768,
+          "source": "Computed from the file."
+        }
+      ],
+      "hardware_tables": {
+        "interrupts": {
+          "path": "machines/mpc2000xl/hardware/interrupts.csv",
+          "rows": 12
+        },
+        "io-ports": {
+          "path": "machines/mpc2000xl/hardware/io-ports.csv",
+          "rows": 19
+        },
+        "memory-map": {
+          "path": "machines/mpc2000xl/hardware/memory-map.csv",
+          "rows": 5
+        }
+      },
+      "id": "mpc2000xl",
+      "name": "Akai MPC2000XL",
+      "pins": {
+        "mpc2000xl-os1.20": {
+          "count": 22,
+          "path": "machines/mpc2000xl/pins/mpc2000xl-os1.20.csv"
+        },
+        "mpc2000xl-panel-v1.00": {
+          "count": 3,
+          "path": "machines/mpc2000xl/pins/mpc2000xl-panel-v1.00.csv"
+        }
+      },
+      "questions": [
+        {
+          "area": "midi",
+          "id": "mpc2000xl.q.midi-input",
           "machine": "mpc2000xl",
           "needs": [
-            "document",
-            "firmware-image",
-            "analysis"
+            "analysis",
+            "emulator"
           ],
-          "path": "machines/mpc2000xl/questions/first-steps.md",
-          "priority": "high",
+          "path": "machines/mpc2000xl/questions/midi-input.md",
+          "priority": "medium",
+          "related": [
+            "mpc2000xl.midi-output"
+          ],
           "status": "open",
-          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
-          "title": "Akai MPC2000XL: the first things to establish"
+          "summary": "MIDI output is documented. The MIDI input path, parser, sync handling and the exact baud clock are not.",
+          "title": "MIDI input and sync"
+        },
+        {
+          "area": "os",
+          "id": "mpc2000xl.q.os120-code-map",
+          "machine": "mpc2000xl",
+          "needs": [
+            "analysis",
+            "emulator"
+          ],
+          "path": "machines/mpc2000xl/questions/os120-code-map.md",
+          "priority": "high",
+          "related": [
+            "mpc2000xl.abi-and-hooks",
+            "mpc2000xl.code-space"
+          ],
+          "status": "open",
+          "summary": "About 50 routines and data objects are named here. Most of OS 1.20 (screens, sequencer, sampler, disk) has no published names.",
+          "title": "A map of the OS 1.20 code"
+        },
+        {
+          "area": "panel",
+          "id": "mpc2000xl.q.panel-commands",
+          "machine": "mpc2000xl",
+          "needs": [
+            "analysis",
+            "hardware"
+          ],
+          "path": "machines/mpc2000xl/questions/panel-commands.md",
+          "priority": "low",
+          "related": [
+            "mpc2000xl.panel-protocol",
+            "mpc2000xl.boot-and-panel-handshake"
+          ],
+          "status": "open",
+          "summary": "The panel MCU has a receive handler, so the main CPU can send it commands, but none are documented.",
+          "title": "Commands from the main CPU to the panel"
+        },
+        {
+          "area": "memory",
+          "id": "mpc2000xl.q.pgr5-gap",
+          "machine": "mpc2000xl",
+          "needs": [
+            "analysis",
+            "hardware"
+          ],
+          "path": "machines/mpc2000xl/questions/pgr5-gap.md",
+          "priority": "low",
+          "related": [
+            "mpc2000xl.address-model",
+            "mpc2000xl.code-space"
+          ],
+          "status": "open",
+          "summary": "Code in the zero-filled file range 0x10036-0x104B3 works warm but freezes after a cold boot. Why is unknown.",
+          "title": "The PGR5 gap at cold boot"
+        },
+        {
+          "area": "firmware",
+          "id": "mpc2000xl.q.power-loss-during-update",
+          "machine": "mpc2000xl",
+          "needs": [
+            "hardware"
+          ],
+          "path": "machines/mpc2000xl/questions/power-loss-during-update.md",
+          "priority": "medium",
+          "related": [
+            "mpc2000xl.rom-and-flash"
+          ],
+          "status": "open",
+          "summary": "What a unit does when power fails in the middle of a routine OS update has not been tried.",
+          "title": "Power loss during an OS update"
+        },
+        {
+          "area": "audio",
+          "id": "mpc2000xl.q.sample-engine",
+          "machine": "mpc2000xl",
+          "needs": [
+            "analysis",
+            "emulator",
+            "hardware",
+            "document"
+          ],
+          "path": "machines/mpc2000xl/questions/sample-engine.md",
+          "priority": "high",
+          "related": [
+            "mpc2000xl.hardware-overview",
+            "mpc2000xl.memory-and-io-map"
+          ],
+          "status": "open",
+          "summary": "How the OS drives the L6028 DSP (voices, sample RAM transfers, recording) is not documented here.",
+          "title": "The L6028 sample engine"
+        },
+        {
+          "area": "file-format",
+          "id": "mpc2000xl.q.sequence-format",
+          "machine": "mpc2000xl",
+          "needs": [
+            "analysis",
+            "hardware"
+          ],
+          "path": "machines/mpc2000xl/questions/sequence-format.md",
+          "priority": "medium",
+          "related": [
+            "mpc2000xl.file-formats"
+          ],
+          "status": "open",
+          "summary": "The .ALL container framing is known. The standalone .SEQ file, the event records and the song format are not documented here.",
+          "title": "Sequence files and event format"
+        },
+        {
+          "area": "cpu",
+          "id": "mpc2000xl.q.tick-and-clock",
+          "machine": "mpc2000xl",
+          "needs": [
+            "hardware"
+          ],
+          "path": "machines/mpc2000xl/questions/tick-and-clock.md",
+          "priority": "medium",
+          "related": [
+            "mpc2000xl.abi-and-hooks"
+          ],
+          "status": "open",
+          "summary": "The CPU clock and the real system-tick period have not been measured.",
+          "title": "Clock and timing on real hardware"
         }
       ],
       "released": "1999",
-      "summary": "Nothing has been published here yet. Research on this machine's operating system exists outside this repository and is expected to be the next section filled in.",
-      "symbols": {}
+      "summary": "OS 1.20's image format, flash update, checksum, recovery, addressing, panel and LED protocols, MIDI output, calling conventions and the SND and PGM file layouts are documented. The sample engine, sequencer internals and most of the OS code map are not.",
+      "symbols": {
+        "mpc2000xl-os1.20": {
+          "count": 48,
+          "path": "machines/mpc2000xl/symbols/mpc2000xl-os1.20.csv"
+        }
+      }
     },
     {
       "coverage": "partial",

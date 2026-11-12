@@ -7,7 +7,6 @@ What this repository does not know. Read this before promising a user that somet
 ## Machines with no research yet
 
 - **Akai MPC2000** (`machines/mpc2000/`): Nothing has been published here yet.
-- **Akai MPC2000XL** (`machines/mpc2000xl/`): Nothing has been published here yet. Research on this machine's operating system exists outside this repository and is expected to be the next section filled in.
 - **Akai MPC60** (`machines/mpc60/`): Nothing has been published here yet.
 - **Akai S900** (`machines/s900/`): Nothing has been published here yet.
 - **Akai S950** (`machines/s950/`): Nothing has been published here yet.
@@ -26,12 +25,33 @@ What this repository does not know. Read this before promising a user that somet
 
 | Priority | Area | Question | Needs |
 |---|---|---|---|
-| high | hardware | [Akai MPC2000XL: the first things to establish](machines/mpc2000xl/questions/first-steps.md) | document, firmware-image, analysis |
+| high | os | [A map of the OS 1.20 code](machines/mpc2000xl/questions/os120-code-map.md) | analysis, emulator |
+| high | audio | [The L6028 sample engine](machines/mpc2000xl/questions/sample-engine.md) | analysis, emulator, hardware, document |
+| medium | midi | [MIDI input and sync](machines/mpc2000xl/questions/midi-input.md) | analysis, emulator |
+| medium | firmware | [Power loss during an OS update](machines/mpc2000xl/questions/power-loss-during-update.md) | hardware |
+| medium | file-format | [Sequence files and event format](machines/mpc2000xl/questions/sequence-format.md) | analysis, hardware |
+| medium | cpu | [Clock and timing on real hardware](machines/mpc2000xl/questions/tick-and-clock.md) | hardware |
+| low | panel | [Commands from the main CPU to the panel](machines/mpc2000xl/questions/panel-commands.md) | analysis, hardware |
+| low | memory | [The PGR5 gap at cold boot](machines/mpc2000xl/questions/pgr5-gap.md) | analysis, hardware |
+
+### Findings that contain unproven claims
+
+Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding.
+
+- [Calling conventions, OS services and hook patterns proven on hardware](machines/mpc2000xl/findings/abi-and-hooks.md): 2
+- [How addresses work on the MPC2000XL (file, physical, runtime)](machines/mpc2000xl/findings/address-model.md): 1
+- [Boot path and the panel ID handshake](machines/mpc2000xl/findings/boot-and-panel-handshake.md): 2
+- [Where added code can and cannot go in OS 1.20](machines/mpc2000xl/findings/code-space.md): 2
+- [SND, PGM and ALL file layouts](machines/mpc2000xl/findings/file-formats.md): 2
+- [MPC2000XL hardware overview](machines/mpc2000xl/findings/hardware-overview.md): 2
+- [MPC2000XL memory map, I/O ports, interrupts and DMA](machines/mpc2000xl/findings/memory-and-io-map.md): 2
+- [MIDI ports and how to send MIDI from added code](machines/mpc2000xl/findings/midi-output.md): 1
+- [Front-panel input reports and the LED latches](machines/mpc2000xl/findings/panel-protocol.md): 2
+- [The OS image, the flash update, the boot checksum and recovery](machines/mpc2000xl/findings/rom-and-flash.md): 2
 
 ### Machine facts that are not established
 
-- `main_cpu` = NEC V53 family, as in the MPC3000 (hypothesis)
-- `rom_mapping` = The 512 KiB OS image is visible only in the top half of the first megabyte (20-bit address = 0x80000 + file offset), unlike the MPC3000 where it appears twice (hypothesis)
+- `main_cpu_clock` = 32 MHz crystal (X10); the core is believed to run at 16 MHz (hypothesis)
 
 ## Akai MPC3000
 

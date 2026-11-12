@@ -1,0 +1,49 @@
+name,kind,address,file_offset,size,status,finding,notes
+os_magic_pointer,data,0000:00A8,0x000A8,4,static,mpc2000xl.rom-and-flash,Dword 00000461h: file offset of the magic text
+os_magic_text,string,0000:0461,0x00461,9,static,mpc2000xl.rom-and-flash,MPC2000XL
+icu_init,code,0000:063D,0x0063D,30,static,mpc2000xl.memory-and-io-map,"Interrupt controller set-up: edge, vectors 20h-27h, self-EOI, mask 06h"
+tick_handler_mask,code,0000:0856,0x00856,,static,mpc2000xl.abi-and-hooks,Tick handler masks its own input (bit 5 of C022)
+panel_poll_byte,code,0000:0B62,0x00B62,,static,mpc2000xl.panel-protocol,Panel report receive and header dispatch
+panel_wheel_ccw,code,0000:0BC8,0x00BC8,,static,mpc2000xl.panel-protocol,Header 80: DATA wheel counter-clockwise
+panel_wheel_cw,code,0000:0C0A,0x00C0A,,static,mpc2000xl.panel-protocol,Header 81: DATA wheel clockwise
+panel_key,code,0000:0C4C,0x00C4C,,static,mpc2000xl.panel-protocol,Headers 84/85: key press and release
+panel_slider,code,0000:0C68,0x00C68,,static,mpc2000xl.panel-protocol,Header 86: NOTE VARIATION slider
+panel_pad_strike,code,0000:0C76,0x00C76,,static,mpc2000xl.panel-protocol,Headers 90-9F: pad strike / release
+panel_pad_pressure,code,0000:0D14,0x00D14,,static,mpc2000xl.panel-protocol,Headers A0-AF: pad pressure
+midi_out_a_tx_handler,code,0000:0DD3,0x00DD3,,static,mpc2000xl.midi-output,Vector 27h: MIDI OUT A transmit
+intc5_current_program,code,0000:1068,0x01068,,static,mpc2000xl.abi-and-hooks,INT C5h: returns ES:SI = the Program the pads play; changes AX and BP
+led_refresh,code,0000:113B,0x0113B,,static,mpc2000xl.panel-protocol,Writes all 13 LEDs from their flag bytes
+led_bank_refresh,code,0000:11F6,0x011F6,,static,mpc2000xl.panel-protocol,"Lights the current bank LED, clears the other three"
+delay_ms,code,0000:168D,0x0168D,,static,mpc2000xl.abi-and-hooks,Waits until 0FE7:0B8A has advanced by CX; no timeout
+int_e7_remap,code,0000:180B,0x0180B,,static,mpc2000xl.address-model,"INT E7h: clears 0FE7:0067, rewrites PGR15-32"
+int_e8_restore,code,0000:1838,0x01838,,static,mpc2000xl.address-model,"INT E8h: restores PGR15-32 from the boot table, sets 0FE7:0067"
+midi_out_a_send,code,0000:3BD6,0x03BD6,,static,mpc2000xl.midi-output,"Queue a message for MIDI OUT A: AH status, AL data 1, CL data 2; DS = 0FE7"
+midi_out_b_send,code,0000:3C3C,0x03C3C,,static,mpc2000xl.midi-output,Queue a message for MIDI OUT B; same interface
+smpte_handler,code,0000:8046,0x08046,,static,mpc2000xl.memory-and-io-map,"Vector 20h: optional SMPTE chip, ports 01C0-01C6"
+int8f_handler,code,1A9B:0000,0x1A9B0,,static,mpc2000xl.abi-and-hooks,INT 8Fh inline-text service entry
+all_loader,code,1DA4:0003,0x1DA43,,static,mpc2000xl.file-formats,.ALL loader
+updater_short,code,1E96:0002,0x1E962,,static,mpc2000xl.rom-and-flash,"OS update: load, magic check, flash"
+updater_main,code,1EAB:0008,0x1EAB8,,static,mpc2000xl.rom-and-flash,OS update: main loader path with checksum
+all_writer,code,1F6A:0009,0x1F6A9,,static,mpc2000xl.file-formats,.ALL writer
+main_screen_entry,code,267B:007A,0x2682A,,static,mpc2000xl.abi-and-hooks,MAIN screen entry: clears 0FE7:0065 and installs MAIN key records
+ver_version_text,string,267B:A693,0x30E43,7,static,mpc2000xl.build-a-patch,"VER screen version text ""1.2    """
+pgm_dispatcher,code,3934:0002,0x39342,,static,mpc2000xl.file-formats,File dispatcher for first byte 07h (.PGM)
+ax_dispatcher,code,396E:0000,0x396E0,,static,mpc2000xl.file-formats,File dispatcher for first byte 0Ah (.APS and others)
+os_checksum,data,,0x77FFE,2,static,mpc2000xl.rom-and-flash,Word sum of file 0-77FFDh
+boot_entry,code,FC00:0400,0x7C400,,static,mpc2000xl.boot-and-panel-handshake,Boot block entry; physical FC400
+boot_panel_id_wait,code,FC00:0557,0x7C557,,static,mpc2000xl.boot-and-panel-handshake,"Compares [006F] with E011h / E022h, up to 1,000 retries"
+boot_integrity_check,code,FC00:07BD,0x7C7BD,,static,mpc2000xl.rom-and-flash,INT 28h handler: magic then word sum; failure goes to the recovery loader
+boot_int24_panel_rx,code,FC00:0BF0,0x7CBF0,,static,mpc2000xl.boot-and-panel-handshake,"Boot receive handler: C002 bit 1, read C000, bytes with bit 7 to [0070], others to [006F]"
+reset_vector,vector,FFFF:0000,0x7FFF0,5,static,mpc2000xl.rom-and-flash,JMP FAR FC00:0400; physical FFFF0 = file 7FFF0
+app_data_segment,ram,582B:0000,,,static,mpc2000xl.abi-and-hooks,Program and application data segment
+key_ring,ram,0FE7:00B6,,,static,mpc2000xl.panel-protocol,"Key event ring, write index at 0FE7:01B7"
+led_refresh_request,ram,0FE7:0063,,,static,mpc2000xl.panel-protocol,Non-zero asks the main loop to refresh the LEDs (also 0064)
+midi_a_running_status,ram,0FE7:0EA4,,,static,mpc2000xl.midi-output,Running-status byte for OUT A
+midi_b_running_status,ram,0FE7:11AE,,,static,mpc2000xl.midi-output,Running-status byte for OUT B
+os_dgroup,ram,0FE7:0000,,,static,mpc2000xl.abi-and-hooks,"Global OS data segment (DS = ES = SS at cold entry, SP 0A7C)"
+pad_bank,ram,0FE7:04D5,,,static,mpc2000xl.panel-protocol,"Current pad bank: 0, 10h, 20h, 30h for A-D"
+pad_velocity,ram,0FE7:04DE,,,static,mpc2000xl.panel-protocol,16 bytes: velocity of each pad slot while held
+panel_header,ram,0FE7:01B8,,,static,mpc2000xl.panel-protocol,Last panel report header
+remap_open_flag,ram,0FE7:0067,,,static,mpc2000xl.address-model,Clear while INT E7h has PGR15-32 remapped
+slider_value,ram,0FE7:01C8,,,static,mpc2000xl.panel-protocol,"NOTE VARIATION slider, 0-7Fh"
+tick_ms,ram,0FE7:0B8A,,,static,mpc2000xl.abi-and-hooks,Millisecond counter advanced by the tick

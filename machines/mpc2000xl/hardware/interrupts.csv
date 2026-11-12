@@ -1,0 +1,13 @@
+line,source_device,function,status,source
+INTP0 / vector 20h,ICS2008 SMPTE (INTTC),"Handler 0000:8046, reads ports 01C0-01C6",static,"Schematic; OS init 0x0063D"
+INTP1,V53 TOUT0,Masked,static,OS init 0x0063D (mask 06h)
+INTP2,INTSPC (SCSI),Masked,static,OS init 0x0063D (mask 06h)
+INTP3 / vector 23h,INTDISK (floppy / IDE),Disk,static,"Schematic; io map"
+INTP4 / vector 24h,INTRX,"Receive: panel link and both MIDI inputs",static,Schematic; firmware 0x00B62
+INTP5 / vector 25h,V53 TOUT1,"System tick, nominally 1 ms; re-armed at the end of its handler, so the real period is longer",static,"Firmware 0x0084D-0x008B8"
+INTP6 / vector 26h,INTTX2,MIDI OUT B transmit,static,Schematic
+INTP7 / vector 27h,INTTX1,"MIDI OUT A transmit, handler 0000:0DD3; also where the ICU sends an incomplete interrupt",static,"Schematic; NEC V53 user's manual p.156"
+DMA0,MB89352A SCSI,Disk transfer,static,DMA mask use at 0x0A584
+DMA1,uPD72068 floppy / IDE,Disk transfer,static,DMA mask use at 0x0A584
+DMA2,Sample input,Input ring,static,DMA mask use at 0x0A584
+DMA3,L6028 DSP,Sample-RAM transfers,static,DMA mask use at 0x0A584
