@@ -2,17 +2,89 @@ id = "mpc2000xl"
 name = "Akai MPC2000XL"
 family = "mpc"
 released = "1999"
-coverage = "none"
-summary = "Nothing has been published here yet. Research on this machine's operating system exists outside this repository and is expected to be the next section filled in."
+coverage = "partial"
+summary = "OS 1.20's image format, flash update, checksum, recovery, addressing, panel and LED protocols, MIDI output, calling conventions and the SND and PGM file layouts are documented. The sample engine, sequencer internals and most of the OS code map are not."
 
 [[fact]]
 key = "main_cpu"
-value = "NEC V53 family, as in the MPC3000"
-status = "hypothesis"
-source = "Reported by a contributor from unpublished notes; no evidence is in this repository yet"
+value = "NEC uPD70236 (V53A): 8086-compatible core with on-chip DMA, timers, interrupt controller and page registers"
+status = "documented"
+source = "MPC2000XL main-board schematic (CPU marked V53A); NEC V53 user's manual"
 
 [[fact]]
-key = "rom_mapping"
-value = "The 512 KiB OS image is visible only in the top half of the first megabyte (20-bit address = 0x80000 + file offset), unlike the MPC3000 where it appears twice"
+key = "main_cpu_clock"
+value = "32 MHz crystal (X10); the core is believed to run at 16 MHz"
 status = "hypothesis"
-source = "Reported by a contributor from unpublished notes; no evidence is in this repository yet"
+source = "Schematic marks the crystal; the NEC data sheet's 32 MHz in / 16 MHz CPU option is assumed, not measured"
+
+[[fact]]
+key = "os_storage"
+value = "One 512 KiB 27C040-footprint flash (IC20), updated in the unit from floppy or SCSI. JP20 selects flash or EPROM"
+status = "documented"
+source = "Main-board schematic (IC20, JP20, BROMN); findings/rom-and-flash.md"
+
+[[fact]]
+key = "os_image"
+value = "The OS update file MPC2KXL.BIN is the flat 512 KiB flash image, byte for byte, with no container"
+status = "static"
+source = "findings/rom-and-flash.md"
+
+[[fact]]
+key = "address_space"
+value = "ROM at physical 0x80000-0xFFFFF; after boot the OS runs from a RAM copy where runtime seg*16+off equals the file offset (see findings/address-model.md)"
+status = "static"
+source = "findings/address-model.md"
+
+[[fact]]
+key = "panel_cpu"
+value = "NEC uPD78C10 (IC250 on the OPERATION sheet) with its own 32 KiB EPROM (IC270); sends two-byte reports to the main CPU"
+status = "documented"
+source = "OPERATION schematic; findings/panel-protocol.md"
+
+[[fact]]
+key = "sample_dsp"
+value = "Akai L6028 DSP (IC200) with its own wave DRAM; AK5340 ADC, PCM69AP DAC; 2 MB sample memory standard, 32 MB maximum"
+status = "documented"
+source = "Main-board schematic; MPC2000XL user manual"
+
+[[fact]]
+key = "display"
+value = "248 x 60 graphic LCD on two controllers at I/O 0x60/0x62 and 0x100/0x102; contrast latch at 0x120"
+status = "static"
+source = "findings/memory-and-io-map.md"
+
+[[fact]]
+key = "midi"
+value = "Fujitsu MB89371A dual SIO (IC100): SIO1 at I/O 0x180, SIO2 at 0x1A0. SIO2 drives MIDI OUT B"
+status = "hardware"
+source = "findings/midi-output.md"
+
+[[fact]]
+key = "scsi_controller"
+value = "Fujitsu MB89352A (IC80), byte registers at even I/O ports 0x0000-0x001E"
+status = "documented"
+source = "Main-board schematic; Fujitsu data sheet register table; firmware accesses"
+
+[[fact]]
+key = "floppy_controller"
+value = "NEC uPD72068 (IC50), 8 MHz, DMA channel 1"
+status = "documented"
+source = "Main-board schematic"
+
+[[fact]]
+key = "battery_backed_ram"
+value = "None found on the schematics"
+status = "documented"
+source = "Search of all schematic sheets for BAT, NVRAM and RTC parts: no match"
+
+[[fact]]
+key = "code_model"
+value = "Segmented 80186-level code; far calls with arguments pushed right to left, caller cleans the stack. Assemble with CPU 186: 386 encodings fault"
+status = "hardware"
+source = "findings/abi-and-hooks.md"
+
+[[fact]]
+key = "user_code_entry"
+value = "Patch the OS image, repair its checksum and install it with the stock OS update (SHIFT+LOAD of MPC2KXL.BIN). The boot block is never written, and a bad image falls back to a disk recovery loader"
+status = "hardware"
+source = "findings/rom-and-flash.md; findings/build-a-patch.md"

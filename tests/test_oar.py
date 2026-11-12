@@ -74,6 +74,20 @@ class Repository(unittest.TestCase):
                 checked += 1
         self.assertGreater(checked, 140)
 
+    def test_mpc2000xl_runtime_addresses_equal_file_offsets(self):
+        """OS 1.20 runs from a RAM copy where seg*16+off is the file offset."""
+        data = oar.load_all(oar.Problems())
+        checked = 0
+        for row in data["machines"]["mpc2000xl"]["symbols"]["mpc2000xl-os1.20"]["rows"]:
+            if not row["address"] or not row["file_offset"]:
+                continue
+            seg, off = (int(part, 16) for part in row["address"].split(":"))
+            linear = (seg << 4) + off
+            expected = linear - 0x80000 if linear >= 0x80000 else linear  # boot block: physical
+            self.assertEqual(expected, int(row["file_offset"], 16), row["name"])
+            checked += 1
+        self.assertGreater(checked, 30)
+
 
 class Images(unittest.TestCase):
     def setUp(self):
