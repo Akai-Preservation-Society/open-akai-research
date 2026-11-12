@@ -1,0 +1,24 @@
+name: Open question
+description: Something nobody seems to know yet.
+labels: ["question"]
+body:
+  - type: input
+    id: machine
+    attributes:
+      label: Machine
+    validations:
+      required: true
+  - type: textarea
+    id: unknown
+    attributes:
+      label: What is unknown
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters
+  - type: textarea
+    id: how
+    attributes:
+      label: How it might be answered

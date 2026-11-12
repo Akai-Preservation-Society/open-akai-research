@@ -1,0 +1,111 @@
+id = "mpc3000"
+name = "Akai MPC3000"
+family = "mpc"
+released = "1994"
+coverage = "partial"
+summary = "Hardware, addressing, boot path and the floppy route for running your own code are documented. The operating system's internals (sequencer, sampling, MIDI, file formats, front-panel protocol) are not."
+
+# Every fact carries the evidence class behind it (docs/evidence.md) and
+# where it came from. Facts that need more than a line live in findings/.
+
+[[fact]]
+key = "main_cpu"
+value = "NEC uPD70236 (V53): 8086-compatible core with on-chip DMA controller, timers, interrupt controller and serial port"
+status = "documented"
+source = "Akai MPC3000 service manual parts list (marking uPD70236GD-16); MAME src/mame/akai/mpc3000.cpp (device V53A)"
+
+[[fact]]
+key = "main_cpu_clock"
+value = "32.000 MHz crystal; the CPU core runs at half of it, 16 MHz"
+status = "documented"
+source = "MAME driver (32 MHz crystal, CLKOUT = crystal / 2); NEC 16-bit V-Series data book; Akai specifications quote a 16 MHz V53"
+
+[[fact]]
+key = "byte_order"
+value = "little-endian"
+status = "documented"
+source = "NEC 16-bit V-Series data book"
+
+[[fact]]
+key = "address_space"
+value = "20-bit 8086 addressing extended to 24 bits through a 64-entry page-register table (see findings/address-model.md)"
+status = "static"
+source = "findings/address-model.md"
+
+[[fact]]
+key = "os_storage"
+value = "Two AM27C020 EPROMs (IC13 = LS/even bytes, IC14 = MS/odd bytes); 512 KiB when interleaved"
+status = "documented"
+source = "Akai MPC3000 service manual parts list; MAME driver ROM_SKIP(1) interleave"
+
+[[fact]]
+key = "work_ram"
+value = "1 MiB (two HM658512 pseudo-static RAMs) at 24-bit 0x300000-0x3FFFFF"
+status = "documented"
+source = "MAME driver memory map; service manual parts list (IC15, IC16)"
+
+[[fact]]
+key = "nvram_window"
+value = "Battery-backed RAM window at 24-bit 0x500000-0x500FFF, reached by the OS through page 61"
+status = "static"
+source = "findings/address-model.md; MAME driver memory map"
+
+[[fact]]
+key = "nvram_chip"
+value = "LC3517 (2K x 8 static RAM with battery)"
+status = "hypothesis"
+source = "MAME driver comment and service parts list name the chip; nobody here has confirmed it is the device decoded at that window"
+
+[[fact]]
+key = "panel_cpu"
+value = "NEC uPD78C10AGQ at 12 MHz with its own 32 KiB EPROM (IC602); talks to the main CPU over a serial link"
+status = "documented"
+source = "MAME driver; service manual parts list"
+
+[[fact]]
+key = "sample_dsp"
+value = "L7A1045 L6028 DSP-A, 33.8688 MHz; 16-bit sample bus with 24 address bits (32 MiB sample space) separate from the CPU bus"
+status = "documented"
+source = "MAME driver header and devices/sound/l7a1045_l6028_dsp_a.cpp; service manual parts list (IC28)"
+
+[[fact]]
+key = "display_controller"
+value = "LC7981 LCD controller (modelled as an HD61830 in MAME); I/O port 0x00E0 data, 0x00E2 control/status"
+status = "documented"
+source = "MAME driver I/O map; service manual parts list"
+
+[[fact]]
+key = "floppy_controller"
+value = "uPD72069, I/O ports 0x00E8-0x00EB, DMA channel 1, interrupt shared with SCSI on IRQ3"
+status = "documented"
+source = "MAME driver"
+
+[[fact]]
+key = "scsi_controller"
+value = "Fujitsu MB89352, I/O ports 0x00A0-0x00BF, DMA channel 0"
+status = "documented"
+source = "MAME driver"
+
+[[fact]]
+key = "midi_uart"
+value = "TE7774 quad UART, I/O ports 0x00C0-0x00DF: MIDI IN 1-2, MIDI OUT 1-4, and the receive side of the front-panel link"
+status = "documented"
+source = "MAME driver header comment and I/O map"
+
+[[fact]]
+key = "kernel"
+value = "The OS runs on the KADAK AMX real-time kernel (a 1983 KADAK copyright string sits in the EPROM)"
+status = "static"
+source = "String at linear file offset 0x7B00F in mpc3000-vailixi-3.50; findings/interrupt-vectors.md"
+
+[[fact]]
+key = "code_model"
+value = "Segmented 8086 code. Application routines are far cdecl: arguments pushed right to left, first argument at [BP+6], caller cleans the stack, RETF"
+status = "static"
+source = "findings/calling-conventions.md (established on mpc3000-vailixi-3.50)"
+
+[[fact]]
+key = "user_code_entry"
+value = "At power-on the ROM loads the first *.SYS file on a floppy as a DOS MZ executable into RAM and jumps to it. No EPROM change is needed to run your own code"
+status = "hardware"
+source = "findings/floppy-sys-loader.md; findings/build-a-floppy-sys.md"

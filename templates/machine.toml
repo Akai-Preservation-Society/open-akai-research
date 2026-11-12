@@ -1,0 +1,14 @@
+id = "MACHINE"                  # must equal the folder name
+name = "Akai MODEL"
+family = "mpc"                  # mpc | s-series | other
+released = "YEAR"
+coverage = "none"               # none | seed | partial | substantial
+summary = "Nothing has been published yet."
+
+# Add facts as they are established. Each needs a status and a source.
+#
+# [[fact]]
+# key = "main_cpu"
+# value = "..."
+# status = "documented"
+# source = "Service manual, parts list, page N"

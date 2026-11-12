@@ -1,0 +1,154 @@
+# Firmware registry for the Akai MPC3000.
+#
+# This file identifies images. It never contains them. Hashes let you (and
+# `python3 tools/oar.py identify`) tell which image a file is.
+#
+# A "linear" image is the two EPROMs interleaved: even bytes from the LS
+# chip, odd bytes from the MS chip. All file offsets in findings, symbols
+# and pins refer to the linear image.
+
+[[image]]
+id = "mpc3000-v3.08"
+label = "OS 3.08 (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-pair"
+obtain = "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer."
+notes = "Not in the MAME ROM set. Loads .SYS files at segment 7000."
+size = 524288
+sha256 = "8c9952668c03dbf045c0c8fa5977e1b1eb055840f883258ec76d1c1bc2700cb8"
+source = "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+
+[[image.part]]
+role = "ls-even"
+size = 262144
+crc32 = "40e6310e"
+sha1 = "d8b2a9d3cc65223f40c2c6954a842160cb58fd9e"
+sha256 = "8bbefbad6228ad2b25a5a52e37d99dc3cabfd000b89a43efc3ee04543c31661d"
+
+[[image.part]]
+role = "ms-odd"
+size = 262144
+crc32 = "bab7048e"
+sha1 = "59f1cdc8dec1dc49f6b337da1f9bbc1bfaf259d8"
+sha256 = "34d0c53f0639d3ad0da064ca75a0fa007ceee0d991a64b9a11ab2cbe443f566c"
+
+[[image]]
+id = "mpc3000-v3.10"
+label = "OS 3.10 (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-pair"
+obtain = "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer."
+notes = "Hashes from MAME only. No contributor has analysed this image: no finding applies to it."
+source = "MAME src/mame/akai/mpc3000.cpp ROMX_LOAD lines."
+
+[[image.part]]
+role = "ls-even"
+size = 262144
+crc32 = "cbd1b3a6"
+sha1 = "5464a57137549d9d9c47f9aafc2b89f4c0af8b31"
+
+[[image.part]]
+role = "ms-odd"
+size = 262144
+crc32 = "e2ba1904"
+sha1 = "27a9f047c63964fac2b453f2317b77834490983d"
+
+[[image]]
+id = "mpc3000-v3.11"
+label = "OS 3.11 (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-pair"
+obtain = "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer."
+notes = "Loads .SYS files at segment 7000."
+size = 524288
+sha256 = "79d8029453c12f69d8ceb4807c4bf5831ac4d529fa0b42128d1a306f85b03f50"
+source = "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+
+[[image.part]]
+role = "ls-even"
+size = 262144
+crc32 = "5a272061"
+sha1 = "87cc8aef3233d95ad1febbd77b42f720d718baa3"
+sha256 = "0fe87ad1b397a3cce793b8a38da100a80b4c53b61553859220fba72a260e2417"
+
+[[image.part]]
+role = "ms-odd"
+size = 262144
+crc32 = "a8e177de"
+sha1 = "b63a5c27066c03f7de56659aff183f15d95277c5"
+sha256 = "a56cc7717bc7199b39cd4ecaa1ef299c4ac737450c6d530f48715b17f555e270"
+
+[[image]]
+id = "mpc3000-v3.12"
+label = "OS 3.12 (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-pair"
+obtain = "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer."
+notes = "MAME's default BIOS. Loads .SYS files at segment 6900."
+size = 524288
+sha256 = "ad9974c9c541e14eae1740825edb23edf58c1f0c3a9f6868e62fcf8f6f9f7eb8"
+source = "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+
+[[image.part]]
+role = "ls-even"
+size = 262144
+crc32 = "d4fb6439"
+sha1 = "555d388ed25f8b85638c325e7d9012eaa271ffa0"
+sha256 = "5c7c8b0091aed5b878c1e3776c108776226c3f98b214fd688af045567c4b913c"
+
+[[image.part]]
+role = "ms-odd"
+size = 262144
+crc32 = "80ee0ab9"
+sha1 = "b8855118d59b8f73a3af5ff2e824cdaa0a9f564a"
+sha256 = "dc43a4e2bde2fb732301f1b3620b207cba2fb06be6bb7ff1172fbb3b3d319d04"
+
+[[image]]
+id = "mpc3000-vailixi-3.50"
+label = "Vailixi OS 3.50, reference dump (EPROM pair)"
+origin = "community"
+kind = "eprom-pair"
+obtain = "A third-party operating system supplied by its author on EPROMs. Read the EPROMs of a machine you own."
+notes = "The dump in the MAME ROM set (BIOS banner dated 21/08/07). Units running an OS that calls itself 3.50 do not all hold these bytes: see findings/eprom-layout.md. Identify by hash, never by the version on screen."
+size = 524288
+sha256 = "a52b7122bf40d020544300bb270afb815e99c1969847a28d457ce727bbe770c9"
+source = "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+
+[[image.part]]
+role = "ls-even"
+size = 262144
+crc32 = "9f3031b5"
+sha1 = "c270a92f8ed273a1ede16388bb8f30c85ac1faab"
+sha256 = "cb4531fab4f2a43d3ad71465ac9efbe4bd6c3b23401cdbac379eea37234c4004"
+
+[[image.part]]
+role = "ms-odd"
+size = 262144
+crc32 = "e62ebb26"
+sha1 = "f6d080481de40bea2c94bbc96b222c5f9b7afaf4"
+sha256 = "514c745dea6bb711d19cf6e09bb4e7987f732c1bfa6b01857068c9982e295801"
+
+[[image]]
+id = "mpc3000-v3.16-sys"
+label = "OS 3.16 maintenance upgrade (M3K316.SYS, floppy-loaded)"
+origin = "community"
+kind = "floppy-sys"
+obtain = "Released in 2005 by its author as a floppy upgrade for the MPC3000 and MPC3000LE. Obtain the file from a source you trust and check the hash."
+notes = "A DOS MZ executable loaded into RAM from floppy at power-on; not an EPROM image. Gone at power-off. Its internals are not documented here yet."
+size = 458047
+crc32 = "1db45295"
+sha1 = "b45b017721f0e59974e50de93040ccd1f973ad23"
+sha256 = "cf997046c35d5eb720cd277f235f5503eba3e53c8518a7d3a782dd087fbde226"
+source = "Computed from the file."
+
+[[image]]
+id = "mpc3000-panel-v1.0"
+label = "Front-panel MCU program v1.0 (uPD78C10, AM27C256, IC602)"
+origin = "manufacturer"
+kind = "eprom"
+obtain = "Read the AM27C256 at IC602 on the panel board of a machine you own."
+notes = "32 KiB. No contributor has analysed this image: the panel protocol is an open question."
+size = 32768
+crc32 = "b0b783d3"
+sha1 = "a60016184fc07ba00dcc19ba4da60e78aceff63c"
+source = "MAME src/mame/akai/mpc3000.cpp ROM_LOAD line."

@@ -1,0 +1,12 @@
+file_offset,length,sha256,label,finding
+0x00000,84,c289177646392878f5aaacb61aba971e71ce6216a5fc9bb22e548e3cbf596b9e,XA=0 interrupt vector template,mpc3000.interrupt-vectors
+0x00054,130988,b646c603f99f7881da560185da6e16ed7652e42e2a1f9eaece1c8752c1130592,low free bank (all FF),mpc3000.rom-free-space
+0x311D1,37,ac23dd87addf6cc1d9806d80a5c2f885755f82c471864622f94f0b7378c0a4a1,"string ""Searching floppy for startup files...""",mpc3000.floppy-sys-loader
+0x36ED0,8,dfac6da45c871e94c28f89959be18c3f00e3e3b74fd8d42bd0da096e05d72434,"OS entry, first 8 bytes",mpc3000.floppy-sys-loader
+0x37018,8,72dd058010c237c1b0228b908b337ec99eddc7b1c56995476fefd3e051bdb9bb,"startup-file loader, first 8 bytes",mpc3000.floppy-sys-loader
+0x74000,16384,0fbba07a833d4dcfc7024eaf313661a0ba8f80a05c6d29b8801c612e10e60dee,page-61 free bank (all FF),mpc3000.rom-free-space
+0x7813D,468,8edaf65787efb484a8aae0b3178f8f7416f3a4cca0ca813a5f901b91beb2ef31,INT 45h MZ loader,mpc3000.floppy-sys-loader
+0x7AD29,128,8c3572c1ae5db53a987f5d8dd362c5b1f71ed07160b0a82d7d0d4c1cdfe2ce4d,third page-register table,mpc3000.address-model
+0x7B994,10,9dd0ad403a7c2761f29dfedd634291353568e278f6a0033c9f8207b2d2e3238f,"SYS hand-off, first 10 bytes",mpc3000.floppy-sys-loader
+0x7FF00,68,94b2af525d85e231a5f4f97e4e62c5e14fee06c5b0dcb6ddfd490066146c2f67,reset stub,mpc3000.eprom-layout
+0x7FFF0,5,0ec0ee291813132c5ec4c4c40d8d14c9148c59c75417022745a30e28bf5750ff,reset vector: JMP FAR FFF0:0000,mpc3000.eprom-layout

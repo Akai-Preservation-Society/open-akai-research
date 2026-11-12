@@ -1,0 +1,50 @@
+name: Finding
+description: Share something you have worked out about a machine.
+labels: ["finding"]
+body:
+  - type: input
+    id: machine
+    attributes:
+      label: Machine
+      placeholder: MPC3000
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware image
+      description: Version and, if you can, the SHA-256 or CRC32 of your dump (python3 tools/oar.py identify). Do not attach the image.
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: What you found
+      description: Addresses, behaviour, structure. No disassembly listings, please.
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: How it was established
+      options:
+        - Seen on a real machine (hardware)
+        - Seen in an emulator (emulator)
+        - Read from the firmware bytes (static)
+        - From a manual, datasheet or other source (documented)
+        - A reasoned guess (hypothesis)
+    validations:
+      required: true
+  - type: textarea
+    id: repeat
+    attributes:
+      label: How someone else can check it
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirm
+      options:
+        - label: This contains no firmware and nothing excluded by LEGAL.md, and I have the right to share it.
+          required: true

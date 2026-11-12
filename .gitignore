@@ -1,0 +1,16 @@
+# Build products and anything a user might drop in while working.
+build/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Firmware, disk images and manuals never belong in this repository (LEGAL.md).
+*.bin
+*.BIN
+*.rom
+*.sys
+*.SYS
+*.img
+*.ima
+*.hfe
+*.pdf

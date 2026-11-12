@@ -1,0 +1,18 @@
+id = "mpc2000xl"
+name = "Akai MPC2000XL"
+family = "mpc"
+released = "1999"
+coverage = "none"
+summary = "Nothing has been published here yet. Research on this machine's operating system exists outside this repository and is expected to be the next section filled in."
+
+[[fact]]
+key = "main_cpu"
+value = "NEC V53 family, as in the MPC3000"
+status = "hypothesis"
+source = "Reported by a contributor from unpublished notes; no evidence is in this repository yet"
+
+[[fact]]
+key = "rom_mapping"
+value = "The 512 KiB OS image is visible only in the top half of the first megabyte (20-bit address = 0x80000 + file offset), unlike the MPC3000 where it appears twice"
+status = "hypothesis"
+source = "Reported by a contributor from unpublished notes; no evidence is in this repository yet"

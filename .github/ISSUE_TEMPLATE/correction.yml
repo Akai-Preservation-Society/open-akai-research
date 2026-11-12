@@ -1,0 +1,24 @@
+name: Correction
+description: Something in the repository is wrong, or could not be reproduced.
+labels: ["correction"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: File and claim
+      placeholder: machines/mpc3000/findings/address-model.md, third claim
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong, and what you observed instead
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Firmware image (by hash if possible), emulator or hardware, what you did.
+    validations:
+      required: true

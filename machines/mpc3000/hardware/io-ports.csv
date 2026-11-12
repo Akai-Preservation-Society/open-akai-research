@@ -1,0 +1,18 @@
+port_start,port_end,device,function,status,source
+0x0000,0x0000,HC259 latch (low),Panel LEDs,documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x0020,0x0020,HC259 latch (high),Panel LEDs,documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x0060,0x006F,L7A1045 DSP,Sample engine registers,documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x0080,0x0087,8255 PPI (MB89255B) "dioexp",Digital I/O expander (low byte of each word),documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x00A0,0x00BF,MB89352 SCSI controller,SCSI (low byte of each word),documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x00C0,0x00C7,TE7774 UART channel 1,MIDI IN 1 / MIDI OUT 1,documented,MAME src/mame/akai/mpc3000.cpp I/O map and header comment
+0x00C8,0x00CF,TE7774 UART channel 2,MIDI IN 2 / MIDI OUT 2,documented,MAME src/mame/akai/mpc3000.cpp I/O map and header comment
+0x00D0,0x00D7,TE7774 UART channel 3,Front-panel MCU receive / MIDI OUT 3,documented,MAME src/mame/akai/mpc3000.cpp I/O map and header comment
+0x00D8,0x00DF,TE7774 UART channel 4,Front-panel MCU receive / MIDI OUT 4,documented,MAME src/mame/akai/mpc3000.cpp I/O map and header comment
+0x00E0,0x00E0,LC7981 LCD controller,Data register,documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x00E2,0x00E2,LC7981 LCD controller,Control (write) / status (read),documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x00E8,0x00EB,uPD72069 floppy controller,Floppy (low byte); an HC365 status buffer answers on the high byte,documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x00F0,0x00F7,8254 timer (MB89254) "synctmr",External sync/tempo timers; separate from the CPU's on-chip timers,documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0x00F8,0x00FF,8255 PPI (MB89255B) "adcexp",ADC and control expander,documented,MAME src/mame/akai/mpc3000.cpp I/O map
+0xFF00,0xFF7E,V53 page registers (PGR),"64 words, one per 16 KiB page; set the 24-bit address of each page in extended mode",documented,NEC 16-bit V-Series data book; MAME devices/cpu/nec (v33_translate)
+0xFFE0,0xFFFE,V53 system I/O,"Fixed on-chip configuration registers (relocation of the on-chip timer, interrupt, serial and DMA units)",documented,NEC 16-bit V-Series data book; MAME devices/cpu/nec/v5x.cpp
+0xC010,0xC011,V53 relocated on-chip unit,"Written by the BIOS around interrupts (0xC011 written 0xFF / 0xF6; 0xC010 written 0x60). Believed to be the on-chip interrupt controller's mask and command ports; not confirmed",hypothesis,findings/interrupt-vectors.md; questions/icu-ports-c010-c011.md

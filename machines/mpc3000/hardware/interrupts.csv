@@ -1,0 +1,13 @@
+line,source_device,function,status,source
+IRQ0,V53 on-chip timer output 0,Timer,documented,MAME src/mame/akai/mpc3000.cpp machine configuration
+IRQ1,V53 on-chip timer output 1,Timer,documented,MAME src/mame/akai/mpc3000.cpp machine configuration
+IRQ2,V53 on-chip timer output 2,Timer,documented,MAME src/mame/akai/mpc3000.cpp machine configuration
+IRQ3,uPD72069 floppy OR MB89352 SCSI,Disk (shared line; the handler must tell them apart),documented,MAME src/mame/akai/mpc3000.cpp header comment
+IRQ4,TE7774 TXRDY 1-4 (wire-OR),MIDI transmit ready,documented,MAME src/mame/akai/mpc3000.cpp header comment
+IRQ5,TE7774 RXRDY 1-3 (wire-OR),MIDI IN 1 / MIDI IN 2 / panel receive,documented,MAME src/mame/akai/mpc3000.cpp header comment
+IRQ6,SMPTE sync input,Sync,documented,MAME src/mame/akai/mpc3000.cpp header comment
+IRQ7,TE7774 RXRDY 4,Panel receive,documented,MAME src/mame/akai/mpc3000.cpp header comment
+DMA0,MB89352 SCSI,Disk transfer,documented,MAME src/mame/akai/mpc3000.cpp header comment
+DMA1,uPD72069 floppy,Disk transfer,documented,MAME src/mame/akai/mpc3000.cpp header comment
+DMA2,IC31,Unidentified; the MAME author guesses a direct audio stream,hypothesis,MAME src/mame/akai/mpc3000.cpp header comment
+DMA3,L7A1045 DSP,Sample data transfer,documented,MAME src/mame/akai/mpc3000.cpp header comment

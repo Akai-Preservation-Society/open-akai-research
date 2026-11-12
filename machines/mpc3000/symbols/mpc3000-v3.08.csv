@@ -1,0 +1,13 @@
+name,kind,address,file_offset,size,status,finding,notes
+reset_vector,vector,FFFF:0000,0x7FFF0,5,static,mpc3000.eprom-layout,JMP FAR FFF0:0000; first instruction after reset
+reset_stub,code,FFF0:0000,0x7FF00,68,static,mpc3000.eprom-layout,Reset stub; byte-identical in 3.08 3.11 3.12 and Vailixi 3.50
+pgr_table_third,table,,0x7AD29,128,static,mpc3000.address-model,64 page-register words loaded by INT 10h; same bytes as in Vailixi 3.50
+bios_int45_mz_loader,code,F800:013D,0x7813D,468,static,mpc3000.floppy-sys-loader,INT 45h: load a DOS MZ file; byte-identical in all four EPROM images
+os_entry,code,B6ED:0000,0x36ED0,,static,mpc3000.floppy-sys-loader,OS main entry reached from the BIOS
+startup_loader,code,B6ED:0148,0x37018,,static,mpc3000.floppy-sys-loader,Startup-file loader; argument 0 = floppy and 1 = SCSI
+floppy_ready_stub,code,B6ED:0355,0x37225,6,static,mpc3000.floppy-sys-loader,Far call to floppy_ready then RETF
+floppy_ready,code,F0B9:0442,0x70FD2,,static,mpc3000.floppy-sys-loader,Returns non-zero when a floppy is ready
+sys_handoff,code,FB93:0064,0x7B994,,static,mpc3000.floppy-sys-loader,Hands control to a .SYS file: INT 10h then INT 45h then far jump
+dgroup_image,data,,0x30000,,static,mpc3000.floppy-sys-loader,Start of the initialised-data image; the startup strings live here
+free_bank_low,range,,0x00054,130988,static,mpc3000.rom-free-space,All FF (bytes checked); reachability analysed only for Vailixi 3.50
+free_bank_page61,range,,0x74000,16384,static,mpc3000.rom-free-space,All FF (bytes checked); reachability analysed only for Vailixi 3.50

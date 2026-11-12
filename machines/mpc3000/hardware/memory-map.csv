@@ -1,0 +1,4 @@
+start,end,device,function,status,source
+0x000000,0x07FFFF,2x AM27C020 EPROM,"OS program ROM, 512 KiB, LS/MS interleaved. Mirrored at 0x080000-0x0FFFFF",documented,MAME src/mame/akai/mpc3000.cpp program map
+0x300000,0x3FFFFF,2x HM658512 PSRAM,Work RAM (1 MiB),documented,MAME src/mame/akai/mpc3000.cpp program map
+0x500000,0x500FFF,Battery-backed RAM,"NVRAM window (4 KiB window; MAME comments a 2K x 8 LC3517)",documented,MAME src/mame/akai/mpc3000.cpp program map

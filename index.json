@@ -1,0 +1,1092 @@
+{
+  "areas": [
+    "hardware",
+    "cpu",
+    "memory",
+    "boot",
+    "firmware",
+    "os",
+    "display",
+    "panel",
+    "storage",
+    "audio",
+    "midi",
+    "sequencer",
+    "file-format",
+    "modding",
+    "tooling"
+  ],
+  "format": "oar-index-1",
+  "machines": [
+    {
+      "coverage": "none",
+      "facts": [],
+      "family": "mpc",
+      "findings": [],
+      "firmware": [],
+      "hardware_tables": {},
+      "id": "mpc2000",
+      "name": "Akai MPC2000",
+      "pins": {},
+      "questions": [
+        {
+          "area": "hardware",
+          "id": "mpc2000.q.first-steps",
+          "machine": "mpc2000",
+          "needs": [
+            "document",
+            "firmware-image",
+            "analysis"
+          ],
+          "path": "machines/mpc2000/questions/first-steps.md",
+          "priority": "high",
+          "status": "open",
+          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "title": "Akai MPC2000: the first things to establish"
+        }
+      ],
+      "released": "1997",
+      "summary": "Nothing has been published here yet.",
+      "symbols": {}
+    },
+    {
+      "coverage": "none",
+      "facts": [
+        {
+          "key": "main_cpu",
+          "source": "Reported by a contributor from unpublished notes; no evidence is in this repository yet",
+          "status": "hypothesis",
+          "value": "NEC V53 family, as in the MPC3000"
+        },
+        {
+          "key": "rom_mapping",
+          "source": "Reported by a contributor from unpublished notes; no evidence is in this repository yet",
+          "status": "hypothesis",
+          "value": "The 512 KiB OS image is visible only in the top half of the first megabyte (20-bit address = 0x80000 + file offset), unlike the MPC3000 where it appears twice"
+        }
+      ],
+      "family": "mpc",
+      "findings": [],
+      "firmware": [],
+      "hardware_tables": {},
+      "id": "mpc2000xl",
+      "name": "Akai MPC2000XL",
+      "pins": {},
+      "questions": [
+        {
+          "area": "hardware",
+          "id": "mpc2000xl.q.first-steps",
+          "machine": "mpc2000xl",
+          "needs": [
+            "document",
+            "firmware-image",
+            "analysis"
+          ],
+          "path": "machines/mpc2000xl/questions/first-steps.md",
+          "priority": "high",
+          "status": "open",
+          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "title": "Akai MPC2000XL: the first things to establish"
+        }
+      ],
+      "released": "1999",
+      "summary": "Nothing has been published here yet. Research on this machine's operating system exists outside this repository and is expected to be the next section filled in.",
+      "symbols": {}
+    },
+    {
+      "coverage": "partial",
+      "facts": [
+        {
+          "key": "main_cpu",
+          "source": "Akai MPC3000 service manual parts list (marking uPD70236GD-16); MAME src/mame/akai/mpc3000.cpp (device V53A)",
+          "status": "documented",
+          "value": "NEC uPD70236 (V53): 8086-compatible core with on-chip DMA controller, timers, interrupt controller and serial port"
+        },
+        {
+          "key": "main_cpu_clock",
+          "source": "MAME driver (32 MHz crystal, CLKOUT = crystal / 2); NEC 16-bit V-Series data book; Akai specifications quote a 16 MHz V53",
+          "status": "documented",
+          "value": "32.000 MHz crystal; the CPU core runs at half of it, 16 MHz"
+        },
+        {
+          "key": "byte_order",
+          "source": "NEC 16-bit V-Series data book",
+          "status": "documented",
+          "value": "little-endian"
+        },
+        {
+          "key": "address_space",
+          "source": "findings/address-model.md",
+          "status": "static",
+          "value": "20-bit 8086 addressing extended to 24 bits through a 64-entry page-register table (see findings/address-model.md)"
+        },
+        {
+          "key": "os_storage",
+          "source": "Akai MPC3000 service manual parts list; MAME driver ROM_SKIP(1) interleave",
+          "status": "documented",
+          "value": "Two AM27C020 EPROMs (IC13 = LS/even bytes, IC14 = MS/odd bytes); 512 KiB when interleaved"
+        },
+        {
+          "key": "work_ram",
+          "source": "MAME driver memory map; service manual parts list (IC15, IC16)",
+          "status": "documented",
+          "value": "1 MiB (two HM658512 pseudo-static RAMs) at 24-bit 0x300000-0x3FFFFF"
+        },
+        {
+          "key": "nvram_window",
+          "source": "findings/address-model.md; MAME driver memory map",
+          "status": "static",
+          "value": "Battery-backed RAM window at 24-bit 0x500000-0x500FFF, reached by the OS through page 61"
+        },
+        {
+          "key": "nvram_chip",
+          "source": "MAME driver comment and service parts list name the chip; nobody here has confirmed it is the device decoded at that window",
+          "status": "hypothesis",
+          "value": "LC3517 (2K x 8 static RAM with battery)"
+        },
+        {
+          "key": "panel_cpu",
+          "source": "MAME driver; service manual parts list",
+          "status": "documented",
+          "value": "NEC uPD78C10AGQ at 12 MHz with its own 32 KiB EPROM (IC602); talks to the main CPU over a serial link"
+        },
+        {
+          "key": "sample_dsp",
+          "source": "MAME driver header and devices/sound/l7a1045_l6028_dsp_a.cpp; service manual parts list (IC28)",
+          "status": "documented",
+          "value": "L7A1045 L6028 DSP-A, 33.8688 MHz; 16-bit sample bus with 24 address bits (32 MiB sample space) separate from the CPU bus"
+        },
+        {
+          "key": "display_controller",
+          "source": "MAME driver I/O map; service manual parts list",
+          "status": "documented",
+          "value": "LC7981 LCD controller (modelled as an HD61830 in MAME); I/O port 0x00E0 data, 0x00E2 control/status"
+        },
+        {
+          "key": "floppy_controller",
+          "source": "MAME driver",
+          "status": "documented",
+          "value": "uPD72069, I/O ports 0x00E8-0x00EB, DMA channel 1, interrupt shared with SCSI on IRQ3"
+        },
+        {
+          "key": "scsi_controller",
+          "source": "MAME driver",
+          "status": "documented",
+          "value": "Fujitsu MB89352, I/O ports 0x00A0-0x00BF, DMA channel 0"
+        },
+        {
+          "key": "midi_uart",
+          "source": "MAME driver header comment and I/O map",
+          "status": "documented",
+          "value": "TE7774 quad UART, I/O ports 0x00C0-0x00DF: MIDI IN 1-2, MIDI OUT 1-4, and the receive side of the front-panel link"
+        },
+        {
+          "key": "kernel",
+          "source": "String at linear file offset 0x7B00F in mpc3000-vailixi-3.50; findings/interrupt-vectors.md",
+          "status": "static",
+          "value": "The OS runs on the KADAK AMX real-time kernel (a 1983 KADAK copyright string sits in the EPROM)"
+        },
+        {
+          "key": "code_model",
+          "source": "findings/calling-conventions.md (established on mpc3000-vailixi-3.50)",
+          "status": "static",
+          "value": "Segmented 8086 code. Application routines are far cdecl: arguments pushed right to left, first argument at [BP+6], caller cleans the stack, RETF"
+        },
+        {
+          "key": "user_code_entry",
+          "source": "findings/floppy-sys-loader.md; findings/build-a-floppy-sys.md",
+          "status": "hardware",
+          "value": "At power-on the ROM loads the first *.SYS file on a floppy as a DOS MZ executable into RAM and jumps to it. No EPROM change is needed to run your own code"
+        }
+      ],
+      "family": "mpc",
+      "findings": [
+        {
+          "area": "cpu",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.memory-and-io-map",
+            "mpc3000.eprom-layout"
+          ],
+          "firmware": [
+            "mpc3000-v3.08",
+            "mpc3000-v3.11",
+            "mpc3000-v3.12",
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.address-model",
+          "last_verified": "2026-09-23",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/address-model.md",
+          "sources": [
+            "NEC 16-bit V-Series Microprocessor Data Book (1991)",
+            "MAME devices/cpu/nec (v33_translate, v5x.cpp)",
+            "MAME src/mame/akai/mpc3000.cpp"
+          ],
+          "status": "static",
+          "summary": "The five address forms used in this repository, how the V53 page registers turn a 20-bit address into a 24-bit one, and the three page tables the firmware loads.",
+          "title": "How addresses work on the MPC3000 (V53 extended addressing)"
+        },
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.address-model",
+            "mpc3000.interrupt-vectors"
+          ],
+          "firmware": [
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc3000.bios-services",
+          "last_verified": "2026-09-25",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/bios-services.md",
+          "sources": [
+            "MAME devices/video/hd61830 (register numbering used for comparison)"
+          ],
+          "status": "static",
+          "summary": "The BIOS in the top 32 KiB of the EPROM offers services through software interrupts. INT 43h writes text to the LCD, INT 41h reads files, INT 45h loads an MZ program.",
+          "title": "BIOS software-interrupt services (LCD text, files, program load)"
+        },
+        {
+          "area": "modding",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.floppy-sys-loader",
+            "mpc3000.bios-services",
+            "mpc3000.address-model",
+            "mpc3000.disassembler-pitfalls"
+          ],
+          "firmware": [
+            "mpc3000-v3.08",
+            "mpc3000-v3.11",
+            "mpc3000-v3.12",
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc3000.build-a-floppy-sys",
+          "last_verified": "2026-10-01",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/build-a-floppy-sys.md",
+          "status": "hardware",
+          "summary": "Step-by-step route for running your own code on an MPC3000 from a floppy .SYS file, with a working minimal program, the rules it must obey, and how to test before touching a machine.",
+          "title": "Recipe: build and run your own program from floppy"
+        },
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.address-model"
+          ],
+          "firmware": [
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.calling-conventions",
+          "last_verified": "2026-09-21",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/calling-conventions.md",
+          "status": "static",
+          "summary": "OS application code is far cdecl (arguments pushed right to left, first argument at [BP+6], caller cleans up, RETF). The AMX kernel and the BIOS each use a different convention.",
+          "title": "Calling conventions used by the OS, kernel and BIOS"
+        },
+        {
+          "area": "tooling",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.address-model"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.disassembler-pitfalls",
+          "last_verified": "2026-09-25",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/disassembler-pitfalls.md",
+          "status": "static",
+          "summary": "Common 8086 disassemblers mis-decode the V53 instructions BRKXA and RETXA and lose the instruction stream after them. Other traps are decoding one chip file alone and trusting raw opcode counts.",
+          "title": "Disassembler pitfalls on V53 firmware"
+        },
+        {
+          "area": "firmware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "mpc3000-v3.08",
+            "mpc3000-v3.11",
+            "mpc3000-v3.12",
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc3000.eprom-layout",
+          "last_verified": "2026-11-13",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/eprom-layout.md",
+          "sources": [
+            "MAME src/mame/akai/mpc3000.cpp (ROM definitions)",
+            "Akai MPC3000 service manual (parts list)"
+          ],
+          "status": "static",
+          "summary": "The OS is two interleaved 256 KiB EPROMs. This gives the layout of the interleaved image, the reset path, and the rule that an image is identified by hash, never by the version it prints.",
+          "title": "MPC3000 OS EPROM layout and how to identify an image"
+        },
+        {
+          "area": "boot",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.address-model",
+            "mpc3000.eprom-layout",
+            "mpc3000.bios-services"
+          ],
+          "firmware": [
+            "mpc3000-v3.08",
+            "mpc3000-v3.11",
+            "mpc3000-v3.12",
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "partial",
+          "id": "mpc3000.floppy-sys-loader",
+          "last_verified": "2026-09-25",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/floppy-sys-loader.md",
+          "sources": [
+            "MAME mpc3000 driver (emulator runs)",
+            "M3K316.pdf release notes for OS 3.16 (2005)"
+          ],
+          "status": "emulator",
+          "summary": "At power-on every examined EPROM OS loads the first *.SYS file on a floppy as a DOS MZ executable into RAM and jumps to it. This is the only ROM path that runs code from removable media.",
+          "title": "The ROM floppy loader that runs a .SYS file at power-on"
+        },
+        {
+          "area": "hardware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.hardware-overview",
+          "last_verified": "2026-09-21",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/hardware-overview.md",
+          "sources": [
+            "Akai MPC3000 service manual (parts list)",
+            "MAME src/mame/akai/mpc3000.cpp by R. Belmont",
+            "NEC 16-bit V-Series Microprocessor Data Book (1991)"
+          ],
+          "status": "documented",
+          "summary": "The chips on the MPC3000 CPU board and what each one does, taken from the Akai service parts list and the MAME driver.",
+          "title": "MPC3000 hardware overview"
+        },
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.address-model",
+            "mpc3000.calling-conventions"
+          ],
+          "firmware": [
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.interrupt-vectors",
+          "last_verified": "2026-09-21",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/interrupt-vectors.md",
+          "status": "static",
+          "summary": "Which code owns each interrupt vector once the OS has started, who installs it, and how to install a handler the way the OS does.",
+          "title": "Interrupt vector table after boot"
+        },
+        {
+          "area": "memory",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.hardware-overview"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.memory-and-io-map",
+          "last_verified": "2026-09-21",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/memory-and-io-map.md",
+          "sources": [
+            "MAME src/mame/akai/mpc3000.cpp by R. Belmont",
+            "NEC 16-bit V-Series Microprocessor Data Book (1991)"
+          ],
+          "status": "documented",
+          "summary": "Where ROM, RAM, NVRAM and every peripheral sit, and which interrupt and DMA line each device uses, as modelled by the MAME driver.",
+          "title": "MPC3000 memory map, I/O ports, interrupts and DMA"
+        },
+        {
+          "area": "modding",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.address-model",
+            "mpc3000.eprom-layout"
+          ],
+          "firmware": [
+            "mpc3000-v3.08",
+            "mpc3000-v3.11",
+            "mpc3000-v3.12",
+            "mpc3000-vailixi-3.50"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.rom-free-space",
+          "last_verified": "2026-11-13",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/rom-free-space.md",
+          "status": "static",
+          "summary": "Two blocks totalling 147,372 bytes of the 512 KiB image are empty and are not mapped by any of the firmware's page tables. Using them needs a page-table change; a smaller empty block inside the OS code range is directly reachable.",
+          "title": "Unused space in the OS EPROMs"
+        }
+      ],
+      "firmware": [
+        {
+          "id": "mpc3000-v3.08",
+          "kind": "eprom-pair",
+          "label": "OS 3.08 (EPROM pair)",
+          "notes": "Not in the MAME ROM set. Loads .SYS files at segment 7000.",
+          "obtain": "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "40e6310e",
+              "role": "ls-even",
+              "sha1": "d8b2a9d3cc65223f40c2c6954a842160cb58fd9e",
+              "sha256": "8bbefbad6228ad2b25a5a52e37d99dc3cabfd000b89a43efc3ee04543c31661d",
+              "size": 262144
+            },
+            {
+              "crc32": "bab7048e",
+              "role": "ms-odd",
+              "sha1": "59f1cdc8dec1dc49f6b337da1f9bbc1bfaf259d8",
+              "sha256": "34d0c53f0639d3ad0da064ca75a0fa007ceee0d991a64b9a11ab2cbe443f566c",
+              "size": 262144
+            }
+          ],
+          "sha256": "8c9952668c03dbf045c0c8fa5977e1b1eb055840f883258ec76d1c1bc2700cb8",
+          "size": 524288,
+          "source": "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+        },
+        {
+          "id": "mpc3000-v3.10",
+          "kind": "eprom-pair",
+          "label": "OS 3.10 (EPROM pair)",
+          "notes": "Hashes from MAME only. No contributor has analysed this image: no finding applies to it.",
+          "obtain": "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "cbd1b3a6",
+              "role": "ls-even",
+              "sha1": "5464a57137549d9d9c47f9aafc2b89f4c0af8b31",
+              "size": 262144
+            },
+            {
+              "crc32": "e2ba1904",
+              "role": "ms-odd",
+              "sha1": "27a9f047c63964fac2b453f2317b77834490983d",
+              "size": 262144
+            }
+          ],
+          "source": "MAME src/mame/akai/mpc3000.cpp ROMX_LOAD lines."
+        },
+        {
+          "id": "mpc3000-v3.11",
+          "kind": "eprom-pair",
+          "label": "OS 3.11 (EPROM pair)",
+          "notes": "Loads .SYS files at segment 7000.",
+          "obtain": "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "5a272061",
+              "role": "ls-even",
+              "sha1": "87cc8aef3233d95ad1febbd77b42f720d718baa3",
+              "sha256": "0fe87ad1b397a3cce793b8a38da100a80b4c53b61553859220fba72a260e2417",
+              "size": 262144
+            },
+            {
+              "crc32": "a8e177de",
+              "role": "ms-odd",
+              "sha1": "b63a5c27066c03f7de56659aff183f15d95277c5",
+              "sha256": "a56cc7717bc7199b39cd4ecaa1ef299c4ac737450c6d530f48715b17f555e270",
+              "size": 262144
+            }
+          ],
+          "sha256": "79d8029453c12f69d8ceb4807c4bf5831ac4d529fa0b42128d1a306f85b03f50",
+          "size": 524288,
+          "source": "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+        },
+        {
+          "id": "mpc3000-v3.12",
+          "kind": "eprom-pair",
+          "label": "OS 3.12 (EPROM pair)",
+          "notes": "MAME's default BIOS. Loads .SYS files at segment 6900.",
+          "obtain": "Read the two OS EPROMs (IC13 = LS, IC14 = MS, AM27C020) of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "d4fb6439",
+              "role": "ls-even",
+              "sha1": "555d388ed25f8b85638c325e7d9012eaa271ffa0",
+              "sha256": "5c7c8b0091aed5b878c1e3776c108776226c3f98b214fd688af045567c4b913c",
+              "size": 262144
+            },
+            {
+              "crc32": "80ee0ab9",
+              "role": "ms-odd",
+              "sha1": "b8855118d59b8f73a3af5ff2e824cdaa0a9f564a",
+              "sha256": "dc43a4e2bde2fb732301f1b3620b207cba2fb06be6bb7ff1172fbb3b3d319d04",
+              "size": 262144
+            }
+          ],
+          "sha256": "ad9974c9c541e14eae1740825edb23edf58c1f0c3a9f6868e62fcf8f6f9f7eb8",
+          "size": 524288,
+          "source": "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+        },
+        {
+          "id": "mpc3000-vailixi-3.50",
+          "kind": "eprom-pair",
+          "label": "Vailixi OS 3.50, reference dump (EPROM pair)",
+          "notes": "The dump in the MAME ROM set (BIOS banner dated 21/08/07). Units running an OS that calls itself 3.50 do not all hold these bytes: see findings/eprom-layout.md. Identify by hash, never by the version on screen.",
+          "obtain": "A third-party operating system supplied by its author on EPROMs. Read the EPROMs of a machine you own.",
+          "origin": "community",
+          "part": [
+            {
+              "crc32": "9f3031b5",
+              "role": "ls-even",
+              "sha1": "c270a92f8ed273a1ede16388bb8f30c85ac1faab",
+              "sha256": "cb4531fab4f2a43d3ad71465ac9efbe4bd6c3b23401cdbac379eea37234c4004",
+              "size": 262144
+            },
+            {
+              "crc32": "e62ebb26",
+              "role": "ms-odd",
+              "sha1": "f6d080481de40bea2c94bbc96b222c5f9b7afaf4",
+              "sha256": "514c745dea6bb711d19cf6e09bb4e7987f732c1bfa6b01857068c9982e295801",
+              "size": 262144
+            }
+          ],
+          "sha256": "a52b7122bf40d020544300bb270afb815e99c1969847a28d457ce727bbe770c9",
+          "size": 524288,
+          "source": "Computed from a dump of the chips; part CRC32/SHA-1 equal the MAME mpc3000 ROM set where MAME lists the image."
+        },
+        {
+          "crc32": "1db45295",
+          "id": "mpc3000-v3.16-sys",
+          "kind": "floppy-sys",
+          "label": "OS 3.16 maintenance upgrade (M3K316.SYS, floppy-loaded)",
+          "notes": "A DOS MZ executable loaded into RAM from floppy at power-on; not an EPROM image. Gone at power-off. Its internals are not documented here yet.",
+          "obtain": "Released in 2005 by its author as a floppy upgrade for the MPC3000 and MPC3000LE. Obtain the file from a source you trust and check the hash.",
+          "origin": "community",
+          "sha1": "b45b017721f0e59974e50de93040ccd1f973ad23",
+          "sha256": "cf997046c35d5eb720cd277f235f5503eba3e53c8518a7d3a782dd087fbde226",
+          "size": 458047,
+          "source": "Computed from the file."
+        },
+        {
+          "crc32": "b0b783d3",
+          "id": "mpc3000-panel-v1.0",
+          "kind": "eprom",
+          "label": "Front-panel MCU program v1.0 (uPD78C10, AM27C256, IC602)",
+          "notes": "32 KiB. No contributor has analysed this image: the panel protocol is an open question.",
+          "obtain": "Read the AM27C256 at IC602 on the panel board of a machine you own.",
+          "origin": "manufacturer",
+          "sha1": "a60016184fc07ba00dcc19ba4da60e78aceff63c",
+          "size": 32768,
+          "source": "MAME src/mame/akai/mpc3000.cpp ROM_LOAD line."
+        }
+      ],
+      "hardware_tables": {
+        "interrupts": {
+          "path": "machines/mpc3000/hardware/interrupts.csv",
+          "rows": 12
+        },
+        "io-ports": {
+          "path": "machines/mpc3000/hardware/io-ports.csv",
+          "rows": 17
+        },
+        "memory-map": {
+          "path": "machines/mpc3000/hardware/memory-map.csv",
+          "rows": 3
+        }
+      },
+      "id": "mpc3000",
+      "name": "Akai MPC3000",
+      "pins": {
+        "mpc3000-v3.08": {
+          "count": 11,
+          "path": "machines/mpc3000/pins/mpc3000-v3.08.csv"
+        },
+        "mpc3000-v3.11": {
+          "count": 13,
+          "path": "machines/mpc3000/pins/mpc3000-v3.11.csv"
+        },
+        "mpc3000-v3.12": {
+          "count": 13,
+          "path": "machines/mpc3000/pins/mpc3000-v3.12.csv"
+        },
+        "mpc3000-vailixi-3.50": {
+          "count": 27,
+          "path": "machines/mpc3000/pins/mpc3000-vailixi-3.50.csv"
+        }
+      },
+      "questions": [
+        {
+          "area": "memory",
+          "id": "mpc3000.q.bios-data-area",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis"
+          ],
+          "path": "machines/mpc3000/questions/bios-data-area.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.bios-services",
+            "mpc3000.floppy-sys-loader"
+          ],
+          "status": "open",
+          "summary": "A program loaded from floppy shares RAM with BIOS services it calls, but the full set of BIOS variables is not mapped.",
+          "title": "What RAM the BIOS uses"
+        },
+        {
+          "area": "file-format",
+          "id": "mpc3000.q.disk-file-formats",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "document"
+          ],
+          "path": "machines/mpc3000/questions/disk-file-formats.md",
+          "priority": "medium",
+          "status": "open",
+          "summary": "The byte layout of the files the MPC3000 saves and loads is not documented here.",
+          "title": "Disk file formats (SND, PGM, APS, SEQ, ALL, PAR)"
+        },
+        {
+          "area": "hardware",
+          "id": "mpc3000.q.dma2-ic31",
+          "machine": "mpc3000",
+          "needs": [
+            "document",
+            "hardware"
+          ],
+          "path": "machines/mpc3000/questions/dma2-ic31.md",
+          "priority": "low",
+          "related": [
+            "mpc3000.memory-and-io-map"
+          ],
+          "status": "open",
+          "summary": "DMA channel 2 is wired to IC31, whose function is not identified.",
+          "title": "What is on DMA channel 2"
+        },
+        {
+          "area": "cpu",
+          "id": "mpc3000.q.icu-ports-c010-c011",
+          "machine": "mpc3000",
+          "needs": [
+            "document",
+            "analysis"
+          ],
+          "path": "machines/mpc3000/questions/icu-ports-c010-c011.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.interrupt-vectors",
+            "mpc3000.address-model"
+          ],
+          "status": "open",
+          "summary": "The BIOS writes ports C010h and C011h around interrupts. They are believed to be the on-chip interrupt controller, but this has not been confirmed.",
+          "title": "Ports C010h and C011h"
+        },
+        {
+          "area": "display",
+          "id": "mpc3000.q.lcd-controller-commands",
+          "machine": "mpc3000",
+          "needs": [
+            "document",
+            "analysis",
+            "hardware"
+          ],
+          "path": "machines/mpc3000/questions/lcd-controller-commands.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.bios-services"
+          ],
+          "status": "open",
+          "summary": "The text path to the LCD is known. The controller command set as wired on this board, the graphic mode, and four of the eight INT 43h functions are not.",
+          "title": "LCD controller commands and graphics"
+        },
+        {
+          "area": "midi",
+          "id": "mpc3000.q.midi-handling",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "emulator"
+          ],
+          "path": "machines/mpc3000/questions/midi-handling.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.interrupt-vectors",
+            "mpc3000.memory-and-io-map"
+          ],
+          "status": "open",
+          "summary": "Where MIDI bytes are received, parsed and sent inside the OS is not documented.",
+          "title": "MIDI handling"
+        },
+        {
+          "area": "memory",
+          "id": "mpc3000.q.nvram-layout",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "hardware"
+          ],
+          "path": "machines/mpc3000/questions/nvram-layout.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.address-model",
+            "mpc3000.floppy-sys-loader"
+          ],
+          "status": "open",
+          "summary": "The battery-backed memory behind page 61 holds settings, but its layout, checksum and the consequences of writing it are unknown.",
+          "title": "NVRAM layout and what a RAM program may do to it"
+        },
+        {
+          "area": "firmware",
+          "id": "mpc3000.q.os-3.10-image",
+          "machine": "mpc3000",
+          "needs": [
+            "firmware-image",
+            "analysis"
+          ],
+          "path": "machines/mpc3000/questions/os-3.10-image.md",
+          "priority": "low",
+          "related": [
+            "mpc3000.eprom-layout",
+            "mpc3000.floppy-sys-loader"
+          ],
+          "status": "open",
+          "summary": "OS 3.10 is listed in the MAME ROM set but no contributor has had the image, so no finding applies to it.",
+          "title": "OS 3.10 has not been examined"
+        },
+        {
+          "area": "os",
+          "id": "mpc3000.q.os-3.16-internals",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "emulator"
+          ],
+          "path": "machines/mpc3000/questions/os-3.16-internals.md",
+          "priority": "high",
+          "related": [
+            "mpc3000.build-a-floppy-sys",
+            "mpc3000.floppy-sys-loader"
+          ],
+          "status": "open",
+          "summary": "OS 3.16 is a floppy-loaded MZ program and the natural base for floppy-delivered features, but nothing about its inside is documented here.",
+          "title": "OS 3.16 internals"
+        },
+        {
+          "area": "cpu",
+          "id": "mpc3000.q.page-register-writes-at-runtime",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "emulator"
+          ],
+          "path": "machines/mpc3000/questions/page-register-writes-at-runtime.md",
+          "priority": "low",
+          "related": [
+            "mpc3000.address-model",
+            "mpc3000.rom-free-space"
+          ],
+          "status": "open",
+          "summary": "Two places in the OS can write an I/O port taken from a table and might therefore change a page register while the OS runs.",
+          "title": "Page-register writes at run time"
+        },
+        {
+          "area": "hardware",
+          "id": "mpc3000.q.pal-address-decode",
+          "machine": "mpc3000",
+          "needs": [
+            "document",
+            "hardware"
+          ],
+          "path": "machines/mpc3000/questions/pal-address-decode.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.memory-and-io-map",
+            "mpc3000.rom-free-space"
+          ],
+          "status": "open",
+          "summary": "Address decoding on the CPU board is done by PAL devices whose equations have not been read.",
+          "title": "PAL address decode"
+        },
+        {
+          "area": "panel",
+          "id": "mpc3000.q.panel-protocol",
+          "machine": "mpc3000",
+          "needs": [
+            "firmware-image",
+            "analysis",
+            "hardware"
+          ],
+          "path": "machines/mpc3000/questions/panel-protocol.md",
+          "priority": "high",
+          "related": [
+            "mpc3000.memory-and-io-map",
+            "mpc3000.interrupt-vectors"
+          ],
+          "status": "open",
+          "summary": "How the panel microcontroller reports pads, keys and the wheel to the main CPU, and what the main CPU sends back, is not documented.",
+          "title": "Front-panel protocol (pads, keys, data wheel)"
+        },
+        {
+          "area": "modding",
+          "blocks": [
+            "mpc3000.build-a-floppy-sys"
+          ],
+          "id": "mpc3000.q.patched-rom-os-from-ram",
+          "machine": "mpc3000",
+          "needs": [
+            "firmware-image",
+            "analysis",
+            "emulator",
+            "hardware"
+          ],
+          "path": "machines/mpc3000/questions/patched-rom-os-from-ram.md",
+          "priority": "high",
+          "related": [
+            "mpc3000.floppy-sys-loader",
+            "mpc3000.address-model"
+          ],
+          "status": "open",
+          "summary": "A floppy program can place a patched copy of the EPROM OS in RAM and restart it. This has been shown in the emulator for one image only; the details for the stock images are missing.",
+          "title": "Running a patched copy of a stock EPROM OS from RAM"
+        },
+        {
+          "area": "storage",
+          "id": "mpc3000.q.real-drives-and-other-disk-sizes",
+          "machine": "mpc3000",
+          "needs": [
+            "hardware",
+            "emulator"
+          ],
+          "path": "machines/mpc3000/questions/real-drives-and-other-disk-sizes.md",
+          "priority": "low",
+          "related": [
+            "mpc3000.floppy-sys-loader"
+          ],
+          "status": "open",
+          "summary": "The floppy loader has run from a 1.44M image on a drive emulator. Real drives and the two smaller formats have not been tried.",
+          "title": "Real floppy drives, and 720K / 800K disks"
+        },
+        {
+          "area": "audio",
+          "id": "mpc3000.q.sample-engine-dsp",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "emulator",
+            "hardware",
+            "document"
+          ],
+          "path": "machines/mpc3000/questions/sample-engine-dsp.md",
+          "priority": "high",
+          "related": [
+            "mpc3000.hardware-overview"
+          ],
+          "status": "open",
+          "summary": "How the OS drives the L7A1045 sample DSP (voice allocation, register writes, sample memory layout, recording) is not documented.",
+          "title": "Sample engine and DSP registers"
+        },
+        {
+          "area": "sequencer",
+          "id": "mpc3000.q.sequencer-model",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "emulator"
+          ],
+          "path": "machines/mpc3000/questions/sequencer-model.md",
+          "priority": "high",
+          "related": [
+            "mpc3000.interrupt-vectors"
+          ],
+          "status": "open",
+          "summary": "How sequences, tracks and events are stored in memory, and how the timing interrupt plays them, is not documented.",
+          "title": "Sequencer data model and timing"
+        },
+        {
+          "area": "os",
+          "id": "mpc3000.q.stock-os-code-map",
+          "machine": "mpc3000",
+          "needs": [
+            "firmware-image",
+            "analysis"
+          ],
+          "path": "machines/mpc3000/questions/stock-os-code-map.md",
+          "priority": "high",
+          "related": [
+            "mpc3000.interrupt-vectors",
+            "mpc3000.calling-conventions",
+            "mpc3000.bios-services",
+            "mpc3000.rom-free-space"
+          ],
+          "status": "open",
+          "summary": "Most code-level findings were established on the Vailixi 3.50 reference image. The same facts are needed for the Akai images most machines carry.",
+          "title": "A code map for the stock OS images (3.08, 3.11, 3.12)"
+        }
+      ],
+      "released": "1994",
+      "summary": "Hardware, addressing, boot path and the floppy route for running your own code are documented. The operating system's internals (sequencer, sampling, MIDI, file formats, front-panel protocol) are not.",
+      "symbols": {
+        "mpc3000-v3.08": {
+          "count": 12,
+          "path": "machines/mpc3000/symbols/mpc3000-v3.08.csv"
+        },
+        "mpc3000-v3.11": {
+          "count": 12,
+          "path": "machines/mpc3000/symbols/mpc3000-v3.11.csv"
+        },
+        "mpc3000-v3.12": {
+          "count": 12,
+          "path": "machines/mpc3000/symbols/mpc3000-v3.12.csv"
+        },
+        "mpc3000-vailixi-3.50": {
+          "count": 39,
+          "path": "machines/mpc3000/symbols/mpc3000-vailixi-3.50.csv"
+        }
+      }
+    },
+    {
+      "coverage": "none",
+      "facts": [],
+      "family": "mpc",
+      "findings": [],
+      "firmware": [],
+      "hardware_tables": {},
+      "id": "mpc60",
+      "name": "Akai MPC60",
+      "pins": {},
+      "questions": [
+        {
+          "area": "hardware",
+          "id": "mpc60.q.first-steps",
+          "machine": "mpc60",
+          "needs": [
+            "document",
+            "firmware-image",
+            "analysis"
+          ],
+          "path": "machines/mpc60/questions/first-steps.md",
+          "priority": "high",
+          "status": "open",
+          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "title": "Akai MPC60: the first things to establish"
+        }
+      ],
+      "released": "1988",
+      "summary": "Nothing has been published here yet.",
+      "symbols": {}
+    },
+    {
+      "coverage": "none",
+      "facts": [],
+      "family": "s-series",
+      "findings": [],
+      "firmware": [],
+      "hardware_tables": {},
+      "id": "s900",
+      "name": "Akai S900",
+      "pins": {},
+      "questions": [
+        {
+          "area": "hardware",
+          "id": "s900.q.first-steps",
+          "machine": "s900",
+          "needs": [
+            "document",
+            "firmware-image",
+            "analysis"
+          ],
+          "path": "machines/s900/questions/first-steps.md",
+          "priority": "high",
+          "status": "open",
+          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "title": "Akai S900: the first things to establish"
+        }
+      ],
+      "released": "1986",
+      "summary": "Nothing has been published here yet.",
+      "symbols": {}
+    },
+    {
+      "coverage": "none",
+      "facts": [],
+      "family": "s-series",
+      "findings": [],
+      "firmware": [],
+      "hardware_tables": {},
+      "id": "s950",
+      "name": "Akai S950",
+      "pins": {},
+      "questions": [
+        {
+          "area": "hardware",
+          "id": "s950.q.first-steps",
+          "machine": "s950",
+          "needs": [
+            "document",
+            "firmware-image",
+            "analysis"
+          ],
+          "path": "machines/s950/questions/first-steps.md",
+          "priority": "high",
+          "status": "open",
+          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "title": "Akai S950: the first things to establish"
+        }
+      ],
+      "released": "1988",
+      "summary": "Nothing has been published here yet.",
+      "symbols": {}
+    }
+  ],
+  "statuses": [
+    "hardware",
+    "emulator",
+    "static",
+    "documented",
+    "hypothesis",
+    "open"
+  ]
+}

@@ -1,0 +1,40 @@
+name,kind,address,file_offset,size,status,finding,notes
+reset_vector,vector,FFFF:0000,0x7FFF0,5,static,mpc3000.eprom-layout,JMP FAR FFF0:0000; first instruction after reset
+reset_stub,code,FFF0:0000,0x7FF00,68,static,mpc3000.eprom-layout,Reset stub; byte-identical in 3.08 3.11 3.12 and this image
+xa_boot,code,FAC0:0000,0x7AC00,,static,mpc3000.address-model,Loads the first page-register table then BRKXA 11h
+pgr_table_first,table,FAC0:0256,0x7AE56,128,static,mpc3000.address-model,64 page-register words loaded first at boot
+pgr_table_second,table,FAC0:00B4,0x7ACB4,128,static,mpc3000.address-model,64 page-register words in force while the OS runs
+pgr_table_third,table,FAC0:01CF,0x7ADCF,128,static,mpc3000.address-model,64 page-register words loaded by INT 10h; turns the OS code pages into RAM
+int10_load_third_pgr,code,FAC0:01A4,0x7ADA4,,static,mpc3000.floppy-sys-loader,INT 10h handler: loads the third page-register table
+bios_entry,code,F800:000A,0x7800A,,static,mpc3000.interrupt-vectors,BIOS start (CLI); fills the interrupt vector table
+bios_default_iret,code,F800:1952,0x79952,1,static,mpc3000.interrupt-vectors,Single IRET; target of 219 vectors at rest
+bios_unexpected_vector,code,F800:19B3,0x799B3,,static,mpc3000.interrupt-vectors,Prints the System Error screen for an unexpected interrupt
+bios_int41_dir_match,code,F800:136C,0x7936C,,static,mpc3000.floppy-sys-loader,Directory-entry name match used by find-first/find-next (? is a wildcard)
+bios_mount,code,F800:0F38,0x78F38,,static,mpc3000.floppy-sys-loader,Reads the BPB and selects a geometry slot by sectors per track
+bios_geometry_slots,table,F800:031F,0x7831F,69,static,mpc3000.floppy-sys-loader,Three slot pointers then three 21-byte BPBs: 720K 800K 1.44M
+bios_int43,code,F800:16AA,0x796AA,,static,mpc3000.bios-services,INT 43h LCD service; AX selects the function (0-7)
+bios_int43_table,table,F800:16D4,0x796D4,16,static,mpc3000.bios-services,Eight near pointers: handlers for INT 43h AX=0..7
+bios_int45_mz_loader,code,F800:0143,0x78143,468,static,mpc3000.floppy-sys-loader,INT 45h: load a DOS MZ file (DS:DX name; ES load segment)
+bios_inline_string_walker,code,F800:1875,0x79875,10,static,mpc3000.bios-services,Prints the NUL-terminated string that follows the CALL
+bios_put_char,code,F800:18CA,0x798CA,,static,mpc3000.bios-services,BL=CL; AX=4; INT 43h; RET
+bios_print_hex_al,code,F800:1896,0x79896,,static,mpc3000.bios-services,Prints AL as two hex digits through INT 43h AX=4
+bios_banner,string,F800:0125,0x78125,22,static,mpc3000.eprom-layout,Text "MPC-3000 BIOS 21/08/07"
+amx_irq_wrapper,code,FB00:0157,0x7B157,,static,mpc3000.interrupt-vectors,AMX interrupt wrapper; OS interrupt handlers begin with a far call to it
+amx_plant_vector,code,FB00:0347,0x7B347,,static,mpc3000.interrupt-vectors,Sets interrupt vector DL to ES:BX (refuses 0 and 4)
+amx_copyright,string,FB00:000F,0x7B00F,38,static,mpc3000.interrupt-vectors,Text "COPYRIGHT (C) 1983 KADAK PRODUCTS LTD."
+sys_handoff,code,FB93:0066,0x7B996,106,static,mpc3000.floppy-sys-loader,Hands control to a .SYS file: INT 10h then INT 45h then far jump
+os_code,range,B000:0000,0x30000,278528,static,mpc3000.rom-free-space,OS application code; logical 0xB0000-0xF3FFF while the OS runs
+os_entry,code,B000:00DF,0x300DF,200,static,mpc3000.floppy-sys-loader,OS main entry reached from the BIOS
+startup_loader,code,B000:01A7,0x301A7,525,static,mpc3000.floppy-sys-loader,Startup-file loader; argument 0 = floppy and 1 = SCSI
+floppy_ready_stub,code,B000:03B4,0x303B4,6,static,mpc3000.floppy-sys-loader,Far call to floppy_ready then RETF
+floppy_ready,code,E7F5:0440,0x68390,,static,mpc3000.floppy-sys-loader,Returns non-zero when a floppy is ready
+put_string,code,B1B1:005B,0x31B6B,,static,mpc3000.floppy-sys-loader,OS put-string used for the startup messages
+find_first,code,CEE6:0175,0x4EFD5,,static,mpc3000.floppy-sys-loader,Directory find-first (INT 41h AX=9)
+find_next,code,CEE6:01E1,0x4F041,,static,mpc3000.floppy-sys-loader,Directory find-next (INT 41h AX=0Ah)
+int41_wrapper,code,CF0C:0006,0x4F0C6,,static,mpc3000.floppy-sys-loader,Loads AX DX BX CX from its arguments and executes INT 41h
+far_cdecl_specimen,code,B060:0000,0x30600,13,static,mpc3000.calling-conventions,Smallest example of the application calling convention
+dgroup_image,data,8010:0000,0x20000,31890,static,mpc3000.calling-conventions,Initialised data; copied to RAM segment 8010 at boot so DS offset X is file 0x20000+X
+version_string,string,8010:10F5,0x210F5,26,static,mpc3000.eprom-layout,Text "Vailixi 3.50 (---/--/----)"
+free_bank_low,range,,0x00054,130988,static,mpc3000.rom-free-space,All FF; not mapped by any page-register table
+free_bank_page61,range,,0x74000,16384,static,mpc3000.rom-free-space,All FF; not mapped by any page-register table
+ff_padding_in_os_pages,range,F07C:0008,0x707C8,14392,static,mpc3000.rom-free-space,All FF inside the OS code pages; mapped while the OS runs
