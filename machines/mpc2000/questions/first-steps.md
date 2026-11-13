@@ -6,14 +6,16 @@ area: hardware
 status: open
 priority: high
 needs: ["document", "firmware-image", "analysis"]
-summary: Nothing is recorded for this machine. This lists the foundations every later finding depends on.
+summary: Almost nothing is recorded for this machine. This lists the foundations every later finding depends on.
 ---
 
 # Akai MPC2000: the first things to establish
 
 ## What is unknown
 
-Everything. In the order it is needed:
+Progress so far: Only the OS distribution format and final version are documented. The hardware is unconfirmed: MAME's 2000XL driver describes both models but implements only the XL. Nothing recorded for the MPC2000XL may be assumed to hold for this machine until it is checked.
+
+In the order it is needed:
 
 1. **The hardware.** Main CPU, any secondary processors, RAM, how the firmware is stored (EPROM, flash, disk-loaded), display, storage and audio chips. Source: the service manual parts list and board photos.
 2. **Firmware images.** Each OS version that exists, how it is packaged (one chip, an even/odd pair, a file on disk), and its hashes, recorded in `firmware.toml`.

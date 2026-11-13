@@ -1,0 +1,17 @@
+port_start,port_end,device,function,status,source
+0x0000,0x0007,uPD72066 floppy controller,FDC registers,documented,MAME s950_state::io_map
+0x0008,0x0008,Media control latch,"Bit 0 drive select/motor, bit 1 data rate (1 = 250 kbit/s), bit 3 FDC reset release, bits 4-5 DMA target",documented,MAME s950_state::media_ctrl_w
+0x0050,0x0057,6850 ACIA,"MIDI: 0x50 control, 0x52 status, 0x54 data out, 0x56 data in",documented,MAME s950_state::io_map
+0x0058,0x005F,SCSI option,"0x58 register bank select, 0x5C register access (S950 with SCSI); hard disk interface otherwise",documented,MAME s950_state::io_map_scsi
+0x01A0,0x01BF,Digital audio interface,Not emulated,documented,MAME s950_state::io_map (comment)
+0x01C0,0x01DF,RAM bank registers,One per 64 KiB CPU window,documented,MAME s950_state::bank_w
+0x0010,0x0027,Three 8254 timers,Sample-rate timers,documented,MAME s900.cpp common_map
+0x0028,0x003F,Three 8253 timers,Filter timers,documented,MAME s900.cpp common_map
+0x0048,0x004F,LCD controller,"0x48-0x4B write, 0x4C-0x4F read",documented,MAME s900.cpp common_map
+0x0060,0x0067,8255 PPI,Panel and misc I/O,documented,MAME s900.cpp common_map
+0x0068,0x006F,Data dial,"0x68 count read, 0x6A port read, writes reset the count",documented,MAME s900.cpp common_map
+0x0078,0x007F,Envelope latches,Per-voice envelope writes,documented,MAME s900.cpp common_map
+0x0080,0x009F,uPD71071 DMA #1,Sampling and transfers,documented,MAME s900.cpp common_map
+0x00A0,0x00DF,uPD71071 DMA #2 and #3,Voice playback,documented,MAME s900.cpp common_map
+0x00E0,0x00FF,8259 PIC,Interrupt controller,documented,MAME s900.cpp common_map
+0x0180,0x019F,ADC,Sample input read,documented,MAME s900.cpp common_map

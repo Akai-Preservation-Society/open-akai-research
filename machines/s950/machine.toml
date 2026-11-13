@@ -2,5 +2,71 @@ id = "s950"
 name = "Akai S950"
 family = "s-series"
 released = "1988"
-coverage = "none"
-summary = "Nothing has been published here yet."
+coverage = "seed"
+summary = "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published."
+
+[[fact]]
+key = "main_cpu"
+value = "NEC V30 at 8 MHz (16 MHz crystal / 2)"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "dma"
+value = "Three uPD71071 DMA controllers: one for sampling and transfers, two for voice playback"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "timers"
+value = "Three 8254 sample-rate timers and three 8253 filter timers"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "interrupts"
+value = "8259 interrupt controller"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "midi"
+value = "6850 ACIA"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "display"
+value = "2x40 character LCD, HD44780-class (type and clock guessed by MAME)"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "audio"
+value = "12-bit ADC and 12-bit DACs; output and input filters (MF6-50) not emulated"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "floppy"
+value = "uPD72066 controller, 3.5-inch HD drive (DD and HD rates)"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "scsi"
+value = "Optional SCSI interface, MB89352 class (type guessed by MAME)"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "os_storage"
+value = "Two 32 KiB EPROMs (IC12 LS even, IC11 MS odd), 64 KiB, at 0x80000-0x8FFFF mirrored to 0xFFFFF"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "ram_banking"
+value = "The CPU sees RAM through four 64 KiB windows (0x00000-0x3FFFF, mirrored at 0x40000) whose banks are set by writes to ports 0x01C0-0x01DF"
+status = "documented"
+source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working (bank_w)"

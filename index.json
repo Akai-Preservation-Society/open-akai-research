@@ -19,8 +19,27 @@
   "format": "oar-index-1",
   "machines": [
     {
-      "coverage": "none",
-      "facts": [],
+      "coverage": "seed",
+      "facts": [
+        {
+          "key": "os_update",
+          "source": "Sweetwater SweetCare: MPC2000 Operating System Update Instructions",
+          "status": "documented",
+          "value": "An OS update is two files, mpc2000.exe and mpc2000.sys, on a DOS-format floppy"
+        },
+        {
+          "key": "os_final",
+          "source": "Gearnews, MPC2000 Mods article (2026)",
+          "status": "documented",
+          "value": "The final OS for the MPC2000 Classic is 1.72"
+        },
+        {
+          "key": "hardware_family",
+          "source": "MAME mpc2000.cpp header comment; MAME defines only the 2000XL, so this is unchecked for the Classic",
+          "status": "hypothesis",
+          "value": "Described together with the 2000XL as a cost-reduced MPC3000: NEC V53, uPD72068 floppy, MB89352 SCSI optional, LC7981 LCD, uPD78C10 panel CPU, L7A1045 DSP"
+        }
+      ],
       "family": "mpc",
       "findings": [],
       "firmware": [],
@@ -41,12 +60,12 @@
           "path": "machines/mpc2000/questions/first-steps.md",
           "priority": "high",
           "status": "open",
-          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "summary": "Almost nothing is recorded for this machine. This lists the foundations every later finding depends on.",
           "title": "Akai MPC2000: the first things to establish"
         }
       ],
       "released": "1997",
-      "summary": "Nothing has been published here yet.",
+      "summary": "Only how the OS is distributed and its last version are recorded, from public documents. The hardware is said to be close to the MPC2000XL but nothing from that machine may be assumed here.",
       "symbols": {}
     },
     {
@@ -1608,12 +1627,161 @@
       }
     },
     {
-      "coverage": "none",
-      "facts": [],
+      "coverage": "seed",
+      "facts": [
+        {
+          "key": "main_cpu",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Intel 80186-compatible (MBL80186-10), 20 MHz input clock, 10 MHz internal"
+        },
+        {
+          "key": "panel_cpu",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "NEC uPD78C11 at 12 MHz with internal mask ROM and an external 8 KiB panel EPROM"
+        },
+        {
+          "key": "sound",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "L4003 sound DSP at 35.84 MHz; up to 1024K 12-bit sample words"
+        },
+        {
+          "key": "storage",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "uPD72066 floppy controller (DS/DD); optional Marion Systems SCSI board with NCR5380"
+        },
+        {
+          "key": "display",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "LC7981-class graphic LCD controller (MAME emulates it as an HD61830) with 2 KiB display RAM"
+        },
+        {
+          "key": "serial",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Two MB89371 dual UARTs for MIDI"
+        },
+        {
+          "key": "os_storage",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Four 64 KiB EPROMs (IC2-IC5) forming 256 KiB of program ROM at 0xC0000-0xFFFFF, as two even/odd pairs"
+        },
+        {
+          "key": "os_versions",
+          "source": "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working; rogerlinndesign.com support pages",
+          "status": "documented",
+          "value": "Akai OS v1.12 and v2.12 are in the MAME ROM set. Roger Linn Design sold a paid v3.10 EPROM set"
+        }
+      ],
       "family": "mpc",
       "findings": [],
-      "firmware": [],
-      "hardware_tables": {},
+      "firmware": [
+        {
+          "id": "mpc60-v2.12",
+          "kind": "eprom-set",
+          "label": "OS 2.12 (four program EPROMs)",
+          "notes": "IC2 even and IC3 odd form the first 128 KiB, IC4 even and IC5 odd the second, as MAME loads them.",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "e71b1acb",
+              "role": "ic2-even-lo",
+              "sha1": "b56ddfff1c546fc21341b1a614e18da9726312f4",
+              "size": 65536
+            },
+            {
+              "crc32": "f068838b",
+              "role": "ic3-odd-lo",
+              "sha1": "42e815880d1c1a5b7d1c7933aad9c28410fc2627",
+              "size": 65536
+            },
+            {
+              "crc32": "1271bc73",
+              "role": "ic4-even-hi",
+              "sha1": "99fd6fa4c04e5bdf868e78072fec5b55c01350da",
+              "size": 65536
+            },
+            {
+              "crc32": "d922a66d",
+              "role": "ic5-odd-hi",
+              "sha1": "0f4bc0522b9826d617f4af72382d75853515d7f5",
+              "size": 65536
+            }
+          ],
+          "size": 262144,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        },
+        {
+          "id": "mpc60-v1.12",
+          "kind": "eprom-set",
+          "label": "OS 1.12 (four program EPROMs)",
+          "notes": "Same layout as v2.12.",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "ddf26146",
+              "role": "ic2-even-lo",
+              "sha1": "987547198dc3984ab3dfa7f133ba7dca702cc269",
+              "size": 65536
+            },
+            {
+              "crc32": "9725d193",
+              "role": "ic3-odd-lo",
+              "sha1": "6efda3d6760b3951c5036108106d446f6e128c59",
+              "size": 65536
+            },
+            {
+              "crc32": "f202dbb1",
+              "role": "ic4-even-hi",
+              "sha1": "6fd82224a99b52b6c414b88d5c920abda32ffa32",
+              "size": 65536
+            },
+            {
+              "crc32": "ba5a1640",
+              "role": "ic5-odd-hi",
+              "sha1": "1f9f49c49a3682b9a44d614ac411a7c043df399e",
+              "size": 65536
+            }
+          ],
+          "size": 262144,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        },
+        {
+          "id": "mpc60-panel-v1.1",
+          "kind": "eprom-set",
+          "label": "Panel EPROM OP v1.1 (IC2 on the panel board, 2764)",
+          "notes": "Mapped at 0x4000-0x5FFF of the uPD78C11.",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "f1332f47",
+              "role": "panel",
+              "sha1": "dd5e917d16941fce3db4bfe21d37f722d6262561",
+              "size": 8192
+            }
+          ],
+          "size": 8192,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        }
+      ],
+      "hardware_tables": {
+        "io-ports": {
+          "path": "machines/mpc60/hardware/io-ports.csv",
+          "rows": 10
+        },
+        "memory-map": {
+          "path": "machines/mpc60/hardware/memory-map.csv",
+          "rows": 3
+        }
+      },
       "id": "mpc60",
       "name": "Akai MPC60",
       "pins": {},
@@ -1630,21 +1798,150 @@
           "path": "machines/mpc60/questions/first-steps.md",
           "priority": "high",
           "status": "open",
-          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "summary": "Only documented hardware facts are recorded for this machine. This lists the foundations every later finding depends on.",
           "title": "Akai MPC60: the first things to establish"
         }
       ],
       "released": "1988",
-      "summary": "Nothing has been published here yet.",
+      "summary": "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published.",
       "symbols": {}
     },
     {
-      "coverage": "none",
-      "facts": [],
+      "coverage": "seed",
+      "facts": [
+        {
+          "key": "main_cpu",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "NEC V30 at 8 MHz (16 MHz crystal / 2)"
+        },
+        {
+          "key": "dma",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Three uPD71071 DMA controllers: one for sampling and transfers, two for voice playback"
+        },
+        {
+          "key": "timers",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Three 8254 sample-rate timers and three 8253 filter timers"
+        },
+        {
+          "key": "interrupts",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "8259 interrupt controller"
+        },
+        {
+          "key": "midi",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "6850 ACIA"
+        },
+        {
+          "key": "display",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "2x40 character LCD, HD44780-class (type and clock guessed by MAME)"
+        },
+        {
+          "key": "audio",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "12-bit ADC and 12-bit DACs; output and input filters (MF6-50) not emulated"
+        },
+        {
+          "key": "floppy",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "uPD7265 controller, 3.5-inch DD drive"
+        },
+        {
+          "key": "serial",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "8251 USART for the RS232 port"
+        },
+        {
+          "key": "os_storage",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Two 16 KiB EPROMs (IC12 LS even, IC11 MS odd), 32 KiB, visible at 0x80000-0x87FFF and mirrored to 0xFFFFF while the ROM is mapped"
+        },
+        {
+          "key": "rom_unmap",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working (media_ctrl_w)",
+          "status": "documented",
+          "value": "Writing port 0x08 with bit 3 set unmaps the ROM so the whole 1 MiB is RAM; this is how MAME models it"
+        },
+        {
+          "key": "os_from_disk",
+          "source": "wiw.org/~meta/s2k.php (S900 OS v4.0 disk image)",
+          "status": "documented",
+          "value": "Later OS versions (2.0, 4.0) are distributed as boot floppies, so the machine loads an OS into RAM from disk"
+        }
+      ],
       "family": "s-series",
       "findings": [],
-      "firmware": [],
-      "hardware_tables": {},
+      "firmware": [
+        {
+          "id": "s900-v1.2c",
+          "kind": "eprom-set",
+          "label": "OS 1.2c (EPROM pair)",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "d0925ed4",
+              "role": "ls-even",
+              "sha1": "6c07a9baf4dfe59de5362e1f44e9a28e08c1b765",
+              "size": 16384
+            },
+            {
+              "crc32": "24ccb3e0",
+              "role": "ms-odd",
+              "sha1": "bcdbfb590f894849716e40722f82b4302de3366b",
+              "size": 16384
+            }
+          ],
+          "size": 32768,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        },
+        {
+          "id": "s900-v1.2a",
+          "kind": "eprom-set",
+          "label": "OS 1.2a (EPROM pair)",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "1077a91a",
+              "role": "ls-even",
+              "sha1": "0cb91474300f3dc090375e33ca73dd4d7a438f88",
+              "size": 16384
+            },
+            {
+              "crc32": "558e402d",
+              "role": "ms-odd",
+              "sha1": "6dce63a2216c4d4b015e0abf9b9ea492e776b201",
+              "size": 16384
+            }
+          ],
+          "size": 32768,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        }
+      ],
+      "hardware_tables": {
+        "io-ports": {
+          "path": "machines/s900/hardware/io-ports.csv",
+          "rows": 15
+        },
+        "memory-map": {
+          "path": "machines/s900/hardware/memory-map.csv",
+          "rows": 2
+        }
+      },
       "id": "s900",
       "name": "Akai S900",
       "pins": {},
@@ -1661,21 +1958,168 @@
           "path": "machines/s900/questions/first-steps.md",
           "priority": "high",
           "status": "open",
-          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "summary": "Only documented hardware facts are recorded for this machine. This lists the foundations every later finding depends on.",
           "title": "Akai S900: the first things to establish"
         }
       ],
       "released": "1986",
-      "summary": "Nothing has been published here yet.",
+      "summary": "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published.",
       "symbols": {}
     },
     {
-      "coverage": "none",
-      "facts": [],
+      "coverage": "seed",
+      "facts": [
+        {
+          "key": "main_cpu",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "NEC V30 at 8 MHz (16 MHz crystal / 2)"
+        },
+        {
+          "key": "dma",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Three uPD71071 DMA controllers: one for sampling and transfers, two for voice playback"
+        },
+        {
+          "key": "timers",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Three 8254 sample-rate timers and three 8253 filter timers"
+        },
+        {
+          "key": "interrupts",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "8259 interrupt controller"
+        },
+        {
+          "key": "midi",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "6850 ACIA"
+        },
+        {
+          "key": "display",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "2x40 character LCD, HD44780-class (type and clock guessed by MAME)"
+        },
+        {
+          "key": "audio",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "12-bit ADC and 12-bit DACs; output and input filters (MF6-50) not emulated"
+        },
+        {
+          "key": "floppy",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "uPD72066 controller, 3.5-inch HD drive (DD and HD rates)"
+        },
+        {
+          "key": "scsi",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Optional SCSI interface, MB89352 class (type guessed by MAME)"
+        },
+        {
+          "key": "os_storage",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working",
+          "status": "documented",
+          "value": "Two 32 KiB EPROMs (IC12 LS even, IC11 MS odd), 64 KiB, at 0x80000-0x8FFFF mirrored to 0xFFFFF"
+        },
+        {
+          "key": "ram_banking",
+          "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working (bank_w)",
+          "status": "documented",
+          "value": "The CPU sees RAM through four 64 KiB windows (0x00000-0x3FFFF, mirrored at 0x40000) whose banks are set by writes to ports 0x01C0-0x01DF"
+        }
+      ],
       "family": "s-series",
       "findings": [],
-      "firmware": [],
-      "hardware_tables": {},
+      "firmware": [
+        {
+          "id": "s950-v1.2a",
+          "kind": "eprom-set",
+          "label": "OS 1.2a (EPROM pair)",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "21af5435",
+              "role": "ls-even",
+              "sha1": "df0f6bcadadb28af1ca72562b3cea91a67d2b221",
+              "size": 32768
+            },
+            {
+              "crc32": "e14ceba2",
+              "role": "ms-odd",
+              "sha1": "3b3d2ac74f418223c7a9b0b1437d1bb71f2189c6",
+              "size": 32768
+            }
+          ],
+          "size": 65536,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        },
+        {
+          "id": "s950-v1.0a",
+          "kind": "eprom-set",
+          "label": "OS 1.0a (EPROM pair)",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "9745b78a",
+              "role": "ls-even",
+              "sha1": "b43aeaf2a08728a1a8c832a205de10c9372e8cc1",
+              "size": 32768
+            },
+            {
+              "crc32": "81dc95cb",
+              "role": "ms-odd",
+              "sha1": "2ef684e1211cfb0f9c8721f618c7944da2758dea",
+              "size": 32768
+            }
+          ],
+          "size": 65536,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        },
+        {
+          "id": "s950-v1.2b",
+          "kind": "eprom-set",
+          "label": "OS 1.2b (EPROM pair, SCSI-equipped units)",
+          "notes": "MAME uses this set for the S950 with SCSI.",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "01e0c3ad",
+              "role": "ls-even",
+              "sha1": "a374289a6110d97ac0871bdfbe8defe0036dc928",
+              "size": 32768
+            },
+            {
+              "crc32": "5b5d25cf",
+              "role": "ms-odd",
+              "sha1": "05d9c4c21ed60c289ea6ec23308c6454b43b200e",
+              "size": 32768
+            }
+          ],
+          "size": 65536,
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+        }
+      ],
+      "hardware_tables": {
+        "io-ports": {
+          "path": "machines/s950/hardware/io-ports.csv",
+          "rows": 16
+        },
+        "memory-map": {
+          "path": "machines/s950/hardware/memory-map.csv",
+          "rows": 2
+        }
+      },
       "id": "s950",
       "name": "Akai S950",
       "pins": {},
@@ -1692,12 +2136,12 @@
           "path": "machines/s950/questions/first-steps.md",
           "priority": "high",
           "status": "open",
-          "summary": "Nothing is recorded for this machine. This lists the foundations every later finding depends on.",
+          "summary": "Only documented hardware facts are recorded for this machine. This lists the foundations every later finding depends on.",
           "title": "Akai S950: the first things to establish"
         }
       ],
       "released": "1988",
-      "summary": "Nothing has been published here yet.",
+      "summary": "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published.",
       "symbols": {}
     }
   ],

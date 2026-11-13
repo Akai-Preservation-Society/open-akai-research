@@ -1,0 +1,11 @@
+port_start,port_end,device,function,status,source
+0x0000,0x0003,L4003 sound DSP,Register interface,documented,MAME mpc60.cpp io_map
+0x0080,0x0083,uPD72066 floppy controller,FDC registers (even bytes),documented,MAME mpc60.cpp io_map
+0x0090,0x0090,Floppy terminal count,Write pulses TC,documented,MAME mpc60.cpp io_map
+0x00A0,0x00A0,uPD72066 floppy controller,DMA data port,documented,MAME mpc60.cpp io_map
+0x00B0,0x00B6,LCD controller (HD61830-compatible),"B0 status read, B2 data read, B4 control write, B6 data write",documented,MAME mpc60.cpp io_map
+0x0100,0x0117,MB89371 UART #2,Channels 0 and 1,documented,MAME mpc60.cpp io_map
+0x0120,0x0137,MB89371 UART #1,Channels 0 and 1,documented,MAME mpc60.cpp io_map
+0x01C0,0x01FF,74HC259 latches,LED outputs (low and high banks),documented,MAME mpc60.cpp io_map
+0x0200,0x0207,8255 PPI,Parallel I/O (even bytes),documented,MAME mpc60.cpp io_map
+0x0220,0x023F,NCR5380 SCSI (Marion Systems option),"Registers; 0x0230-0x0231 DMA data",documented,MAME mpc60.cpp scsi_io_map

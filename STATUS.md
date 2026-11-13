@@ -6,12 +6,12 @@ How much is known about each machine, and how well it is established. Evidence c
 
 | Machine | Coverage | Facts | Findings | Hardware-tested findings | Symbols | Firmware images | Open questions |
 |---|---|---|---|---|---|---|---|
-| [Akai MPC2000](machines/mpc2000/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
+| [Akai MPC2000](machines/mpc2000/README.md) | seed | 3 | 0 | 0 | 0 | 0 | 1 |
 | [Akai MPC2000XL](machines/mpc2000xl/README.md) | partial | 14 | 12 | 12 | 48 | 3 | 8 |
 | [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 14 | 7 | 186 | 7 | 18 |
-| [Akai MPC60](machines/mpc60/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
-| [Akai S900](machines/s900/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
-| [Akai S950](machines/s950/README.md) | none | 0 | 0 | 0 | 0 | 0 | 1 |
+| [Akai MPC60](machines/mpc60/README.md) | seed | 8 | 0 | 0 | 0 | 3 | 1 |
+| [Akai S900](machines/s900/README.md) | seed | 12 | 0 | 0 | 0 | 2 | 1 |
+| [Akai S950](machines/s950/README.md) | seed | 11 | 0 | 0 | 0 | 3 | 1 |
 
 ## Akai MPC2000XL
 

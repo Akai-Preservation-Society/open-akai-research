@@ -1,0 +1,67 @@
+# Firmware registry. Identifies images; never contains them.
+# Hashes are copied from MAME's ROM set and have not been checked against
+# a dump here. Linear image = LS even bytes, MS odd bytes, as MAME loads them. No-image layout is defined yet for this machine.
+
+[[image]]
+id = "s950-v1.2a"
+label = "OS 1.2a (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+size = 65536
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "ls-even"
+size = 32768
+crc32 = "21af5435"
+sha1 = "df0f6bcadadb28af1ca72562b3cea91a67d2b221"
+
+[[image.part]]
+role = "ms-odd"
+size = 32768
+crc32 = "e14ceba2"
+sha1 = "3b3d2ac74f418223c7a9b0b1437d1bb71f2189c6"
+
+[[image]]
+id = "s950-v1.0a"
+label = "OS 1.0a (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+size = 65536
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "ls-even"
+size = 32768
+crc32 = "9745b78a"
+sha1 = "b43aeaf2a08728a1a8c832a205de10c9372e8cc1"
+
+[[image.part]]
+role = "ms-odd"
+size = 32768
+crc32 = "81dc95cb"
+sha1 = "2ef684e1211cfb0f9c8721f618c7944da2758dea"
+
+[[image]]
+id = "s950-v1.2b"
+label = "OS 1.2b (EPROM pair, SCSI-equipped units)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "MAME uses this set for the S950 with SCSI."
+size = 65536
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "ls-even"
+size = 32768
+crc32 = "01e0c3ad"
+sha1 = "a374289a6110d97ac0871bdfbe8defe0036dc928"
+
+[[image.part]]
+role = "ms-odd"
+size = 32768
+crc32 = "5b5d25cf"
+sha1 = "05d9c4c21ed60c289ea6ec23308c6454b43b200e"

@@ -14,6 +14,7 @@ Humans should read [README.md](README.md) first. This file is for you.
 2. [GAPS.md](GAPS.md): what is **not** known. Read it before you tell a user something can be built.
 3. `machines/<machine>/README.md`: the entry point for one machine, with a reading order for its findings.
 4. [docs/agent-workflow.md](docs/agent-workflow.md): the procedure for going from a feature request to something tested.
+5. [docs/external-resources.md](docs/external-resources.md): manuals, emulators, tools and existing mods outside this repository. Facts taken from them are `documented`.
 
 `index.json` holds everything above in one machine-readable file.
 
