@@ -34,6 +34,13 @@ be assumed to hold for this machine, even where names match.
 2. [findings/os-services.md](findings/os-services.md), [findings/program-and-voice-data.md](findings/program-and-voice-data.md), [findings/filesystem.md](findings/filesystem.md).
 3. [symbols/](symbols/) and [pins/](pins/). Check your files: `python3 tools/oar.py verify mpc2000-v1.72-sys MPC2000.SYS` and `python3 tools/oar.py verify mpc2000-v1.72-exe MPC2000.EXE`.
 
+## Emulation
+
+vubeatz's experimental [mpc2000-emulator](https://github.com/dariuszchynek/mpc2000-emulator)
+(a MAME target, BSD-3-Clause) runs the stock OS 1.72 EXE with a boot floppy
+holding the SYS, bypassing the boot ROM. By its author's account it reaches
+MAIN; audio and SCSI are off. No finding here relies on it yet.
+
 ## Outside this repository
 
 Manuals, emulators, tools and mods: [../../docs/external-resources.md](../../docs/external-resources.md).
