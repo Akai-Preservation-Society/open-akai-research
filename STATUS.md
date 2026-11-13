@@ -10,6 +10,7 @@ How much is known about each machine, and how well it is established. Evidence c
 | [Akai MPC2000XL](machines/mpc2000xl/README.md) | partial | 14 | 13 | 12 | 77 | 3 | 8 |
 | [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 14 | 7 | 186 | 7 | 18 |
 | [Akai MPC60](machines/mpc60/README.md) | seed | 8 | 0 | 0 | 0 | 3 | 1 |
+| [Akai S3200](machines/s3200/README.md) | partial | 15 | 9 | 0 | 59 | 1 | 8 |
 | [Akai S900](machines/s900/README.md) | seed | 12 | 0 | 0 | 0 | 2 | 1 |
 | [Akai S950](machines/s950/README.md) | seed | 11 | 0 | 0 | 0 | 3 | 1 |
 
@@ -58,3 +59,17 @@ How much is known about each machine, and how well it is established. Evidence c
 | modding | [Recipe: add code to OS 3.16 and load it from floppy](machines/mpc3000/findings/os316-extending.md) | hardware | partial | v3.16-sys | 2026-10-22 |
 | modding | [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md) | static | no | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-11-13 |
 | tooling | [Disassembler pitfalls on V53 firmware](machines/mpc3000/findings/disassembler-pitfalls.md) | static | no | hardware | 2026-09-25 |
+
+## Akai S3200
+
+| Area | Finding | Evidence | Hardware tested | Firmware | Last verified |
+|---|---|---|---|---|---|
+| hardware | [S3200 hardware overview, and why the board type is in doubt](machines/s3200/findings/hardware-overview.md) | documented | no | hardware | 2026-11-13 |
+| cpu | [How addresses work in OS 2.00 (reset, the RAM copy, segment:offset)](machines/s3200/findings/address-model.md) | static | no | v2.00 | 2026-11-02 |
+| cpu | [Peripheral set-up in OS 2.00 (V53 units, interrupts, serial/MIDI, memory ID)](machines/s3200/findings/peripherals.md) | static | no | v2.00 | 2026-11-13 |
+| memory | [What OS 2.00 writes at run time, and why its zero areas are not free space](machines/s3200/findings/memory-use.md) | static | no | v2.00 | 2026-11-02 |
+| boot | [Loading and saving the OS from disk, and the power-on autoload](machines/s3200/findings/os-load-and-save.md) | static | no | v2.00 | 2026-11-02 |
+| boot | [The second ROM entry DFE8:00D1, a serial byte loader](machines/s3200/findings/rom-serial-loader.md) | static | no | v2.00 | 2026-11-02 |
+| firmware | [The OS 2.00 EPROM pair, how to identify it, and why it has no ROM checksum](machines/s3200/findings/eprom-layout.md) | static | no | v2.00 | 2026-11-13 |
+| os | [Segments, code extents and indirect calls in OS 2.00](machines/s3200/findings/code-structure.md) | static | no | v2.00 | 2026-11-02 |
+| storage | [Floppy and hard-disk layouts as OS 2.00 reads and writes them](machines/s3200/findings/disk-formats.md) | static | no | v2.00 | 2026-11-02 |

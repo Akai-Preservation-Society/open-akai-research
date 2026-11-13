@@ -47,6 +47,11 @@ they work.
 - Floppy emulation: [FlashFloppy host settings for Akai](https://github.com/keirf/flashfloppy/wiki/Host-Platforms) (`host = akai`, `interface = akai-s950` for the S950), the [HxC forum thread on the S950](https://hxc2001.com/floppy/forum/viewtopic.php?p=26182), and the [donsolaris.com S950 upgrade series](https://donsolaris.com/?tag=s-950).
 - [Akai S900 archive (R-Massive)](https://zine.r-massive.com/akai-s900-archive) for factory disks.
 
+### Akai S3000 family (S2800, S3000, S3200, CD3000i, and the XL models)
+
+- MAME driver `s3000.cpp` covers the S2000, S2800, S3000, CD3000i, S3200, S3000XL, S3200XL and CD3000XL, and defines `s2000`, `s3000`, `cd3000i`, `s3000xl` and `cd3000xl` (no `s3200`): NEC V53A at 32 MHz, uPD72069 floppy controller, MB89352 SCSI, LC7981 LCD (HD44780 on the S2000), L7A1045-L6028 sample DSP, optional IB304F filter and EB16 effects boards (standard on the S3200), MIDI on the V53's serial unit. It gives separate memory and I/O maps for the S3000 board and the XL board, and says the S2000 and S3200 use the XL board. ROM sets: S3000 2.0 and 1.50, CD3000i 2.00 and 1.60, S3000XL 2.00, 1.50 and 1.06, CD3000XL 2.00, S2000 1.5 and 1.0. Its S3000 2.0 set is the image recorded in [../machines/s3200/](../machines/s3200/README.md), with the board conflict noted there.
+- The S3000 disk and file formats are also described by [akaiutil](https://sourceforge.net/projects/akaiutil/), [akaitools' S3000 format page](https://lsnl.jp/~ohsaki/software/akaitools/S3000-format.html) and libakai (see Tools). [../machines/s3200/findings/disk-formats.md](../machines/s3200/findings/disk-formats.md) is read from the firmware instead and has not been compared with them.
+
 ## Tools
 
 | Tool | What it does | Licence |

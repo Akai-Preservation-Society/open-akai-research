@@ -1,0 +1,73 @@
+file_offset,length,sha256,label,finding
+0x00000,132,69b1e23fd5e76c85b34047a4b5d1dd9c5eb2276f6fff32f81089f8be98326a87,RAM entry jump and entry code 0x00-0x83,s3200.address-model
+0x0001C,4,ba32336e7da3ec72d56bc4e5c4face5a12fa388b04c5fe2f475ff8cf6d94aab6,image OS version bytes,s3200.os-load-and-save
+0x00020,8,f4814e9c8a45c58837bd21099ade58ace8d7fe05ec94a6f1c26d7b1c69b3bbca,image IVT INT 8 and INT 9 vectors,s3200.peripherals
+0x0002C,4,001f1b63f1118d946f3ca22f0a89daed8feea0f4d699359072ec7377a7fd88d3,image IVT INT 11 vector,s3200.peripherals
+0x00400,38,29fb5e20a787e9d94f2948656a0f935b3de10eb853902893c370195ad7357e92,hardware configuration error string,s3200.eprom-layout
+0x004EB,58,ad363335cfe733cbc9c10ed94690093db929b75a92285f54c1f7567265658e1a,key/handler table (count 13),s3200.code-structure
+0x00530,41,837f28e72707bc99e473bd7c83254802c6dcfe83b9db0ade670531e3ab72ec6a,Akai character table,s3200.disk-formats
+0x00F4E,8,4b6dcfc7341b3d9f862f9c19b27ef2ee03402935cdfe8718664e88ab472778ba,S3000 model option string,s3200.eprom-layout
+0x05EB8,9,f79d195fcbf35a02d800faac78c836b783b87d9df19194d01c2a89a1f6de28ff,FDC command table (1024-byte sectors),s3200.disk-formats
+0x06111,9,2b4f44798279f2bdbb8bd6b5123c4019129f4b3cac260baab339a8a51b0fff29,boot-screen prefix OPERATING,s3200.os-load-and-save
+0x064BF,1,4ae81572f06e1b88fd5ced7a1a000945432e83e1551e6f721ee9c00b8cc33260,runtime-rewritten Qlist letter (saving),s3200.memory-use
+0x064D0,1,4ae81572f06e1b88fd5ced7a1a000945432e83e1551e6f721ee9c00b8cc33260,runtime-rewritten Qlist letter (loading),s3200.memory-use
+0x06D95,48,fb6f72aa1f4d5f29eda2d818cfa60f344d535cfaceb54b2fe386b1ce351702d4,floppy label trailer template,s3200.disk-formats
+0x07640,7,c12c187caa0b44b3905f2d8131bb037e5ce2774f53bcf0e07c5ed6ed0724ced7,INT 11 handler inside DGROUP,s3200.peripherals
+0x07F60,4,6e90b5d2b8ce7b775b3f74bafd0a28d18344b287eff41d0cf938f18344ea8fa2,"ROM-boot flag, port selector, saved XAM state",s3200.memory-use
+0x07F70,72,3f89ebd8146af9f15ab4260541e423bf4b979fa871367a88740392b207e73885,memory ID table (8 x 9 bytes),s3200.peripherals
+0x08060,32304,b16c719bab2ce089564ac9d58d97ca0ed78f106c0c5e6533ae7529fa769b9e4b,zero BSS area 0x8060-0xFE8F,s3200.memory-use
+0x0FE90,8,c96d2dcce6c9092e2a470e3966485158a77c3b50ca3ac968849e5cd1a50e49f2,start of code segment 0FE9,s3200.code-structure
+0x0FE92,6,718db805ff03758a79a77ed79b297f1af8ec25fbdb3717ecc15ee0f46e6e238d,OS main entry 0FE9:0002,s3200.address-model
+0x0FF95,64,afe008dcbb116a53bab125b289b1cc68865407c49fbc9df5644adbd2ef0ef83b,boot sequence and soft-restart flag test,s3200.os-load-and-save
+0x1146C,21,f9b893402e86e9a5e546abbd1a32fd9841271c4dfc963da16c376e916b496181,serial receive ISR,s3200.peripherals
+0x113E0,37,8bc506f845199b5e12347150b7a9aeeb8826e7b33e23f1349f0ab8e5b610963a,serial unit set-up,s3200.peripherals
+0x116D3,5,53e7276a8240ab6c761bdb0e39fb160cd26bc7e10a673a9c932cb3c3fe1ccbff,first DS=2DF3 load,s3200.code-structure
+0x13C62,26,d906fb817ff39f4bfbead667f6929d3738a57e5f7f45f17182f0d0e11cc6d657,record copier ending in CALL [BX+0C],s3200.code-structure
+0x192C6,9,15271fce7c54107bd2bd68a129678fa50df9ea067f8f18953f52111b4b3f88a0,sole transfer to FFFF:0005,s3200.rom-serial-loader
+0x194A7,208,4f3261f41aac712ab25a5f75400ab57c75372d96449161e0dec6493d025d417e,floppy find/read/create/write/close handlers,s3200.disk-formats
+0x1962A,109,c7be37da4601ea4c73ef053171026d25fce7dac54a0d754a18fb7edd4abcde9d,floppy header and directory transfer set-up and mount,s3200.disk-formats
+0x19859,48,cb9050536e4fe31673dfdc7b01ed1164c7aec8c352de701c81d38623ca899460,floppy block to cylinder/head/sector,s3200.disk-formats
+0x19A73,10,59ec3ca119b4fe5be9fb953c3582e81f9ec811df50271234a39e6de5dff469b7,wait for INT 11 bit in the floppy driver,s3200.peripherals
+0x19D36,90,d80fbe6cbf0c3e112f67a28fbfd46f735145805e716776e33fd5b9f66aaf8ca6,power-on OS autoload,s3200.os-load-and-save
+0x19D8F,58,36314a2c676132553eb7d9297bba3b222627700ca17d2f012a827b6d3ce906fd,autoload hard-disk fallback,s3200.disk-formats
+0x1B23C,132,6a80b195aceae725b2232694e51870419b57de2bcd427f93c4269b73130499dd,SAVE OPERATING SYSTEM,s3200.os-load-and-save
+0x1B2C0,44,5997775d65b7661f230882f88a3bea9ec79d07d8634332695eaaaf731028df5b,LOAD OPERATING SYSTEM find-file prologue,s3200.os-load-and-save
+0x1B2EC,144,32c6bd476ae0f025c470ba3aaf720d65fbe9f5fe3852a43c50538811beb8f5fa,"LOAD OPERATING SYSTEM gate, read loop and stub copy",s3200.os-load-and-save
+0x1B37C,52,73c69cc0b0d2c1fb958031fca3f8ed3d1ac49e9e6e636d0c538017b812dc74e4,boot-screen builder,s3200.os-load-and-save
+0x1B3BB,40,0de85c2344f9d22b33e083523e131c7b5a7e826321f9d4f0fb6e13a12bebab6a,boot line and version formatter,s3200.os-load-and-save
+0x1B67C,4,1cd7ab872a5da88dffb7f53b4c8e3ed55d1ebd5c770db5ccf4d66836249601e4,Qlist letter rewrite,s3200.memory-use
+0x1B9C0,117,283aa005f32c5707ea60e761a3ba5e26aeb07f5be939f6879f70c16c2798080f,hard-disk partition header check,s3200.disk-formats
+0x1BA65,126,eb8fd98c7a4e48d6709615c5f34e512d3f3508823de2b0066e4453c1127083c7,hard-disk volume select and directory read,s3200.disk-formats
+0x1BBCD,46,4e3b863d1bccfc671ad4235f9956fb946102d00c3ed30c6a5ac0ebd4748f3bc9,partition size table fill,s3200.disk-formats
+0x1BE07,21,62c01ef17a7f91338cd4a928dfaff380d98d0f655904c951af13a8b0161653f3,hard-disk header word sum,s3200.disk-formats
+0x1BFBC,75,069b984dba7c909c334110330daa576db9cf8d9d282adc796231ab9af2024a84,hard-disk find and read,s3200.disk-formats
+0x1C279,71,c3faece367a005d36287477d757a5afd3a53c126fc8b550079f55d90f5aeadf3,hard-disk LBA computation,s3200.disk-formats
+0x1C95D,16,cdaf12a8934e1dc7faa5744d1fc0462866dbfc6a15d5d15382fac31823abd771,disk-buffer word sum (DS:9220),s3200.eprom-layout
+0x1C9EE,52,2a52cb79c5816029815547adfa1ec898784f437b2a81c2fe6fb2fd06f30311f9,SCSI sector-size selection,s3200.disk-formats
+0x1FE5B,37,205b46a90bc51c80753514ef0ffbae7beae0042231cef19169fe1574e02920bb,last routine of segment 0FE9,s3200.code-structure
+0x1FE80,209,441fdbe7117aa09f98161da1669714bb19edc58e2e03422c7f5c2d3b163b6d6f,boot block reset path,s3200.address-model
+0x1FE80,342,11cd0222a7bcd65ce7915f65dced31a33fd6d80740c2ce5d292039d610b0abba,whole boot block 0x1FE80-0x1FFD5,s3200.address-model
+0x1FF4C,5,a9bd194822c9de82c8dcc73cb54f855ec7737d0ad1d3730f406b55e929e50ab8,JMP FAR 0000:0000 at the end of the boot block,s3200.rom-serial-loader
+0x1FF51,133,789a09091cd8e98673fefb2654b78316d69da93409ec21f194e4d2d82bb4e8e3,ROM serial loader DFE8:00D1,s3200.rom-serial-loader
+0x2044C,52,d14e2e864ef44e1c948666c8c0b10a27d1e0b05e420c2d99dc459e5fa36428fd,boot-time help-text and string patches,s3200.memory-use
+0x20504,24,ea329814d370d8cda84fa60e1b4fa462ed97d8018a358dabfda80c2ee57a2fb4,table-driven copier,s3200.memory-use
+0x2061E,31,02bf6e628b79b447e550014266f9e489d0a1f0494c8bbe0c11f3459ba5d332cb,timer unit programming,s3200.peripherals
+0x206AA,26,c5c8b4cda65788eea4cf0a2e34e07144654ab4d494bc17242382320048911090,interrupt controller programming,s3200.peripherals
+0x2070C,15,7da642b680923563afefd1ccb6e62a8a1def50abe05d773efde3d4a266e281ca,serial transmit wait,s3200.peripherals
+0x20F08,90,5260de5fd88e7701c50af44182a0ffbaa5edc3f6a8ccc044531e2945d117cb1d,memory ID probe loop on ports 0x60-0x66,s3200.peripherals
+0x235A4,41,89fc1f6d9554fd9bf8aa96b4aafd930cccd07d64e4c8e00a2f7d6130f1ff3dee,floppy block allocator,s3200.disk-formats
+0x236B0,160,f528e9f5309a7d7017076d3b7cbdb5d54c34615c3aa7969b35558fbe0ad745ec,floppy format and initialise,s3200.disk-formats
+0x23B9B,78,a4d9cf35090d8c8806343777a397066a673b24a5c91eb3a89e79a6d918d8425a,OS relaunch stub,s3200.os-load-and-save
+0x23DD3,16,62e9ec74aa4e5b1c13fcd864fa8eefb27091d77ccff28d2bd199733b526104de,floppy directory buffer clear,s3200.memory-use
+0x23ED4,16,366a2018c611464b951b155c6b7efe275aee78a59a5638d70bbe4a53469dd430,OS use of segments C000-E000 as RAM,s3200.rom-serial-loader
+0x24DFA,9,4f87b222a4e7b1b83fa628f728928055e9006542c02b457357988fb64864a453,stores to CS-resident variable 2033:4B1B,s3200.memory-use
+0x24E4A,4,3d0aa5ecdccdbdc20bc652773c47cfdba0a470ddee1e27fbdcb46a19cfe21897,RETF and CS-resident variable bytes,s3200.memory-use
+0x24E55,24,a17eb8a91f3afd131313efb15f2a6c6bd7ae1184ef62955fc3836873a3a98f80,per-record writes at 2DF3:B400,s3200.memory-use
+0x2A939,40,e5a930ac7519c555bf0ba276d01c91acfa1e5a9c94ce0810018fb579fe56c7e2,in-code table 2033:A609,s3200.memory-use
+0x2A961,3,709e80c88487a2411e1ee4dfb9f22a861492d20c4765150c0c794abd70f8147c,CS-resident variable 2033:A631,s3200.memory-use
+0x2A973,22,86fb345ae2714bd2db80c927987013e635a414d50b6056db555ed9f14b995503,stores to 2033:A632-A633,s3200.memory-use
+0x2DF20,24,d02d4462259e6bd3e6cc4b8710b51061c92215125081c02fef7f2045853fd535,"end of segment 2033, start of 2DF3",s3200.code-structure
+0x352DB,44309,a45d41dbdb41206142f048e3d55e334974656024b995d3eff31f1895356be56e,zero tail 0x352DB-0x3FFEF,s3200.eprom-layout
+0x3FF00,78,5552748b5aeb500f57b3d1f4a56e4e9789198918c663e712314ea999026eb896,bytes replaced by the relaunch stub (zero in stock),s3200.os-load-and-save
+0x3FFF0,10,96b7891daedded938d1a1058586377014d789c77652c6da205693a9c627e6a1a,reset vector and serial loader far jumps,s3200.address-model
+0x2063D,108,8571ed256e108fd252b1830c28878531b9859bf543067c13fa167abc3bc612ff,V53 system-register writes incl. peripheral relocation 0xFFF8-0xFFFD,s3200.peripherals

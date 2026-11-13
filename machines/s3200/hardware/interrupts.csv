@@ -1,0 +1,7 @@
+line,vector,source_device,handler,function,status,source
+IRQ0,INT 8 (0x20),V53 serial unit (SINT per MAME),0FE9:15DC (file 0x1146C),"Serial/MIDI receive into ring 0x200-0x2FF",static,"Image IVT at file 0x20; MAME src/mame/akai/s3000.cpp at commit c2caa8969adb for the line; findings/peripherals.md"
+IRQ1,INT 9 (0x24),V53 timer 0 output (per MAME),0FE9:157B (file 0x1140B),"Periodic handler; polls port 0x50",static,"Image IVT at file 0x24; MAME src/mame/akai/s3000.cpp at commit c2caa8969adb for the line"
+IRQ2,INT 10 (0x28),MB89352 SCSI (per MAME),Not established,,documented,"MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+IRQ3,INT 11 (0x2C),uPD72069 floppy controller (per MAME),0000:7640 (file 0x7640),"Sets bit 5 of [0x75B0]; the floppy driver waits for it",static,"Image IVT at file 0x2C; MAME src/mame/akai/s3000.cpp at commit c2caa8969adb; findings/peripherals.md"
+IRQ4,INT 12 (0x30),V53 serial transmit ready (per MAME),Not established,,documented,"MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+-,INT 0 (0x00),Divide error,2033:0AE3 (file 0x20E13),"Installed by the RAM entry code",static,findings/address-model.md

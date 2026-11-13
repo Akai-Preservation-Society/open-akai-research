@@ -1,0 +1,8 @@
+start,end,board_map,device,function,status,source
+0x000000,0x0BFFFF,S3000 (MAME s3000_map),RAM,"Main RAM, 1 MiB per MAME (2x HM658512)",documented,"MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+0x0C0000,0x0FFFFF,S3000 (MAME s3000_map),OS EPROM pair or RAM,"ROM at reset; I/O port 0x68 bit 4 switches this window to RAM (MAME's view). Physical = 0xC0000 + file offset",documented,"MAME src/mame/akai/s3000.cpp at commit c2caa8969adb; reset vector at file 0x3FFF0 (findings/address-model.md)"
+0x080000,0x0FFFFF,XL (MAME s3000xl_map; MAME says the S3200 uses this board),ROM,"512 KiB ROM. The s3200-v2.00 image is 256 KiB and does not fit this map as a reset image",documented,"MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+0x000000,0x07FFFF,XL (MAME s3000xl_map),RAM,Main RAM,documented,"MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+0x180000,0x1FFFFF,XL (MAME s3000xl_map),RAM,RAM above 1 MiB,documented,"MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+0x100000,0x1BFFFF,s3200-v2.00 boot page map,RAM,"After the boot block: logical 0x00000-0xBFFFF via page registers. The OS image copy is at physical 0x100000 + file offset",static,findings/address-model.md
+0x1C0000,0x1FFFFF,s3200-v2.00 boot page map,RAM,"After the boot block: logical 0xC0000-0xFFFFF. What this RAM holds is not established",static,findings/address-model.md

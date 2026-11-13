@@ -1,0 +1,38 @@
+# Firmware registry for the Akai S3200.
+#
+# This file identifies images. It never contains them. File offsets in this
+# machine's folder are offsets into the 262,144-byte linear image: the LOW
+# chip's bytes at even offsets, the HIGH chip's bytes at odd offsets
+# (`python3 tools/oar.py interleave LOW HIGH -o linear.bin`). Part role ls-even = the LOW chip, ms-odd = the HIGH chip. At reset the
+# linear image sits at physical 0xC0000 + file offset; see
+# findings/address-model.md.
+#
+# Whether this image is what an S3200 runs is not established: see
+# questions/s3200-hardware-and-os.md.
+
+[[image]]
+id = "s3200-v2.00"
+label = "OS 2.00 EPROM pair labelled for the S3000 and S3200 (MAME's s3000 'ver 2.0' set)"
+origin = "manufacturer"
+kind = "eprom-pair"
+obtain = "Read the two 27C010 OS EPROMs of a machine you own and interleave them (LOW = even bytes). Check the hashes below before using any address in this folder."
+notes = "The chip files are byte-identical to MAME's s3000 ROM set 'akai s3x00 v2.0 low/high' (same CRC32 and SHA-1). The 16-bit byte sum of each chip equals its label: LOW 9C79, HIGH 2900. The image's own version bytes give 2.00. The image contains the string 'S3000' and S2800 messages but no 'S3200' string. Every code-level finding in this folder is keyed to this image."
+size = 262144
+crc32 = "9ef99cb2"
+sha1 = "f693a4b4cefa9db7aec85b2e64d0b80c37c2b4ea"
+sha256 = "420f327a31ca191d201217e72e6248d59b6761d732d890e2e0852f19700f6775"
+source = "Computed from the contributor's chip files on 2026-11-13; chip CRC32 and SHA-1 compared with MAME src/mame/akai/s3000.cpp at commit c2caa8969adb."
+
+[[image.part]]
+role = "ls-even"
+size = 131072
+crc32 = "12a657c9"
+sha1 = "ba77af24b647a2edcd1ff67c5b16e3103efb8039"
+sha256 = "e31f2df978ff32c5a6401d676daf62627e54072dd206a6c7aebffa33cecbc540"
+
+[[image.part]]
+role = "ms-odd"
+size = 131072
+crc32 = "1763a18d"
+sha1 = "95042987ef6f6e63dae1b4771f4841d605af5695"
+sha256 = "fee7f9ae1404ba1c1f06c0eef05b8861f01e867a9f979a55e1242b42bf628367"

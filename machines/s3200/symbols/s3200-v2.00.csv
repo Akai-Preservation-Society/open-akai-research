@@ -1,0 +1,60 @@
+name,kind,address,file_offset,size,status,finding,notes
+ram_entry_jump,code,0000:0000,0x00000,2,static,s3200.address-model,EB 4E: jump to 0000:0050; entry for the ROM boot hand-off
+os_version_bytes,data,0000:001C,0x0001C,4,static,s3200.os-load-and-save,"0x1C minor (hundredths), 0x1E major+10; merged into word [0x001C] at entry"
+soft_restart_flag,ram,0000:0052,0x00052,1,static,s3200.os-load-and-save,Bit 0 set: skip boot screen and autoload
+ram_entry,code,0000:0050,0x00050,52,static,s3200.address-model,"Disk relaunch entry; sets SS:SP 0000:0200, installs INT 0, JMP FAR 0FE9:0002"
+serial_rx_ring,ram,0000:0200,0x00200,256,static,s3200.peripherals,"Serial receive ring; pointer at [0x6C90], 8-bit wrap"
+hw_config_error_string,string,0000:0400,0x00400,38,static,s3200.eprom-layout,'Error - Invalid Hardware Configuration'
+key_handler_table,table,0000:04EB,0x004EB,58,static,s3200.code-structure,"Count word 13, then key/handler pairs; used at 0x11139"
+akai_charset_table,table,0000:0530,0x00530,41,static,s3200.disk-formats,Akai character set used in file and volume names
+model_option_s3000,string,0000:0F4E,0x00F4E,8,static,s3200.eprom-layout,'S3000   ' in a settings option list
+fdc_command_table,table,0000:5EB8,0x05EB8,9,static,s3200.disk-formats,Floppy commands with N=3 (1024-byte sectors)
+boot_stamp_slot,string,0000:6111,0x06111,9,static,s3200.os-load-and-save,'OPERATING' prefix of the boot-screen line; only reader 0x1B37C
+qlist_letter_saving,data,0000:64BF,0x064BF,1,static,s3200.memory-use,Rewritten to 'T' or 'Q' at run time
+qlist_letter_loading,data,0000:64D0,0x064D0,1,static,s3200.memory-use,Rewritten to 'T' or 'Q' at run time
+floppy_label_template,data,0000:6D95,0x06D95,48,static,s3200.disk-formats,Copied into the floppy header trailer
+disk_drive_select,ram,0000:6E69,0x06E69,1,static,s3200.os-load-and-save,"0 = floppy, 1 = hard disk during autoload"
+fdc_irq_flags,ram,0000:75B0,0x075B0,1,static,s3200.peripherals,Bit 5 set by the INT 11 handler
+dir_entry_create_buffer,ram,0000:7610,0x07610,24,static,s3200.os-load-and-save,Directory entry being created
+dir_entry_read_buffer,ram,0000:7628,0x07628,24,static,s3200.os-load-and-save,Directory entry found by a find-file command
+int11_fdc_stub,code,0000:7640,0x07640,7,static,s3200.peripherals,INT 11 handler inside DGROUP
+load_flags,ram,0000:7812,0x07812,1,static,s3200.os-load-and-save,Bit 0 = autoload in progress
+rom_boot_flag,ram,0000:7F60,0x07F60,1,static,s3200.os-load-and-save,Set to 1 by the boot block; 0 in the image and in saved OS files; gates autoload
+output_port_select,ram,0000:7F61,0x07F61,1,static,s3200.rom-serial-loader,Non-zero: the ROM serial loader uses DX as its indicator port
+saved_xam_state,ram,0000:7F62,0x07F62,1,static,s3200.address-model,XAM state saved by the boot block
+memory_id_table,table,0000:7F70,0x07F70,72,static,s3200.peripherals,8 x 9 bytes; equals MAME's s3000_memory_magic table
+disk_transfer_buffer,ram,0000:9120,0x09120,,static,s3200.memory-use,LOAD/SAVE chunk buffer in BSS
+display_line_buffer,ram,0000:B91C,0x0B91C,41,static,s3200.memory-use,Message line buffer
+hd_header_buffer,ram,0000:B94E,0x0B94E,,static,s3200.disk-formats,Hard-disk partition header
+hd_volume_table,ram,0000:BA18,0x0BA18,1600,static,s3200.disk-formats,100 x 16-byte volume entries
+os_main_entry,code,0FE9:0002,0x0FE92,,static,s3200.address-model,OS initialisation
+timer_tick_isr,code,0FE9:157B,0x1140B,,static,s3200.peripherals,INT 9; reads port 0x50
+serial_rx_isr,code,0FE9:15DC,0x1146C,21,static,s3200.peripherals,"INT 8; status 0xC022, data 0xC020"
+serial_init,code,0FE9:1550,0x113E0,37,static,s3200.peripherals,"Mode 0x4E, command 0x35"
+jump_to_rom_loader,code,0FE9:9436,0x192C6,9,static,s3200.rom-serial-loader,"MOV BL,[0x7551]; JMP FAR FFFF:0005; no caller found"
+floppy_mount,code,0FE9:97D4,0x19664,,static,s3200.disk-formats,"Reads header, then 510-entry directory from block 5"
+floppy_block_to_chs,code,0FE9:99C9,0x19859,48,static,s3200.disk-formats,
+os_autoload,code,0FE9:9EA6,0x19D36,90,static,s3200.os-load-and-save,Called from OS init at 0xFFC9
+save_os,code,0FE9:B3AC,0x1B23C,132,static,s3200.os-load-and-save,SAVE > OPERATING SYSTEM
+load_os,code,0FE9:B430,0x1B2C0,188,static,s3200.os-load-and-save,LOAD > OPERATING SYSTEM and autoload
+boot_screen,code,0FE9:B4EC,0x1B37C,52,static,s3200.os-load-and-save,'OPERATING SYSTEM X.XX  N Mwords fitted'
+boot_line_format,code,0FE9:B52B,0x1B3BB,40,static,s3200.os-load-and-save,Version digits rendered from the version word
+hd_partition_check,code,0FE9:BB30,0x1B9C0,117,static,s3200.disk-formats,Not on the OS load path
+hd_header_sum,code,0FE9:BF77,0x1BE07,21,static,s3200.disk-formats,32-bit sum of 0x63 words
+hd_block_to_lba,code,0FE9:C3E9,0x1C279,71,static,s3200.disk-formats,
+boot_block,code,DFE8:0000,0x1FE80,209,static,s3200.address-model,Reset entry; runs from ROM only
+rom_serial_loader,code,DFE8:00D1,0x1FF51,133,static,s3200.rom-serial-loader,Count-prefixed receive on 0xC020 with echo
+int0_handler,code,2033:0AE3,0x20E13,,static,s3200.address-model,Installed by the RAM entry code
+system_register_setup,code,2033:030D,0x2063D,108,static,s3200.peripherals,V53 system registers incl. peripheral relocation
+serial_tx_wait,code,2033:03DC,0x2070C,15,static,s3200.peripherals,"Poll 0xC022 bit 0, OUT 0xC020"
+memory_id_probe,code,2033:0BD8,0x20F08,90,static,s3200.peripherals,Ports 0x60-0x66 against memory_id_table; MAME names the routine start 0x20ED9
+floppy_block_alloc,code,2033:3274,0x235A4,41,static,s3200.disk-formats,
+floppy_format,code,2033:3380,0x236B0,160,static,s3200.disk-formats,
+os_relaunch_stub,code,2033:386B,0x23B9B,78,static,s3200.os-load-and-save,Copied to 8000:FF00 and run from there
+cs_var_4b1b,ram,2033:4B1B,0x24E4B,3,static,s3200.memory-use,Written through CS by 2033:4ACA
+cs_table_a609,table,2033:A609,0x2A939,40,static,s3200.memory-use,4 x 10-byte records read through CS
+cs_var_a631,ram,2033:A631,0x2A961,3,static,s3200.memory-use,Written through CS by 2033:A634
+floppy_directory_buffer,ram,2DF3:7C7A,0x35BAA,12240,static,s3200.memory-use,"510 x 24 bytes, inside the zero tail"
+relaunch_stub_area,range,,0x3FF00,78,static,s3200.os-load-and-save,Replaced by the relaunch stub on every disk boot
+reset_vector,vector,FFFF:0000,0x3FFF0,5,static,s3200.address-model,JMP FAR DFE8:0000
+rom_loader_vector,vector,FFFF:0005,0x3FFF5,5,static,s3200.rom-serial-loader,JMP FAR DFE8:00D1
