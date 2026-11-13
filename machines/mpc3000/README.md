@@ -57,6 +57,7 @@ The full list, with priorities, is in [../../GAPS.md](../../GAPS.md).
 | `mpc3000-v3.12` | Akai OS 3.12, EPROM pair | Boot path, loader, page tables |
 | `mpc3000-vailixi-3.50` | Vailixi OS 3.50 (independent developer), reference dump | Most code-level findings |
 | `mpc3000-v3.16-sys` | OS 3.16 maintenance upgrade (independent developer), floppy file | Structure, two defects, 111 symbols |
+| `mpc3000-tme-3.41-sys` | OS 3.41 Track Mute Edition (Deep88), floppy file built on 3.16 | Relation to 3.16; 103 shared pins ([findings/tme341-structure.md](findings/tme341-structure.md)) |
 | `mpc3000-panel-v1.0` | Front-panel microcontroller program | Identified only |
 
 Most code-level findings were made on the Vailixi 3.50 reference dump

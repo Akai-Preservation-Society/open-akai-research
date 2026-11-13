@@ -152,3 +152,16 @@ size = 32768
 crc32 = "b0b783d3"
 sha1 = "a60016184fc07ba00dcc19ba4da60e78aceff63c"
 source = "MAME src/mame/akai/mpc3000.cpp ROM_LOAD line."
+
+[[image]]
+id = "mpc3000-tme-3.41-sys"
+label = "OS 3.41 Track Mute Edition (M3K340.SYS / M3K341.SYS, floppy-loaded)"
+origin = "community"
+kind = "floppy-sys"
+obtain = "Released free in November 2026 by Deep88 as a floppy upgrade (SYS file plus IMG and HFE disk images). Obtain it from a source you trust and check the hash."
+notes = "A DOS MZ executable loaded into RAM from floppy, like OS 3.16, on which it is built (findings/tme341-structure.md). The released file is named M3K340.SYS but identifies itself as 3.41. File offsets for this id are offsets into the .SYS file itself (the load image starts at 7A00h)."
+size = 555491
+crc32 = "591c99ef"
+sha1 = "41d9569b47caf1b74c315d1bb12998888adbc58f"
+sha256 = "f8348bb8200acc2f0ab5855598288cef40fef13089f57707b05ef25456545e53"
+source = "Computed from the released file on 2026-11-13."
