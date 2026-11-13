@@ -1,0 +1,107 @@
+file_offset,length,sha256,label,finding
+0x00000,62,68edac6cf418ae18e4fc265ebf760da72a04703a0dab8ebf7cbd20b9928692d0,MZ header (3.41),mpc3000.tme341-structure
+0x86929,25,fde620c2908cd5bca78401cda841bb1fff81824d5b282a85fb60653710fc6dc5,'3.41 Hybrid Format' string,mpc3000.tme341-structure
+0x8715D,26,2f20b6c8c9c9c4151f0f0c7b4cf7b70ca68f7ca874c4e38b1da7bc7d8f2569c4,'OS 3.41 Track Mute Edition' string,mpc3000.tme341-structure
+0x07A00,8,ba816b1e178f25ede8721f818596150c5f08b7d08dfb29fd40c44a127390cd52,"same bytes as 3.16: c_startup, first 8 bytes",mpc3000.tme341-structure
+0x07A96,8,50da18c7a3dcb4d8e7a4347cd3498a4e089da2818f5ce89bb229b5c431fa3634,"same bytes as 3.16: bios_init, first 8 bytes",mpc3000.tme341-structure
+0x07BB1,22,b67d89acab8438d4eefeac0d5eeb22f470cc9d5dcbb370bc7fca5b770c2434b9,same bytes as 3.16: bios banner,mpc3000.tme341-structure
+0x09B50,8,4f1edf531d377aed6ea9f1b6f752cab3f3db5a401bc293deefdca8a7ea8631c1,"same bytes as 3.16: mul32, first 8 bytes",mpc3000.tme341-structure
+0x09B86,8,3a2308440747791578618966d43876c524e7d3e55847a7880033ef4a7e1ee668,"same bytes as 3.16: div32_signed, first 8 bytes",mpc3000.tme341-structure
+0x09B8D,8,835531bec02fb2b4ee16609e092b53a7fa5db4fdeec61fd1b75ad84478e96de4,"same bytes as 3.16: div32_unsigned, first 8 bytes",mpc3000.tme341-structure
+0x0A244,8,92cbae74713c8a4d6125de0a192e4324e058008da1c3042aa22d816469a5956e,"same bytes as 3.16: ui_main, first 8 bytes",mpc3000.tme341-structure
+0x0A777,8,fe0509bdbbe88b5face5cc254d0b5c8c8a1dd2fc9b5259aa860f8c7c143d3b4c,"same bytes as 3.16: field_list_reset, first 8 bytes",mpc3000.tme341-structure
+0x0A7D5,8,137b47f72d025ea999895d7ea4039a80cf4431d058465a6ac5f00105a1b30c00,"same bytes as 3.16: field_select, first 8 bytes",mpc3000.tme341-structure
+0x0A986,8,e56f0da1f1f897d9ec4d789b0aa83a6254e73a2806bec81efc728456e9e89d6e,"same bytes as 3.16: field_init, first 8 bytes",mpc3000.tme341-structure
+0x0AAC7,8,a9360a3a2753da50faf20ab8eeeba1b89fdeda654ce7a310615c68c31cfe36f4,"same bytes as 3.16: field_key_loop, first 8 bytes",mpc3000.tme341-structure
+0x0AE7F,8,78e302a6c163cb97ccd2826671fc361ac737df1d8e0747ebc276c38904304768,"same bytes as 3.16: field_commit, first 8 bytes",mpc3000.tme341-structure
+0x0B243,8,a20bf95ba993165213a824f80c6c3d5340c1b206cdb74c953cca6402325038df,"same bytes as 3.16: field_redraw, first 8 bytes",mpc3000.tme341-structure
+0x0BC7C,8,9bac397b1443dfbf5cc09e9c88a6b8e8b473cd0a5f602ee53c5cce8faede83dc,"same bytes as 3.16: lcd_clear_text, first 8 bytes",mpc3000.tme341-structure
+0x0BC82,8,04640fa36b93954a5730919cb256504d6e5b43e0a8a89c095df60009bdbcc1e0,"same bytes as 3.16: lcd_cursor_shape, first 8 bytes",mpc3000.tme341-structure
+0x0BCA0,8,d2d7945fc68db7803442fee4134832ae52d2b3d3a557c23cb46938ab7e5659e6,"same bytes as 3.16: lcd_cursor_pos, first 8 bytes",mpc3000.tme341-structure
+0x0BCB0,8,29cc777fc509105ad302141a0eed2ed500c6fa1b331fa1991df77d59094e9452,"same bytes as 3.16: lcd_put_char, first 8 bytes",mpc3000.tme341-structure
+0x0BCC9,8,d23ac7836334c34d433ebcf26ba65dd43c9be06c3c6012412b1e64e2667d4a23,"same bytes as 3.16: lcd_save_text, first 8 bytes",mpc3000.tme341-structure
+0x0BCCF,8,318aa824cf1586d68338f2da6f528b30402f4e434da9a8a42159a393e1a1a7d5,"same bytes as 3.16: lcd_restore_text, first 8 bytes",mpc3000.tme341-structure
+0x0BCD5,8,cc23336a430c978f49e74304bc77f0e7e6c32abffc9e3ec3cc14624181abcd51,"same bytes as 3.16: lcd_put_string, first 8 bytes",mpc3000.tme341-structure
+0x0BF18,8,78e302a6c163cb97ccd2826671fc361ac737df1d8e0747ebc276c38904304768,"same bytes as 3.16: lcd_printf, first 8 bytes",mpc3000.tme341-structure
+0x0C166,8,9360ffb3978be26c8be4aa9f81cbc61cde27c0991188c3312ad3f661bce575c0,"same bytes as 3.16: lcd_pad_spaces, first 8 bytes",mpc3000.tme341-structure
+0x0D2FB,8,78e302a6c163cb97ccd2826671fc361ac737df1d8e0747ebc276c38904304768,"same bytes as 3.16: field_numeric_editor, first 8 bytes",mpc3000.tme341-structure
+0x0D84A,8,c558a96b7abba49fcb03f9d4c281d744abdea42e92254129278f627a94856e5a,"same bytes as 3.16: field_add_choice, first 8 bytes",mpc3000.tme341-structure
+0x0DA35,8,b41238e6b22ca4e56883888f2e03880fb15d417a8aa7795cbc5e5987f3be013d,"same bytes as 3.16: field_add_numeric, first 8 bytes",mpc3000.tme341-structure
+0x0DDBB,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: error_box, first 8 bytes",mpc3000.tme341-structure
+0x0F5FD,8,c716c30eaafc86eb581a7020d1f72ea8eb207c6e5e9982ef760b9d91c86b99cc,"same bytes as 3.16: Disk page prologue (SUB SP,3652h)",mpc3000.tme341-structure
+0x0F5FD,8,c716c30eaafc86eb581a7020d1f72ea8eb207c6e5e9982ef760b9d91c86b99cc,"same bytes as 3.16: disk_page, first 8 bytes",mpc3000.tme341-structure
+0x10B1D,8,77e7f36f427a9630e66caab754b28ca174acad8e7c275beba36afea8b9cd63c0,"same bytes as 3.16: file_name_format, first 8 bytes",mpc3000.tme341-structure
+0x10C05,8,8107c8045cc181e5ef025d806636acf50d74d2ca504d37eaf4f3a51b98bfb723,"same bytes as 3.16: page_new, first 8 bytes",mpc3000.tme341-structure
+0x1444B,8,44a3b1aba23942c7d1337ef769a0c3a63cc61387f37f8f5d7d6d92c6da1a2724,"same bytes as 3.16: edit_sound_redraw, first 8 bytes",mpc3000.tme341-structure
+0x1446F,8,3e153c25b475d0558726fa21f089e465517711b35de82e2459b2b06322093725,"same bytes as 3.16: sound_stereo_tag, first 8 bytes",mpc3000.tme341-structure
+0x14F11,8,942cca13d1024bfe68113226a7edace638eed3bd80b2c0fc987929411ae6de6f,"same bytes as 3.16: sound_delete_frames, first 8 bytes",mpc3000.tme341-structure
+0x15244,8,76909bfdbf408ee97375ba463c5d763f71f90ed46d152bea2b509fd974c1f0a1,"same bytes as 3.16: frames_from_triple, first 8 bytes",mpc3000.tme341-structure
+0x15298,8,3dcd9af91c633ef061626527bf4fff4df2307d8b1844cf3f14970119113479de,"same bytes as 3.16: triple_from_frames, first 8 bytes",mpc3000.tme341-structure
+0x1541D,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: sound_list_rebuild, first 8 bytes",mpc3000.tme341-structure
+0x170B9,8,92abd6e87d00f87c15a50f7508db2d1448951e6500279134d0615b31fabb4131,"same bytes as 3.16: key_next_filtered, first 8 bytes",mpc3000.tme341-structure
+0x172B6,8,fe05a34b3129acffbd60b2ce8bbb5b525fc76d88634f6992f09a30e2406238dc,"same bytes as 3.16: mixer_apply_params, first 8 bytes",mpc3000.tme341-structure
+0x1B369,8,476309e4229368e3ef2fe2caa50b04051ce6f2729e52f06046b5eb612ceb8297,"same bytes as 3.16: pgm_load, first 8 bytes",mpc3000.tme341-structure
+0x1B85C,8,1310b3622c47d24f32c66003b90c5d2834cbc0dbd1b2b8b913126be0fd7a413d,"same bytes as 3.16: aps_load, first 8 bytes",mpc3000.tme341-structure
+0x1E2FD,8,70b7564d757367646ea5d1143155382298423376cf5778a3c54dace7fb3a38a0,"same bytes as 3.16: lcd_text_mode_clear, first 8 bytes",mpc3000.tme341-structure
+0x1EE01,8,560c22cfead12bfe1f997655ec816ac2e0f99e7bfd2f1ccd4b0fab09e918f493,"same bytes as 3.16: lcd_blit, first 8 bytes",mpc3000.tme341-structure
+0x1FE9F,8,2ee4c53f9a8a621532122e2dfcf4764d705c00b63cd4b0dbd60c30edf2eb45f7,"same bytes as 3.16: sample_new_sound_page, first 8 bytes",mpc3000.tme341-structure
+0x23583,8,f7494c6f4ec9680970bd5157c8f9e06db39d4ba2fbcb20eae5b25ed4b7546941,"same bytes as 3.16: program_select, first 8 bytes",mpc3000.tme341-structure
+0x27B5C,8,357321193d5f4c615c7b53388765436ea9549ac9fbf2fdb02ee14dfc5621d889,"same bytes as 3.16: file_close, first 8 bytes",mpc3000.tme341-structure
+0x27B98,8,e2cf0f05432357585c4a104aa685003adb207d9ad39786b4561216a11fc5c28f,"same bytes as 3.16: file_delete, first 8 bytes",mpc3000.tme341-structure
+0x27C4B,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: file_find_first, first 8 bytes",mpc3000.tme341-structure
+0x27CB7,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: file_find_next, first 8 bytes",mpc3000.tme341-structure
+0x27D3C,8,69e59f925b5f8a09672b2c9d7e2088c5ddccf3bda4d0931b02bc4721d0ca6eb7,"same bytes as 3.16: int41_call, first 8 bytes",mpc3000.tme341-structure
+0x27D8C,8,8599a887d8dc19e035a9da6b64de95329a28492c356528118b23096a726bda71,"same bytes as 3.16: int41_fn8, first 8 bytes",mpc3000.tme341-structure
+0x27DA9,8,47d14cdfc801d8a1adc875e6898ef4ad8b8e4323073a1d32e2d25aa5b646b85f,"same bytes as 3.16: file_read, first 8 bytes",mpc3000.tme341-structure
+0x27DCC,8,47d14cdfc801d8a1adc875e6898ef4ad8b8e4323073a1d32e2d25aa5b646b85f,"same bytes as 3.16: file_write, first 8 bytes",mpc3000.tme341-structure
+0x27FE8,8,2056923f185013a043c61851c21efe140b7eff8fd80622262ff4714d2a1412a4,"same bytes as 3.16: voice_allocate, first 8 bytes",mpc3000.tme341-structure
+0x285A2,8,1d4447f786afde4491fabb94481c53e6c0c76ec9359bf4128f0388b4ac52558e,"same bytes as 3.16: wave_transfer, first 8 bytes",mpc3000.tme341-structure
+0x295BF,8,24df58b72a4c945bd377478bdcc3dc8fbe8f97e03bc144a2189c6126d9ef309f,"same bytes as 3.16: sound_play_index, first 8 bytes",mpc3000.tme341-structure
+0x2964B,8,57266d83817aab300ff762fb80362211b6a58705d3ae3a3074e78d2a71704713,"same bytes as 3.16: voice_any_pending, first 8 bytes",mpc3000.tme341-structure
+0x29669,8,b3cacfa0e72f104b34300cfa73bf6e4257750ce9458054ad59ea4ea6aebe9bc9,"same bytes as 3.16: voice_stop_all, first 8 bytes",mpc3000.tme341-structure
+0x29AAC,8,8442ddf34b28666ac60f43b70eb91358813cb6e47bf0b49a643828e185643cfe,"same bytes as 3.16: sound_free_words, first 8 bytes",mpc3000.tme341-structure
+0x29E87,8,67ad9ff2569fc180b9e9c38372c6e996f7d0c11bd2ad1f0c8c5d17d86dbf510a,"same bytes as 3.16: sound_allocate, first 8 bytes",mpc3000.tme341-structure
+0x2A0C3,8,ebc7904eb902de25bf3af2f35f59de3ced6da208be8f5d4b3a4d3a0a01f8ee3f,"same bytes as 3.16: sound_free_records, first 8 bytes",mpc3000.tme341-structure
+0x2A0E5,8,2ee4c53f9a8a621532122e2dfcf4764d705c00b63cd4b0dbd60c30edf2eb45f7,"same bytes as 3.16: sound_alloc_rebuild, first 8 bytes",mpc3000.tme341-structure
+0x2A38F,8,3c5d3916ee9de4a9788f38e4e11e3340be942b7b25370577b1f62c2896703dcc,"same bytes as 3.16: sound_free, first 8 bytes",mpc3000.tme341-structure
+0x2A58D,8,6d0bf3318bdf9fe2001984d608b339207aa66afd4db60880c6dd5a7f7494bf63,"same bytes as 3.16: sound_find, first 8 bytes",mpc3000.tme341-structure
+0x2A6C6,8,1c421a97704ea70ccb93c73f242e0d71decabf58e4d89504eb4999963d55a092,"same bytes as 3.16: wave_copy, first 8 bytes",mpc3000.tme341-structure
+0x2AD80,8,2e9758d9d481094ac0bd7e80db841ca04e31579222fe95d63efbd1d367fd77db,"same bytes as 3.16: dsp_reg1_all, first 8 bytes",mpc3000.tme341-structure
+0x2AED0,8,8e003f91614f2072c4367edb42628f543886ee130c76da3b539eb0926e37d9c6,"same bytes as 3.16: dsp_channel_stop, first 8 bytes",mpc3000.tme341-structure
+0x32072,8,4d40b782dce559836b1d8ae07ecec045b28f1577f8727d3ebb56aa1583d1bdbf,"same bytes as 3.16: scsi_controller_init, first 8 bytes",mpc3000.tme341-structure
+0x32722,8,58562e6f8dbebdbcff96727ef27a67d119ddeb3ac56bf63c171afed281684cd9,"same bytes as 3.16: scsi_sector_read, first 8 bytes",mpc3000.tme341-structure
+0x32742,8,dc50964068f97ddd92f22cdeb793f2831d7e63959a61d11ffb87025dfd5746ba,"same bytes as 3.16: scsi_sector_write, first 8 bytes",mpc3000.tme341-structure
+0x3281A,8,a9360a3a2753da50faf20ab8eeeba1b89fdeda654ce7a310615c68c31cfe36f4,"same bytes as 3.16: scsi_read_capacity, first 8 bytes",mpc3000.tme341-structure
+0x32A17,7,333429ee9f67b7024a2a7b16df9a8c8f035f19a8ee5ceadbbeca2266cc53d115,"same bytes as 3.16: SCSI partition reader prologue (SUB SP,100Eh)",mpc3000.tme341-structure
+0x32A17,8,f99b0b82992212d83f9f0082689a7712b23d3726b746daa7450f09ed4f6b1109,"same bytes as 3.16: scsi_partition_reader, first 8 bytes",mpc3000.tme341-structure
+0x32D6A,8,a2310a20a031c3ffafba39d80202527a9eca889fc5bb40fca1967405f2b8a7e0,"same bytes as 3.16: scsi_command, first 8 bytes",mpc3000.tme341-structure
+0x32DF1,8,cbfce79fa394c4d285db94014fab4ba876c234deac1c5754f4121da181a851c6,"same bytes as 3.16: scsi_error_map, first 8 bytes",mpc3000.tme341-structure
+0x33094,8,7e547c35ba02c4a1a4f1c6dca529b84bef7a802c8edbbfdb0ab2a69c81e148d5,"same bytes as 3.16: timer_timestamp, first 8 bytes",mpc3000.tme341-structure
+0x348C5,8,6224f2a00b82dc7f6942437929c5c45b7cb8c001a2e9143fb1ee59b2530c9f37,"same bytes as 3.16: io_expansion_probe, first 8 bytes",mpc3000.tme341-structure
+0x34AB2,8,db47d7ae37f292d041b9c179f6307ca1cc4159498d65e84835511218d29e4e33,"same bytes as 3.16: key_wait, first 8 bytes",mpc3000.tme341-structure
+0x34B3D,8,db47d7ae37f292d041b9c179f6307ca1cc4159498d65e84835511218d29e4e33,"same bytes as 3.16: key_drop_softkeys, first 8 bytes",mpc3000.tme341-structure
+0x34BF0,8,f016c858cd5bfd21cb75ec5a52451c29144aed5fcd3080e24cedb1ceb9c79833,"same bytes as 3.16: key_count, first 8 bytes",mpc3000.tme341-structure
+0x3688E,8,e74e748b5e4372bac782d5cabc2e1b08f0f1621103958cd07bb083eda5c5dac0,"same bytes as 3.16: ring_read, first 8 bytes",mpc3000.tme341-structure
+0x37BDA,8,c66fbebb8478fc40da4152d143ea7bd3af5cfe197883f91c47629d8abf147ece,"same bytes as 3.16: pad_note_effective, first 8 bytes",mpc3000.tme341-structure
+0x37C0B,8,eeb04a9ee18f70a492bd9dad8f48d443b5f8a63944a6a860affadd258d68f55c,"same bytes as 3.16: pad_first_for_note, first 8 bytes",mpc3000.tme341-structure
+0x37D19,8,643fc26947a52b891bacacedebf20ff4247dc345e38bd6d1efa84d77902e37eb,"same bytes as 3.16: program_record, first 8 bytes",mpc3000.tme341-structure
+0x37D3E,8,8b4a55112429d6671044a76e9cb12ac5f8d42805c3c78a9479ca2b4d4a698a0e,"same bytes as 3.16: midi_out_queue_byte, first 8 bytes",mpc3000.tme341-structure
+0x37E5B,8,c68d4480739a3aef772ddab5014ff0a53829de448a82dc75193025ffbb31ef89,"same bytes as 3.16: pad_event_reader, first 8 bytes",mpc3000.tme341-structure
+0x38348,8,f576bedbc9b071c447aec2b4ecffdbe098cb91b371135d7f407364cc0050a99f,"same bytes as 3.16: midi_in_reader, first 8 bytes",mpc3000.tme341-structure
+0x3A299,8,c95e8a9a66c87d56bc64d931a48cf07584e3c91f1e04182afefcfc99974dc25f,"same bytes as 3.16: midi_buffer_send, first 8 bytes",mpc3000.tme341-structure
+0x3C21E,8,2ee4c53f9a8a621532122e2dfcf4764d705c00b63cd4b0dbd60c30edf2eb45f7,"same bytes as 3.16: key_filter, first 8 bytes",mpc3000.tme341-structure
+0x3FDB7,8,22b7262483971e6d2b7abbd8a68ed61b3d201cf599558eb69e2b41f4f3d98246,"same bytes as 3.16: seq_free_bytes, first 8 bytes",mpc3000.tme341-structure
+0x40892,8,1a0dbb7d9c8928ea804a9811d01bee4437a936f30ebc202700743137d6a0fc79,"same bytes as 3.16: track_slot_map, first 8 bytes",mpc3000.tme341-structure
+0x42979,8,3c5d3916ee9de4a9788f38e4e11e3340be942b7b25370577b1f62c2896703dcc,"same bytes as 3.16: track_name, first 8 bytes",mpc3000.tme341-structure
+0x44C53,8,2196d7e47ee2073cd7e563925230983db95aa6a1543fb46be9d0795e98b2fddd,"same bytes as 3.16: transport_stop_wait, first 8 bytes",mpc3000.tme341-structure
+0x46C68,8,09c75d8895d6cf8871c5eb3c66b9f542a0677481af7c331c299804e3f6db83ea,"same bytes as 3.16: sound_save, first 8 bytes",mpc3000.tme341-structure
+0x49932,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: select_option_digit, first 8 bytes",mpc3000.tme341-structure
+0x4F5F9,38,68cca53080444a6484691eddb50096fad6c9175c05707e9578f782d658d515c1,same bytes as 3.16: kadak copyright,mpc3000.tme341-structure
+0x4F931,8,01132981ab943d9bed70dde993059386cadc61519a629d32cbc154db75c3f264,"same bytes as 3.16: amx_install_vector, first 8 bytes",mpc3000.tme341-structure
+0x4F99D,8,68a3eb755e1b7e7b8a7a5cf994ab0cc569f58415d418c6487875cf15de1a2b08,"same bytes as 3.16: amx_post, first 8 bytes",mpc3000.tme341-structure
+0x4FA96,8,cf4a597f36da61fa3425c68674fbcb3095f1433ac11ae586ea65bd816c85ea0c,"same bytes as 3.16: amx_wake, first 8 bytes",mpc3000.tme341-structure
+0x4FCA3,8,994ff03b845290085ab37a501958d3cff1e20d22b5b80df32321a587a017c707,"same bytes as 3.16: amx_queue_push_front, first 8 bytes",mpc3000.tme341-structure
+0x4FD4C,146,65611d910c95215dccde77fe4d1e4ae6530213f7c42a956f64dd92acd321c42f,same bytes as 3.16: amx task table,mpc3000.tme341-structure
+0x4FF26,6,cce0cbe4f9c425537da5f1b31400063cf9635688b020cc38cecbfbf729ef0703,"same bytes as 3.16: MOV AX,7DFA / SUB AX,7DF9 before the pool bound",mpc3000.tme341-structure
+0x4FF34,3,216d9c1ec816692ffe95feb2e7fb1bb078d6dde1d0112848e898e41fc28f765f,"same bytes as 3.16: sequence pool end immediate (MOV BX,6FFFh)",mpc3000.tme341-structure
+0x68C3F,64,77f3d40f59d27678267ccaa495f382f829a45e9fd3d3a92fc1b094e1cc9f2837,same bytes as 3.16: pad note defaults,mpc3000.tme341-structure

@@ -1288,6 +1288,30 @@
           "status": "static",
           "summary": "Two blocks totalling 147,372 bytes of the 512 KiB image are empty and are not mapped by any of the firmware's page tables. Using them needs a page-table change; a smaller empty block inside the OS code range is directly reachable.",
           "title": "Unused space in the OS EPROMs"
+        },
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.os316-structure"
+          ],
+          "firmware": [
+            "mpc3000-tme-3.41-sys",
+            "mpc3000-v3.16-sys"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.tme341-structure",
+          "last_verified": "2026-11-13",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/tme341-structure.md",
+          "sources": [
+            "MPC3000 OS 3.40.0 Track Mute Edition README (English, PDF, Deep88, November 2026)"
+          ],
+          "status": "static",
+          "summary": "The OS 3.41 Track Mute Edition SYS file is OS 3.16 with changes. It has the same MZ layout, 95% of 3.16's load image is unchanged at the same offsets, and 103 of 108 pinned 3.16 ranges still match. A 3.16 address may be used for 3.41 only where a pin for it passes.",
+          "title": "OS 3.41 Track Mute Edition is built on OS 3.16"
         }
       ],
       "firmware": [
@@ -1446,6 +1470,19 @@
           "sha1": "a60016184fc07ba00dcc19ba4da60e78aceff63c",
           "size": 32768,
           "source": "MAME src/mame/akai/mpc3000.cpp ROM_LOAD line."
+        },
+        {
+          "crc32": "591c99ef",
+          "id": "mpc3000-tme-3.41-sys",
+          "kind": "floppy-sys",
+          "label": "OS 3.41 Track Mute Edition (M3K340.SYS / M3K341.SYS, floppy-loaded)",
+          "notes": "A DOS MZ executable loaded into RAM from floppy, like OS 3.16, on which it is built (findings/tme341-structure.md). The released file is named M3K340.SYS but identifies itself as 3.41. File offsets for this id are offsets into the .SYS file itself (the load image starts at 7A00h).",
+          "obtain": "Released free in November 2026 by Deep88 as a floppy upgrade (SYS file plus IMG and HFE disk images). Obtain it from a source you trust and check the hash.",
+          "origin": "community",
+          "sha1": "41d9569b47caf1b74c315d1bb12998888adbc58f",
+          "sha256": "f8348bb8200acc2f0ab5855598288cef40fef13089f57707b05ef25456545e53",
+          "size": 555491,
+          "source": "Computed from the released file on 2026-11-13."
         }
       ],
       "hardware_tables": {
@@ -1465,6 +1502,10 @@
       "id": "mpc3000",
       "name": "Akai MPC3000",
       "pins": {
+        "mpc3000-tme-3.41-sys": {
+          "count": 106,
+          "path": "machines/mpc3000/pins/mpc3000-tme-3.41-sys.csv"
+        },
         "mpc3000-v3.08": {
           "count": 11,
           "path": "machines/mpc3000/pins/mpc3000-v3.08.csv"

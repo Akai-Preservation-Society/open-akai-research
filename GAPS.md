@@ -103,6 +103,7 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 - [Interrupt vector table after boot](machines/mpc3000/findings/interrupt-vectors.md) (static)
 - [MPC3000 memory map, I/O ports, interrupts and DMA](machines/mpc3000/findings/memory-and-io-map.md) (documented)
 - [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md) (static)
+- [OS 3.41 Track Mute Edition is built on OS 3.16](machines/mpc3000/findings/tme341-structure.md) (static)
 
 ### Findings that contain unproven claims
 
@@ -120,6 +121,7 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 - [Recipe: add code to OS 3.16 and load it from floppy](machines/mpc3000/findings/os316-extending.md): 1
 - [OS 3.16 (M3K316.SYS) structure, memory and named routines](machines/mpc3000/findings/os316-structure.md): 3
 - [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md): 2
+- [OS 3.41 Track Mute Edition is built on OS 3.16](machines/mpc3000/findings/tme341-structure.md): 2
 
 ### Machine facts that are not established
 

@@ -8,7 +8,7 @@ How much is known about each machine, and how well it is established. Evidence c
 |---|---|---|---|---|---|---|---|
 | [Akai MPC2000](machines/mpc2000/README.md) | partial | 8 | 4 | 0 | 69 | 2 | 2 |
 | [Akai MPC2000XL](machines/mpc2000xl/README.md) | partial | 14 | 13 | 12 | 77 | 3 | 8 |
-| [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 14 | 7 | 186 | 7 | 18 |
+| [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 15 | 7 | 186 | 8 | 18 |
 | [Akai MPC60](machines/mpc60/README.md) | seed | 8 | 0 | 0 | 0 | 3 | 1 |
 | [Akai S3200](machines/s3200/README.md) | partial | 15 | 9 | 0 | 59 | 1 | 8 |
 | [Akai S900](machines/s900/README.md) | seed | 12 | 0 | 0 | 0 | 2 | 1 |
@@ -55,6 +55,7 @@ How much is known about each machine, and how well it is established. Evidence c
 | os | [Interrupt vector table after boot](machines/mpc3000/findings/interrupt-vectors.md) | static | no | vailixi-3.50 | 2026-09-21 |
 | os | [Two memory defects in stock OS 3.16, and their fixes](machines/mpc3000/findings/os316-defects.md) | emulator | partial | v3.16-sys | 2026-10-17 |
 | os | [OS 3.16 (M3K316.SYS) structure, memory and named routines](machines/mpc3000/findings/os316-structure.md) | static | partial | v3.16-sys | 2026-11-13 |
+| os | [OS 3.41 Track Mute Edition is built on OS 3.16](machines/mpc3000/findings/tme341-structure.md) | static | no | tme-3.41-sys, v3.16-sys | 2026-11-13 |
 | modding | [Recipe: build and run your own program from floppy](machines/mpc3000/findings/build-a-floppy-sys.md) | hardware | partial | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-10-01 |
 | modding | [Recipe: add code to OS 3.16 and load it from floppy](machines/mpc3000/findings/os316-extending.md) | hardware | partial | v3.16-sys | 2026-10-22 |
 | modding | [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md) | static | no | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-11-13 |
