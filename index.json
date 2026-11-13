@@ -3019,6 +3019,30 @@
           "title": "S950 hardware from Akai's service manual and owner's manual"
         },
         {
+          "area": "memory",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s950.hardware-overview"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "no",
+          "id": "s950.memory-and-io-map",
+          "last_verified": "2026-11-13",
+          "machine": "s950",
+          "path": "machines/s950/findings/memory-and-io-map.md",
+          "sources": [
+            "Akai S950 Schematic Diagrams and PC Boards: CPU PCB (1/2) No. 6-2 L601302M and CPU PCB (2/2) No. 6-3 L601303M (scanned; as hosted on s950fx.com, downloaded 2026-11-13)",
+            "MAME src/mame/akai/s900.cpp at commit c2caa8969adb"
+          ],
+          "status": "documented",
+          "summary": "The CPU sees four banked 64 KiB RAM windows (0x00000-0x3FFFF, repeated at 0x40000) and the 64 KiB OS ROM at 0x80000-0xFFFFF. Bank registers at I/O 0x1C0-0x1C6 drive physical A16-A23. Three 74HC138s decode I/O; every select matches MAME.",
+          "title": "S950 memory map, RAM mapper and I/O decode from Akai's schematics"
+        },
+        {
           "area": "firmware",
           "contributors": [
             "open-akai-research"
@@ -3171,11 +3195,11 @@
       "hardware_tables": {
         "io-ports": {
           "path": "machines/s950/hardware/io-ports.csv",
-          "rows": 16
+          "rows": 19
         },
         "memory-map": {
           "path": "machines/s950/hardware/memory-map.csv",
-          "rows": 2
+          "rows": 7
         }
       },
       "id": "s950",

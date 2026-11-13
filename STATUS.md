@@ -12,7 +12,7 @@ How much is known about each machine, and how well it is established. Evidence c
 | [Akai MPC60](machines/mpc60/README.md) | seed | 8 | 0 | 0 | 0 | 3 | 1 |
 | [Akai S3200](machines/s3200/README.md) | partial | 15 | 9 | 0 | 59 | 1 | 8 |
 | [Akai S900](machines/s900/README.md) | seed | 15 | 3 | 0 | 0 | 5 | 1 |
-| [Akai S950](machines/s950/README.md) | seed | 15 | 3 | 0 | 0 | 5 | 1 |
+| [Akai S950](machines/s950/README.md) | seed | 15 | 4 | 0 | 0 | 5 | 1 |
 
 ## Akai MPC2000
 
@@ -88,5 +88,6 @@ How much is known about each machine, and how well it is established. Evidence c
 | Area | Finding | Evidence | Hardware tested | Firmware | Last verified |
 |---|---|---|---|---|---|
 | hardware | [S950 hardware from Akai's service manual and owner's manual](machines/s950/findings/hardware-overview.md) | documented | no | hardware | 2026-11-13 |
+| memory | [S950 memory map, RAM mapper and I/O decode from Akai's schematics](machines/s950/findings/memory-and-io-map.md) | documented | no | hardware | 2026-11-13 |
 | firmware | [S950 OS EPROM images - identity, reset vector, and the two different "1.2a" sets](machines/s950/findings/rom-images.md) | static | no | v1.0a, v1.2a, v1.2a-variant, v1.2b | 2026-11-13 |
 | storage | [Booting the S950 from floppy or SCSI, and the disk layout boot disks use](machines/s950/findings/boot-disks.md) | documented | no | v1.0a, v1.2a, v1.2b, fx-2026.10.20-disk | 2026-11-13 |
