@@ -53,7 +53,11 @@ The full list is in [../../GAPS.md](../../GAPS.md).
 
 ## Emulation
 
-No public emulator runs this machine's OS today as far as this repository
-knows. One private emulator boots OS 1.20 to the main screen by answering
+vubeatz's experimental [mpc2000xl-emulator](https://github.com/dariuszchynek/mpc2000xl-emulator)
+(a MAME target, BSD-3-Clause) runs stock OS 1.20 from its reset vector and,
+by its author's account, reaches the main screen; audio, MIDI and floppy
+saving are not working or not verified. It is listed in
+[../../docs/external-resources.md](../../docs/external-resources.md). No
+finding here relies on it yet. A private emulator also boots OS 1.20 to the main screen by answering
 the panel ID handshake ([findings/boot-and-panel-handshake.md](findings/boot-and-panel-handshake.md));
 results from it are tagged `emulator`.
