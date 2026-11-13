@@ -13,7 +13,7 @@ summary: Almost nothing is recorded for this machine. This lists the foundations
 
 ## What is unknown
 
-Progress so far: Only the OS distribution format and final version are documented. The hardware is unconfirmed: MAME's 2000XL driver describes both models but implements only the XL. Nothing recorded for the MPC2000XL may be assumed to hold for this machine until it is checked.
+Progress so far: OS 1.72 is identified by hash, and its two MZ files, their segment-to-file-offset formulas, OS services, in-RAM program and sequence layouts and disk services are recorded (static where checked against the bytes, otherwise documented from a mod source; see [../README.md](../README.md)). Item 2 is done for 1.72; items 3 and 5 are partly covered by [../findings/os-files.md](../findings/os-files.md) and [os-load-path.md](os-load-path.md). The hardware is unconfirmed: MAME's 2000XL driver describes both models but implements only the XL. Nothing recorded for the MPC2000XL may be assumed to hold for this machine until it is checked.
 
 In the order it is needed:
 

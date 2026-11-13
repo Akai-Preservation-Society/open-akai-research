@@ -1,0 +1,32 @@
+# Firmware registry for the Akai MPC2000 (Classic).
+#
+# This file identifies images. It never contains them. OS 1.72 is two DOS
+# MZ files loaded from floppy. Each file is its own image: file offsets in
+# symbols/ and pins/ are offsets into that file, header included. How a
+# runtime seg:off converts to a file offset is in findings/os-files.md.
+
+[[image]]
+id = "mpc2000-v1.72-sys"
+label = "OS 1.72, MPC2000.SYS"
+origin = "manufacturer"
+kind = "floppy-sys"
+obtain = "The SYS half of Akai's final MPC2000 OS update (two files, MPC2000.EXE and MPC2000.SYS, on a DOS floppy). Obtain it from a source you trust and check the hash."
+notes = "MZ file, header 0x2800 bytes, entry 0000:0010. Ends with the text '1.72' at 0x20B1D."
+size = 133932
+crc32 = "c56bf9ed"
+sha1 = "96b025e0c66d3555cd4812413aa744e5bdd855d6"
+sha256 = "9ebfbdcf8d04453c72d872b81d066e60e95476ccfc0bc78bb347ed2c4e689163"
+source = "Computed from the file on 2026-11-13."
+
+[[image]]
+id = "mpc2000-v1.72-exe"
+label = "OS 1.72, MPC2000.EXE"
+origin = "manufacturer"
+kind = "floppy-exe"
+obtain = "The EXE half of Akai's final MPC2000 OS update. Obtain it from a source you trust and check the hash."
+notes = "MZ file, header 0xE00 bytes. Contains 'MPC2000 Ver 1.72' and 'May 14,1999' at 0x20B7D."
+size = 196404
+crc32 = "039465a3"
+sha1 = "bc6dea5ea3e498648bf3678aad808125663786e5"
+sha256 = "7f9bd6ab314a8ebd9f20954b85583aac3a6a4697c2568d55642deffca4b49de5"
+source = "Computed from the file on 2026-11-13."

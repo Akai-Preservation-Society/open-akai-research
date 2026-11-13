@@ -62,7 +62,7 @@ they work.
 
 | Machine | Mod | Author | Free | Source open | How it is applied |
 |---|---|---|---|---|---|
-| MPC2000, MPC2000XL | [MPC2000 MODS](https://vubeatz.com/mpc-mods.html) | vubeatz | Yes | No | An installer patches your own copy of the final Akai OS (1.72 or 1.20) on a computer; you load the result yourself. Version 1.8 in September 2026, reported at 2.0 by October 2026. Licence not stated. |
+| MPC2000, MPC2000XL | [MPC2000 MODS](https://vubeatz.com/mpc-mods.html) | vubeatz | Yes | Source available ([GitHub, PolyForm Noncommercial 1.0.0](https://github.com/dariuszchynek/mpc2000_2000xl_mod_pack), assembly only; not open source, and not usable in this repository except as facts) | An installer patches your own copy of the final Akai OS (1.72 or 1.20) on a computer; you load the result yourself. Version 1.8 in September 2026, reported at 2.0 by October 2026. The installer's licence is not stated; the source release (November 2026) is PolyForm Noncommercial 1.0.0. Facts from the source release are recorded in [../machines/mpc2000/](../machines/mpc2000/README.md) and [../machines/mpc2000xl/findings/os-services-from-mods.md](../machines/mpc2000xl/findings/os-services-from-mods.md). |
 | MPC3000 | [OS 3.16](http://www.mpc3000.com/updated_os.htm) | Rohan Mansell | Yes | No | Floppy-loaded OS. This repository maps it in [../machines/mpc3000/](../machines/mpc3000/README.md). |
 | S900 | [S900FX](https://s900fx.com) | Mike Feedback | Yes | Not stated | Custom OS that turns the sampler into a real-time 12-bit processor. |
 | S950 | [S950FX](https://s950fx.com) | Mike Feedback | Yes | Not stated | As above, for the S950. |

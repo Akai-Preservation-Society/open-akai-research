@@ -47,3 +47,32 @@ panel_header,ram,0FE7:01B8,,,static,mpc2000xl.panel-protocol,Last panel report h
 remap_open_flag,ram,0FE7:0067,,,static,mpc2000xl.address-model,Clear while INT E7h has PGR15-32 remapped
 slider_value,ram,0FE7:01C8,,,static,mpc2000xl.panel-protocol,"NOTE VARIATION slider, 0-7Fh"
 tick_ms,ram,0FE7:0B8A,,,static,mpc2000xl.abi-and-hooks,Millisecond counter advanced by the tick
+dsp_write,code,3E19:0034,0x3E1C4,,documented,mpc2000xl.os-services-from-mods,"Push count, buffer far, destination dword; caller pops 10"
+dsp_read,code,3E19:0066,0x3E1F6,,documented,mpc2000xl.os-services-from-mods,"Push 1000h, count, buffer far, source dword; caller pops 12"
+lcd_draw_resource,code,3E19:0662,0x3E7F2,,documented,mpc2000xl.os-services-from-mods,"Push seg, off of a resource stream; caller pops 4"
+register_event_table,code,3E19:0724,0x3E8B4,,documented,mpc2000xl.os-services-from-mods,"Push seg, off; caller pops 4"
+bank_get,code,3E19:0752,0x3E8E2,,documented,mpc2000xl.os-services-from-mods,"INT 37h, AL zero-extended"
+draw_text_at,code,3E19:0988,0x3EB18,,documented,mpc2000xl.os-services-from-mods,"Push seg, off, y, x; caller pops 8"
+draw_signed_number,code,3E19:09EE,0x3EB7E,,documented,mpc2000xl.os-services-from-mods,"Push width, value dword, y, x; caller pops 10"
+sample_arena_top,code,3E19:193E,0x3FACE,,documented,mpc2000xl.os-services-from-mods,Returns the sample arena high-water mark in DX:AX
+sample_compact,code,3E19:1A18,0x3FBA8,,documented,mpc2000xl.os-services-from-mods,Compacts sample memory
+voice_quiet,code,3E19:3A02,0x41B92,,documented,mpc2000xl.os-services-from-mods,Push voice; caller pops 2
+voice_stop,code,3E19:3A36,0x41BC6,,documented,mpc2000xl.os-services-from-mods,Push voice; caller pops 2
+editor_refresh,code,3E19:9E5A,0x47FEA,,documented,mpc2000xl.os-services-from-mods,Refresh after an editor draw
+div32,code,35B0:00AC,0x35BAC,,documented,mpc2000xl.os-services-from-mods,"32-bit division, DX:AX result"
+program_pointer_by_index,code,35B0:0418,0x35F18,,documented,mpc2000xl.os-services-from-mods,"Push 5Ch+DRUM for the program, 60h+DRUM for the pad map; DX:AX; caller pops 2"
+numeric_editor_open,code,35B0:62BE,0x3BDBE,,documented,mpc2000xl.os-services-from-mods,Push value pointer and descriptor; caller pops 8
+params_reenter,code,4E16:055A,0x4E6BA,,documented,mpc2000xl.os-services-from-mods,Re-enter PARAMS keeping the selection
+params_draw,code,4E16:0606,0x4E766,,documented,mpc2000xl.os-services-from-mods,PARAMS page draw
+audition_stop,code,4E16:086C,0x4E9CC,,documented,mpc2000xl.os-services-from-mods,Stop audition and disable the pad callback
+filter_window_draw,code,4E16:1F3A,0x5009A,,documented,mpc2000xl.os-services-from-mods,PARAMS filter child window
+voice_window_draw,code,4E16:2614,0x50774,,documented,mpc2000xl.os-services-from-mods,PARAMS voice child window
+pitch_ratio_table,table,582B:0056,0x58306,962,static,mpc2000xl.os-services-from-mods,"481 words; centre 582B:0236 = 1000h; index = pitch in tenths of a semitone, -240..+240"
+assign_selector,ram,582B:8D5E,,1,documented,mpc2000xl.os-services-from-mods,Indexes 42-byte descriptors at 582B:2C9C
+params_selector,ram,582B:8D66,,1,documented,mpc2000xl.os-services-from-mods,2-8; 8 = voice window
+sample_arena_limit,ram,582B:8FC6,,4,documented,mpc2000xl.os-services-from-mods,
+voice_table,ram,582B:9609,,640,documented,mpc2000xl.os-services-from-mods,"32 x 20 bytes; +0 DRUM, +1 note; +1 = FFh idle"
+sound_list_head,ram,582B:98DC,,4,documented,mpc2000xl.os-services-from-mods,Far pointer
+sound_records,ram,582B:991A,,15872,documented,mpc2000xl.os-services-from-mods,256 x 62 bytes
+selected_drum,ram,582B:D7BE,,1,documented,mpc2000xl.os-services-from-mods,0-3
+selected_note,ram,582B:D7C0,,1,documented,mpc2000xl.os-services-from-mods,

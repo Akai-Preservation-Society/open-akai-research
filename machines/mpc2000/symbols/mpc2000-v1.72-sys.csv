@@ -1,0 +1,39 @@
+name,kind,address,file_offset,size,status,finding,notes
+sys_entry,code,3000:0010,0x02810,,static,mpc2000.os-files,"MZ entry of MPC2000.SYS (CS:IP 0000:0010 in the header, loaded at 3000)"
+div32,code,3000:001C,0x0281C,,documented,mpc2000.os-services,Push divisor dword then dividend dword; returns DX:AX
+draw_resource,code,3000:1E0E,0x0460E,,documented,mpc2000.os-services,"Push seg, off of an LCD resource stream; reached as PUSH CS + near CALL"
+register_events,code,3000:1EDE,0x046DE,,documented,mpc2000.os-services,"Push seg, off of a table of 5-byte entries (key byte + far pointer)"
+int35_note_dispatch,code,3000:1F40,0x04740,,documented,mpc2000.os-services,INT 35h BL=0 direct note dispatch path; its IRET is at 3000:1F6E
+pool_alloc,code,3000:2534,0x04D34,,documented,mpc2000.os-services,"Push PCM word count as dword; rounds up to 16 words; AX = handle, >=130 = failure"
+pool_release,code,3000:25CA,0x04DCA,,documented,mpc2000.os-services,Push handle
+note_on,code,3000:29F8,0x051F8,,documented,mpc2000.os-services,"Note On entry (ENTER 10,0)"
+enter_assign,code,3000:5478,0x07C78,,documented,mpc2000.os-services,Enter the ASSIGN page
+enter_params,code,3000:5B40,0x08340,,documented,mpc2000.os-services,Enter the PARAMS page
+draw_unsigned,code,3B7C:01E0,0x0E1A0,,documented,mpc2000.os-services,"Push x, y, value dword, digits"
+draw_signed,code,3B7C:0218,0x0E1D8,,documented,mpc2000.os-services,"Push x, y, value dword, width"
+sys_init_last,code,3B7C:0638,0x0E5F8,,documented,mpc2000.os-services,Last SYS initialisation call
+pcm_dma_copy,code,3B7C:1036,0x0EFF6,,documented,mpc2000.os-services,"DMA copy of PCM words: push src dword, dst dword, 0, count"
+pcm_zero,code,3B7C:11DA,0x0F19A,,documented,mpc2000.os-services,Zero/fill PCM; no transfer-error result
+note_off,code,3B7C:1F3C,0x0FEFC,,documented,mpc2000.os-services,Note Off
+voice_overlap_stop,code,3B7C:259A,0x1055A,,documented,mpc2000.os-services,Stops a voice when the same note retriggers
+voice_stop_now,code,3B7C:27DE,0x1079E,,documented,mpc2000.os-services,"Immediate voice stop, as used by TRIM; push voice"
+voice_stop,code,3B7C:2810,0x107D0,,documented,mpc2000.os-services,Push voice 0-31; callee pops it
+editor_disable,code,3B7C:2DAE,0x10D6E,,documented,mpc2000.os-services,Stops digit and wheel editing
+editor_draw,code,3B7C:2DF0,0x10DB0,,documented,mpc2000.os-services,Draw the active value editor
+editor_commit_value32,code,3B7C:2E62,0x10E22,,documented,mpc2000.os-services,Commit a 32-bit value (DX:AX pushed); RETF 4
+edit_signed_byte,code,3B7C:337C,0x1133C,,documented,mpc2000.os-services,11 word arguments; callee pops 22 bytes
+text_editor_commit,code,3B7C:33BA,0x1137A,,documented,mpc2000.os-services,Commit the text-name editor
+select_program,code,3B7C:58A8,0x13868,,documented,mpc2000.os-services,Push 0-based program index
+audition_stop,code,3B7C:62C4,0x14284,,documented,mpc2000.os-services,Stop audition
+trim_minmax,code,3B7C:827E,0x1623E,,documented,mpc2000.os-services,TRIM signed min/max reducer; RETF 14
+pitch_ratio_table,table,491A:0578,0x1BF18,962,static,mpc2000.program-and-voice-data,"481 words; centre 491A:07F8 = 1000h; index = pitch in tenths of a semitone, -240..+240"
+sound_pool,ram,491A:5184,,1300,documented,mpc2000.program-and-voice-data,"130 x 10-byte entries: base dword, length dword, next word"
+sound_pool_head,ram,491A:56A2,,2,documented,mpc2000.program-and-voice-data,
+voice_active,ram,491A:570E,,64,documented,mpc2000.program-and-voice-data,32 words
+selected_note,ram,491A:8CE0,,1,documented,mpc2000.program-and-voice-data,
+voice_table,ram,491A:9A6E,,576,documented,mpc2000.program-and-voice-data,"32 x 18 bytes; +0 note, +1 state"
+current_sound,ram,491A:9CAE,,4,documented,mpc2000.program-and-voice-data,Far pointer
+program_slots,ram,491A:9CB2,,96,documented,mpc2000.program-and-voice-data,24 far pointers
+current_program,ram,491A:9D12,,4,documented,mpc2000.program-and-voice-data,Far pointer
+pad_map_pointer,ram,491A:9D16,,4,documented,mpc2000.program-and-voice-data,Far pointer to the effective pad-to-note map
+selected_program,ram,491A:9D70,,1,documented,mpc2000.program-and-voice-data,0-based

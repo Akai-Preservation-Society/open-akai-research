@@ -21,3 +21,24 @@ file_offset,length,sha256,label,finding
 0x7C7BD,128,3b5eceebb30250c548347f2ff304fe1e5d4c60733e8604f94ea8a8a52f4e332f,boot integrity check,mpc2000xl.rom-and-flash
 0x7CBF0,32,6d8d2ddce86ebf20d5079b4bd5c9abfee56142c2d15c742d5718f3a96cf072c1,boot panel receive handler,mpc2000xl.boot-and-panel-handshake
 0x7FFF0,5,fa9d197b26db6f65feb60531be1b0282bce16fd319f9451192898dc9ccda869f,reset vector,mpc2000xl.rom-and-flash
+0x3E1C4,16,4622a7765eb5f6094f84d91e212e63034b3a4bdbc838d3c8092a12a9c26eb408,dsp_write (3E19:0034),mpc2000xl.os-services-from-mods
+0x3E1F6,16,e4d261bebb1d5f97580ff711c94f0e726914da9453f7570a66af4037792b32d5,dsp_read (3E19:0066),mpc2000xl.os-services-from-mods
+0x3E7F2,16,7ce4df5ef1d5dfd8e799a45dc930edc5396fc6f47cdee44500b68fb857d4b121,lcd_draw_resource (3E19:0662),mpc2000xl.os-services-from-mods
+0x3E8B4,16,b5b1a574fa308830025c34b3a76177e2e06961820efd833f4242e52ec543196c,register_event_table (3E19:0724),mpc2000xl.os-services-from-mods
+0x3E8E2,8,66d2a04c8686f63a007a8c26aab48d86120401f1b25b0fff7632319f77a95257,bank_get (3E19:0752),mpc2000xl.os-services-from-mods
+0x3EB18,16,fec991c279eda34829149abc3b4407e1a34c1088f20091b992fb47e44b1fa212,draw_text_at (3E19:0988),mpc2000xl.os-services-from-mods
+0x3EB7E,16,04b6547a24beaa3b704bca63eb348577e9e537381e795878365f8ff9c9542d0c,draw_signed_number (3E19:09EE),mpc2000xl.os-services-from-mods
+0x3FACE,16,edab26f6a1f7ccf8ece3e6dad87de42d00742eb8e8ce8677311fff8a2a0ed939,sample_arena_top (3E19:193E),mpc2000xl.os-services-from-mods
+0x3FBA8,16,9521a7532c7c923a6aa5d6a62d26f053ddc95c7aa4588ecee35586523d6dd828,sample_compact (3E19:1A18),mpc2000xl.os-services-from-mods
+0x41B92,16,eaaf38fc391a53f31453b37a89a5c80168b560dbf354c5b20aada1fe926d230d,voice_quiet (3E19:3A02),mpc2000xl.os-services-from-mods
+0x41BC6,16,b92f4d4b9d4e3fb0ad14be88eaf59c12267d80c7c0a74be2fde1eb93014b8f3e,voice_stop (3E19:3A36),mpc2000xl.os-services-from-mods
+0x47FEA,16,16e22373fc628dd43aee3be443a66b26905d2159557ba4bfa2a500606bbbd2d6,editor_refresh (3E19:9E5A),mpc2000xl.os-services-from-mods
+0x35BAC,16,5207d91e621964ad0f0c5599c872ac22cee434659ec43af9ef37fae2c65223f6,div32 (35B0:00AC),mpc2000xl.os-services-from-mods
+0x35F18,16,42eb189c1ae0b001126be5673dc1f4a19fe0ce3454da3b180d791dc873d2bcdf,program_pointer_by_index (35B0:0418),mpc2000xl.os-services-from-mods
+0x3BDBE,16,eeb2d3c31ef45f7070a4903a61f29f4b08fc7bd3c334e8e1534fc8a8a73d631e,numeric_editor_open (35B0:62BE),mpc2000xl.os-services-from-mods
+0x4E6BA,16,376acf99cf81b016765ca111b0570417421d458d13a125234d8f9f6c3e731508,params_reenter (4E16:055A),mpc2000xl.os-services-from-mods
+0x4E766,16,ef86a7a3d8501fc5edb3e18aa46778ec5ac4630df274f9fddadd6d04fd0cac97,params_draw (4E16:0606),mpc2000xl.os-services-from-mods
+0x4E9CC,16,e09dd1825777c2d77def71b36694f0826a70a24496d013bd9af636976fa4d838,audition_stop (4E16:086C),mpc2000xl.os-services-from-mods
+0x5009A,16,8c2141e2b196df56a1b03b97338800d20f072e233f004ed2f9533e1eb884aa9f,filter_window_draw (4E16:1F3A),mpc2000xl.os-services-from-mods
+0x50774,16,50defb426c160039b52d3a19c9f7a6917f2b4c614bfab93be9be6742547d15bf,voice_window_draw (4E16:2614),mpc2000xl.os-services-from-mods
+0x58306,962,afe302eb5d3e163704db5ff7feebee03fa128604ed4958c461de68d97b3e81d3,pitch_ratio_table (582B:0056),mpc2000xl.os-services-from-mods

@@ -2,8 +2,8 @@ id = "mpc2000"
 name = "Akai MPC2000"
 family = "mpc"
 released = "1997"
-coverage = "seed"
-summary = "Only how the OS is distributed and its last version are recorded, from public documents. The hardware is said to be close to the MPC2000XL but nothing from that machine may be assumed here."
+coverage = "partial"
+summary = "OS 1.72 (MPC2000.EXE and MPC2000.SYS) is identified by hash. Its address model, about 50 OS routines and software interrupts, in-RAM program, sequence and voice layouts and disk services are recorded: entry points checked against the bytes, meanings from a published mod source. Hardware, boot path and memory map are not documented. Nothing is hardware-tested here."
 
 [[fact]]
 key = "os_update"
@@ -22,3 +22,33 @@ key = "hardware_family"
 value = "Described together with the 2000XL as a cost-reduced MPC3000: NEC V53, uPD72068 floppy, MB89352 SCSI optional, LC7981 LCD, uPD78C10 panel CPU, L7A1045 DSP"
 status = "hypothesis"
 source = "MAME mpc2000.cpp header comment; MAME defines only the 2000XL, so this is unchecked for the Classic"
+
+[[fact]]
+key = "os_files"
+value = "OS 1.72 is two DOS MZ files: MPC2000.EXE (header 0xE00 bytes) and MPC2000.SYS (header 0x2800 bytes)"
+status = "static"
+source = "findings/os-files.md; hashes in firmware.toml"
+
+[[fact]]
+key = "main_cpu"
+value = "NEC V53"
+status = "documented"
+source = "vubeatz mpc2000_2000xl_mod_pack (commit eb8ece6), mods/08_regions.S comments; not checked against a board"
+
+[[fact]]
+key = "voices"
+value = "32 voices; 44.1 kHz sample rate"
+status = "documented"
+source = "vubeatz mpc2000_2000xl_mod_pack (commit eb8ece6); findings/os-services.md"
+
+[[fact]]
+key = "program_layout"
+value = "In RAM a program is a 30-byte header and 64 note records of 29 bytes (notes 35-98); 24 programs in an arena at segment 5A00"
+status = "static"
+source = "findings/program-and-voice-data.md (x29 arithmetic and arena immediates read from the EXE; record fields documented)"
+
+[[fact]]
+key = "storage_names"
+value = "Floppy and SCSI use FAT with 16+3 character names; characters 9-16 are stored in directory entry bytes 12-19"
+status = "documented"
+source = "findings/filesystem.md"

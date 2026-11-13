@@ -6,12 +6,21 @@ How much is known about each machine, and how well it is established. Evidence c
 
 | Machine | Coverage | Facts | Findings | Hardware-tested findings | Symbols | Firmware images | Open questions |
 |---|---|---|---|---|---|---|---|
-| [Akai MPC2000](machines/mpc2000/README.md) | seed | 3 | 0 | 0 | 0 | 0 | 1 |
-| [Akai MPC2000XL](machines/mpc2000xl/README.md) | partial | 14 | 12 | 12 | 48 | 3 | 8 |
+| [Akai MPC2000](machines/mpc2000/README.md) | partial | 8 | 4 | 0 | 69 | 2 | 2 |
+| [Akai MPC2000XL](machines/mpc2000xl/README.md) | partial | 14 | 13 | 12 | 77 | 3 | 8 |
 | [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 14 | 7 | 186 | 7 | 18 |
 | [Akai MPC60](machines/mpc60/README.md) | seed | 8 | 0 | 0 | 0 | 3 | 1 |
 | [Akai S900](machines/s900/README.md) | seed | 12 | 0 | 0 | 0 | 2 | 1 |
 | [Akai S950](machines/s950/README.md) | seed | 11 | 0 | 0 | 0 | 3 | 1 |
+
+## Akai MPC2000
+
+| Area | Finding | Evidence | Hardware tested | Firmware | Last verified |
+|---|---|---|---|---|---|
+| firmware | [OS 1.72 is two MZ files, and how a runtime address maps to a file offset](machines/mpc2000/findings/os-files.md) | static | no | v1.72-sys, v1.72-exe | 2026-11-13 |
+| os | [OS 1.72 services used by added code (software interrupts, screen, voice and editor routines)](machines/mpc2000/findings/os-services.md) | documented | no | v1.72-sys, v1.72-exe | 2026-11-13 |
+| os | [Programs, note records, sequences, voices and the pitch table in OS 1.72 RAM](machines/mpc2000/findings/program-and-voice-data.md) | static | no | v1.72-sys, v1.72-exe | 2026-11-13 |
+| storage | [Disk services in OS 1.72 (INT 2Ch, INT 2Dh, the F000 workspace, 16-character names)](machines/mpc2000/findings/filesystem.md) | documented | no | v1.72-sys, v1.72-exe | 2026-11-13 |
 
 ## Akai MPC2000XL
 
@@ -23,6 +32,7 @@ How much is known about each machine, and how well it is established. Evidence c
 | boot | [Boot path and the panel ID handshake](machines/mpc2000xl/findings/boot-and-panel-handshake.md) | static | partial | os1.20, panel-v1.00 | 2026-09-21 |
 | firmware | [The OS image, the flash update, the boot checksum and recovery](machines/mpc2000xl/findings/rom-and-flash.md) | hardware | yes | os1.20 | 2026-09-30 |
 | os | [Calling conventions, OS services and hook patterns proven on hardware](machines/mpc2000xl/findings/abi-and-hooks.md) | hardware | partial | os1.20 | 2026-10-07 |
+| os | [OS 1.20 routines, software interrupts and RAM structures used by the vubeatz mods](machines/mpc2000xl/findings/os-services-from-mods.md) | documented | no | os1.20 | 2026-11-13 |
 | panel | [Front-panel input reports and the LED latches](machines/mpc2000xl/findings/panel-protocol.md) | hardware | partial | os1.20 | 2026-10-07 |
 | midi | [MIDI ports and how to send MIDI from added code](machines/mpc2000xl/findings/midi-output.md) | hardware | partial | os1.20 | 2026-10-07 |
 | file-format | [SND, PGM and ALL file layouts](machines/mpc2000xl/findings/file-formats.md) | hardware | yes | os1.20 | 2026-07-17 |
