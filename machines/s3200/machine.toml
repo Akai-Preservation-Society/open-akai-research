@@ -1,0 +1,95 @@
+id = "s3200"
+name = "Akai S3200"
+family = "s-series"
+coverage = "partial"
+summary = "The OS 2.00 EPROM pair labelled for the S3000 and S3200 is mapped statically: image layout, reset and RAM relocation, segments, memory use, OS load/save from disk, floppy and hard-disk layouts, peripheral set-up. Some of it is also emulator-traced. Nothing is hardware-tested, and whether an S3200 runs this image or an XL-class OS is open."
+
+[[fact]]
+key = "hardware_family"
+value = "MAME's driver says the S3200 is built on the XL hardware (512 KiB ROM at 0x80000-0xFFFFF), not on the base S3000 board. MAME defines no S3200 machine"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (2026-11-13), header comment; emulator source, every driver flagged not working"
+
+[[fact]]
+key = "os_image_applies_to_s3200"
+value = "The OS 2.00 EPROM pair (s3200-v2.00) is what an S3200 runs. Only the chip labels and the name of the file set support this. The image has the S3000 board's 256 KiB layout, contains 'S3000' but no 'S3200' string, and conflicts with MAME's XL statement"
+status = "hypothesis"
+source = "Chip labels 'S3000/S3200 V2.0'; firmware.toml; questions/s3200-hardware-and-os.md"
+
+[[fact]]
+key = "main_cpu"
+value = "NEC uPD70236A (V53A): 8086-compatible core with on-chip DMA, timer, interrupt and serial units and page registers"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (V53A device); the OS 2.00 boot block uses V53-only BRKXA/RETXA and page-register ports, findings/address-model.md"
+
+[[fact]]
+key = "main_cpu_clock"
+value = "32 MHz crystal; CLKOUT 16 MHz"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+
+[[fact]]
+key = "os_storage"
+value = "OS 2.00 is two 27C010 EPROMs of 128 KiB, LOW = even bytes, HIGH = odd bytes, 256 KiB linear. The labels 9C79 and 2900 are the 16-bit byte sums of the chips"
+status = "static"
+source = "findings/eprom-layout.md"
+
+[[fact]]
+key = "rom_checksum"
+value = "None found: neither the boot block nor the OS checks the ROM or its RAM copy"
+status = "static"
+source = "findings/eprom-layout.md"
+
+[[fact]]
+key = "address_space"
+value = "At reset the image is at physical 0xC0000-0xFFFFF. The boot block copies it to RAM, and the OS runs there with logical address (seg*16+off) = file offset"
+status = "static"
+source = "findings/address-model.md"
+
+[[fact]]
+key = "user_code_entry"
+value = "At power-on the ROM OS loads a type-0x63 OS file from floppy (else hard disk, partition A, first volume) if its directory version word is at least 2.00. No content check is applied. Not run on hardware"
+status = "static"
+source = "findings/os-load-and-save.md"
+
+[[fact]]
+key = "floppy_controller"
+value = "NEC uPD72069 on I/O 0x20-0x23, DMA channel 1, IRQ3"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+
+[[fact]]
+key = "scsi_controller"
+value = "Fujitsu MB89352 on I/O 0x00-0x1F, DMA channel 0, IRQ2"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+
+[[fact]]
+key = "display"
+value = "240 x 64 LC7981 graphic LCD (HD61830-compatible). On the S3000 map it is at I/O 0x48/0x4A, on the XL map at 0x60/0x62"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+
+[[fact]]
+key = "panel"
+value = "No panel sub-CPU. Keys, data wheel and LEDs are on an 8255-class port chip (KLCS): port A keys and wheel, port B key-row select, port C LED latch"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+
+[[fact]]
+key = "midi"
+value = "MIDI IN and OUT are the V53's on-chip serial unit"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (rxd/txd wiring); consistent with the emulator run in findings/peripherals.md"
+
+[[fact]]
+key = "sample_dsp"
+value = "L7A1045-L6028 sample DSP on DMA channel 3; 2 MiB wave memory standard"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+
+[[fact]]
+key = "s3200_stock_options"
+value = "The IB304F filter board (L7A0906-L6029) and the EB16 effects board (L7A1414-L6038) are fitted as standard on the S3200"
+status = "documented"
+source = "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb, header comment"

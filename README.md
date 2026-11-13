@@ -24,6 +24,7 @@ for what is missing. In brief:
 | [Akai MPC2000](machines/mpc2000/README.md) | OS 1.72 identified by hash; address model, OS services, in-RAM program and sequence layouts and disk services, from a published mod source checked against the bytes. Hardware and boot path undocumented; nothing hardware-tested. |
 | [Akai MPC60](machines/mpc60/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
 | [Akai S950](machines/s950/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
+| [Akai S3200](machines/s3200/README.md) | The OS 2.00 EPROM pair labelled for the S3000 and S3200 (MAME's `s3000` set): image layout, reset and RAM relocation, segments, memory use, OS load and save from floppy and hard disk, disk layouts and peripheral set-up, mostly `static`. Not hardware-tested. Whether an S3200 runs this image or an XL-board OS is open. |
 | [Akai S900](machines/s900/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
 
 For manuals, emulators, tools and free mods that live elsewhere, see

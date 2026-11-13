@@ -2020,6 +2020,507 @@
       "symbols": {}
     },
     {
+      "coverage": "partial",
+      "facts": [
+        {
+          "key": "hardware_family",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (2026-11-13), header comment; emulator source, every driver flagged not working",
+          "status": "documented",
+          "value": "MAME's driver says the S3200 is built on the XL hardware (512 KiB ROM at 0x80000-0xFFFFF), not on the base S3000 board. MAME defines no S3200 machine"
+        },
+        {
+          "key": "os_image_applies_to_s3200",
+          "source": "Chip labels 'S3000/S3200 V2.0'; firmware.toml; questions/s3200-hardware-and-os.md",
+          "status": "hypothesis",
+          "value": "The OS 2.00 EPROM pair (s3200-v2.00) is what an S3200 runs. Only the chip labels and the name of the file set support this. The image has the S3000 board's 256 KiB layout, contains 'S3000' but no 'S3200' string, and conflicts with MAME's XL statement"
+        },
+        {
+          "key": "main_cpu",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (V53A device); the OS 2.00 boot block uses V53-only BRKXA/RETXA and page-register ports, findings/address-model.md",
+          "status": "documented",
+          "value": "NEC uPD70236A (V53A): 8086-compatible core with on-chip DMA, timer, interrupt and serial units and page registers"
+        },
+        {
+          "key": "main_cpu_clock",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb",
+          "status": "documented",
+          "value": "32 MHz crystal; CLKOUT 16 MHz"
+        },
+        {
+          "key": "os_storage",
+          "source": "findings/eprom-layout.md",
+          "status": "static",
+          "value": "OS 2.00 is two 27C010 EPROMs of 128 KiB, LOW = even bytes, HIGH = odd bytes, 256 KiB linear. The labels 9C79 and 2900 are the 16-bit byte sums of the chips"
+        },
+        {
+          "key": "rom_checksum",
+          "source": "findings/eprom-layout.md",
+          "status": "static",
+          "value": "None found: neither the boot block nor the OS checks the ROM or its RAM copy"
+        },
+        {
+          "key": "address_space",
+          "source": "findings/address-model.md",
+          "status": "static",
+          "value": "At reset the image is at physical 0xC0000-0xFFFFF. The boot block copies it to RAM, and the OS runs there with logical address (seg*16+off) = file offset"
+        },
+        {
+          "key": "user_code_entry",
+          "source": "findings/os-load-and-save.md",
+          "status": "static",
+          "value": "At power-on the ROM OS loads a type-0x63 OS file from floppy (else hard disk, partition A, first volume) if its directory version word is at least 2.00. No content check is applied. Not run on hardware"
+        },
+        {
+          "key": "floppy_controller",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb",
+          "status": "documented",
+          "value": "NEC uPD72069 on I/O 0x20-0x23, DMA channel 1, IRQ3"
+        },
+        {
+          "key": "scsi_controller",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb",
+          "status": "documented",
+          "value": "Fujitsu MB89352 on I/O 0x00-0x1F, DMA channel 0, IRQ2"
+        },
+        {
+          "key": "display",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb",
+          "status": "documented",
+          "value": "240 x 64 LC7981 graphic LCD (HD61830-compatible). On the S3000 map it is at I/O 0x48/0x4A, on the XL map at 0x60/0x62"
+        },
+        {
+          "key": "panel",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb",
+          "status": "documented",
+          "value": "No panel sub-CPU. Keys, data wheel and LEDs are on an 8255-class port chip (KLCS): port A keys and wheel, port B key-row select, port C LED latch"
+        },
+        {
+          "key": "midi",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (rxd/txd wiring); consistent with the emulator run in findings/peripherals.md",
+          "status": "documented",
+          "value": "MIDI IN and OUT are the V53's on-chip serial unit"
+        },
+        {
+          "key": "sample_dsp",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb",
+          "status": "documented",
+          "value": "L7A1045-L6028 sample DSP on DMA channel 3; 2 MiB wave memory standard"
+        },
+        {
+          "key": "s3200_stock_options",
+          "source": "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb, header comment",
+          "status": "documented",
+          "value": "The IB304F filter board (L7A0906-L6029) and the EB16 effects board (L7A1414-L6038) are fitted as standard on the S3200"
+        }
+      ],
+      "family": "s-series",
+      "findings": [
+        {
+          "area": "cpu",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s3200.eprom-layout"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.address-model",
+          "last_verified": "2026-11-02",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/address-model.md",
+          "status": "static",
+          "summary": "At reset the 256 KiB image is at physical 0xC0000. The boot block copies it to RAM and the OS runs there, where seg*16+off equals the file offset for every address in the image. Only the boot block and reset vector run from ROM.",
+          "title": "How addresses work in OS 2.00 (reset, the RAM copy, segment:offset)"
+        },
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s3200.address-model"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.code-structure",
+          "last_verified": "2026-11-02",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/code-structure.md",
+          "status": "static",
+          "summary": "OS 2.00 has two code segments, 0FE9 (0xFE90-0x1FE7F) and 2033 (0x20330-0x2DF2F), around data segments 0000, 1FFE and 2DF3. A recursive disassembly with resolved indirect targets reaches every instruction seen executing in emulator runs. Eleven indirect sites stay unresolved.",
+          "title": "Segments, code extents and indirect calls in OS 2.00"
+        },
+        {
+          "area": "storage",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s3200.address-model"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.disk-formats",
+          "last_verified": "2026-11-02",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/disk-formats.md",
+          "status": "static",
+          "summary": "From OS 2.00's own code. Floppies use 1 KiB blocks, header and FAT at block 0, a 510-entry directory at block 5. Hard disks use 8 KiB blocks, back-to-back partitions, each with a summed header, 100-volume table and FAT. Not compared with a disk a real unit wrote.",
+          "title": "Floppy and hard-disk layouts as OS 2.00 reads and writes them"
+        },
+        {
+          "area": "firmware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.eprom-layout",
+          "last_verified": "2026-11-13",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/eprom-layout.md",
+          "sources": [
+            "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (ROM_START s3000)"
+          ],
+          "status": "static",
+          "summary": "OS 2.00 is two 128 KiB 27C010 EPROMs, LOW even bytes and HIGH odd. The pair equals MAME's s3000 v2.0 set. The labels 9C79/2900 are chip byte sums. Nothing in the firmware checks the ROM, so a patched image needs no checksum repair.",
+          "title": "The OS 2.00 EPROM pair, how to identify it, and why it has no ROM checksum"
+        },
+        {
+          "area": "hardware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.hardware-overview",
+          "last_verified": "2026-11-13",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/hardware-overview.md",
+          "sources": [
+            "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb (2026-11-13), driver flagged MACHINE_NOT_WORKING"
+          ],
+          "status": "documented",
+          "summary": "Chips, buses and options of the S3000 family from MAME's driver. MAME says the S3200 uses the XL board, but the only OS image studied here is the S3000-board 256 KiB pair. Read this before assuming any map applies to an S3200.",
+          "title": "S3200 hardware overview, and why the board type is in doubt"
+        },
+        {
+          "area": "memory",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s3200.code-structure"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.memory-use",
+          "last_verified": "2026-11-02",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/memory-use.md",
+          "status": "static",
+          "summary": "The zero ranges 0x8060-0xFE8F and 0x352DB-0x3FFEF are run-time buffers, not free space. DGROUP variables start near 0x6AE0. Code segment 2033 holds variables at 0x24E4B and 0x2A961. No byte of the OS image has been shown free on hardware.",
+          "title": "What OS 2.00 writes at run time, and why its zero areas are not free space"
+        },
+        {
+          "area": "boot",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s3200.address-model",
+            "s3200.disk-formats"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.os-load-and-save",
+          "last_verified": "2026-11-02",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/os-load-and-save.md",
+          "status": "static",
+          "summary": "At power-on OS 2.00 loads a type-0x63 OS file from floppy, else hard disk partition A volume 1, if its directory version word is at least 0x0C00 (2.00). The file is the raw 256 KiB image, read to 0x50000 and copied down. No content check. Not run on hardware.",
+          "title": "Loading and saving the OS from disk, and the power-on autoload"
+        },
+        {
+          "area": "cpu",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s3200.address-model"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.peripherals",
+          "last_verified": "2026-11-13",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/peripherals.md",
+          "sources": [
+            "MAME src/mame/akai/s3000.cpp at commit c2caa8969adb"
+          ],
+          "status": "static",
+          "summary": "OS 2.00 uses the V53's on-chip units at I/O 0xC000-0xC03F (interrupt controller 0xC010, serial 0xC020, timer 0xC030), with INT 8 serial receive, INT 9 tick and INT 11 floppy. MAME puts MIDI on that serial unit. The SIMM-ID probe at 0x20F08 matches MAME's table.",
+          "title": "Peripheral set-up in OS 2.00 (V53 units, interrupts, serial/MIDI, memory ID)"
+        },
+        {
+          "area": "boot",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "s3200.address-model",
+            "s3200.peripherals"
+          ],
+          "firmware": [
+            "s3200-v2.00"
+          ],
+          "hardware_tested": "no",
+          "id": "s3200.rom-serial-loader",
+          "last_verified": "2026-11-02",
+          "machine": "s3200",
+          "path": "machines/s3200/findings/rom-serial-loader.md",
+          "status": "static",
+          "summary": "ROM entry DFE8:00D1 (file 0x1FF51) receives two count-prefixed blocks on the serial unit at 0xC020, echoing each byte, into logical 0x00000-0x1FFFF, then jumps to 0000:0000. No caller of its only jump (0x192C6) is known. Its purpose is not established.",
+          "title": "The second ROM entry DFE8:00D1, a serial byte loader"
+        }
+      ],
+      "firmware": [
+        {
+          "crc32": "9ef99cb2",
+          "id": "s3200-v2.00",
+          "kind": "eprom-pair",
+          "label": "OS 2.00 EPROM pair labelled for the S3000 and S3200 (MAME's s3000 'ver 2.0' set)",
+          "notes": "The chip files are byte-identical to MAME's s3000 ROM set 'akai s3x00 v2.0 low/high' (same CRC32 and SHA-1). The 16-bit byte sum of each chip equals its label: LOW 9C79, HIGH 2900. The image's own version bytes give 2.00. The image contains the string 'S3000' and S2800 messages but no 'S3200' string. Every code-level finding in this folder is keyed to this image.",
+          "obtain": "Read the two 27C010 OS EPROMs of a machine you own and interleave them (LOW = even bytes). Check the hashes below before using any address in this folder.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "12a657c9",
+              "role": "ls-even",
+              "sha1": "ba77af24b647a2edcd1ff67c5b16e3103efb8039",
+              "sha256": "e31f2df978ff32c5a6401d676daf62627e54072dd206a6c7aebffa33cecbc540",
+              "size": 131072
+            },
+            {
+              "crc32": "1763a18d",
+              "role": "ms-odd",
+              "sha1": "95042987ef6f6e63dae1b4771f4841d605af5695",
+              "sha256": "fee7f9ae1404ba1c1f06c0eef05b8861f01e867a9f979a55e1242b42bf628367",
+              "size": 131072
+            }
+          ],
+          "sha1": "f693a4b4cefa9db7aec85b2e64d0b80c37c2b4ea",
+          "sha256": "420f327a31ca191d201217e72e6248d59b6761d732d890e2e0852f19700f6775",
+          "size": 262144,
+          "source": "Computed from the contributor's chip files on 2026-11-13; chip CRC32 and SHA-1 compared with MAME src/mame/akai/s3000.cpp at commit c2caa8969adb."
+        }
+      ],
+      "hardware_tables": {
+        "interrupts": {
+          "path": "machines/s3200/hardware/interrupts.csv",
+          "rows": 6
+        },
+        "io-ports": {
+          "path": "machines/s3200/hardware/io-ports.csv",
+          "rows": 18
+        },
+        "memory-map": {
+          "path": "machines/s3200/hardware/memory-map.csv",
+          "rows": 7
+        }
+      },
+      "id": "s3200",
+      "name": "Akai S3200",
+      "pins": {
+        "s3200-v2.00": {
+          "count": 72,
+          "path": "machines/s3200/pins/s3200-v2.00.csv"
+        }
+      },
+      "questions": [
+        {
+          "area": "storage",
+          "blocks": [
+            "s3200.os-load-and-save"
+          ],
+          "id": "s3200.q.disk-images-on-hardware",
+          "machine": "s3200",
+          "needs": [
+            "hardware"
+          ],
+          "path": "machines/s3200/questions/disk-images-on-hardware.md",
+          "priority": "high",
+          "related": [
+            "s3200.disk-formats"
+          ],
+          "status": "open",
+          "summary": "The floppy and hard-disk layouts come from the firmware only. Nobody has compared them with a disk a real unit formatted or saved to.",
+          "title": "Disk images on real media"
+        },
+        {
+          "area": "boot",
+          "blocks": [
+            "s3200.os-load-and-save"
+          ],
+          "id": "s3200.q.first-hardware-run",
+          "machine": "s3200",
+          "needs": [
+            "hardware"
+          ],
+          "path": "machines/s3200/questions/first-hardware-run.md",
+          "priority": "high",
+          "related": [
+            "s3200.eprom-layout",
+            "s3200.disk-formats"
+          ],
+          "status": "open",
+          "summary": "No claim in this folder has been checked on a real unit. The first test is the stock boot line, then one image loaded from floppy whose only change is the 9-byte boot-screen prefix.",
+          "title": "A first hardware run of OS 2.00 and a disk-loaded image"
+        },
+        {
+          "area": "panel",
+          "id": "s3200.q.panel-and-lcd",
+          "machine": "s3200",
+          "needs": [
+            "analysis",
+            "emulator",
+            "hardware"
+          ],
+          "path": "machines/s3200/questions/panel-and-lcd.md",
+          "priority": "medium",
+          "related": [
+            "s3200.hardware-overview",
+            "s3200.peripherals"
+          ],
+          "status": "open",
+          "summary": "The key matrix, data wheel, LED latch and LCD driving are described only by MAME. Their handlers in OS 2.00 are not mapped.",
+          "title": "Panel, data wheel and LCD"
+        },
+        {
+          "area": "cpu",
+          "id": "s3200.q.peripheral-relocation",
+          "machine": "s3200",
+          "needs": [
+            "document",
+            "analysis",
+            "emulator"
+          ],
+          "path": "machines/s3200/questions/peripheral-relocation.md",
+          "priority": "medium",
+          "related": [
+            "s3200.peripherals",
+            "s3200.address-model"
+          ],
+          "status": "open",
+          "summary": "OS 2.00 writes the 0xC0xx timer and DMA ports before it writes 0xFFFC=0xC0, and the V53 register names used here are recalled, not cited.",
+          "title": "Peripheral relocation order and the V53 registers"
+        },
+        {
+          "area": "boot",
+          "id": "s3200.q.rom-serial-loader",
+          "machine": "s3200",
+          "needs": [
+            "analysis",
+            "document",
+            "hardware"
+          ],
+          "path": "machines/s3200/questions/rom-serial-loader.md",
+          "priority": "low",
+          "related": [
+            "s3200.rom-serial-loader"
+          ],
+          "status": "open",
+          "summary": "The ROM routine at DFE8:00D1 loads code over the serial unit, but nothing is known to call it, and from the running OS its jump lands in RAM.",
+          "title": "Purpose and caller of the ROM serial loader"
+        },
+        {
+          "area": "memory",
+          "id": "s3200.q.runtime-writes-and-free-space",
+          "machine": "s3200",
+          "needs": [
+            "hardware",
+            "emulator",
+            "analysis"
+          ],
+          "path": "machines/s3200/questions/runtime-writes-and-free-space.md",
+          "priority": "high",
+          "related": [
+            "s3200.memory-use",
+            "s3200.code-structure"
+          ],
+          "status": "open",
+          "summary": "Which bytes of the OS image are never written at run time is known only from emulator runs with invented peripherals. No range is established as free for added code.",
+          "title": "Run-time writes and free space, on hardware"
+        },
+        {
+          "area": "hardware",
+          "blocks": [
+            "s3200.address-model",
+            "s3200.os-load-and-save"
+          ],
+          "id": "s3200.q.s3200-hardware-and-os",
+          "machine": "s3200",
+          "needs": [
+            "hardware",
+            "document",
+            "firmware-image"
+          ],
+          "path": "machines/s3200/questions/s3200-hardware-and-os.md",
+          "priority": "high",
+          "related": [
+            "s3200.hardware-overview",
+            "s3200.eprom-layout"
+          ],
+          "status": "open",
+          "summary": "MAME says the S3200 uses the XL board, but the only image studied here is the S3000-board 256 KiB pair labelled S3000/S3200. Nobody has checked which an S3200 has.",
+          "title": "Is the S3200 an XL board, and does it run the OS 2.00 EPROM pair?"
+        },
+        {
+          "area": "audio",
+          "id": "s3200.q.sample-engine",
+          "machine": "s3200",
+          "needs": [
+            "analysis",
+            "emulator",
+            "hardware",
+            "document"
+          ],
+          "path": "machines/s3200/questions/sample-engine.md",
+          "priority": "high",
+          "related": [
+            "s3200.hardware-overview"
+          ],
+          "status": "open",
+          "summary": "How OS 2.00 drives the L7A1045-L6028 sample DSP, and the S3200's standard filter and effects boards, has not been studied.",
+          "title": "The sample engine, filter and effects DSPs"
+        }
+      ],
+      "summary": "The OS 2.00 EPROM pair labelled for the S3000 and S3200 is mapped statically: image layout, reset and RAM relocation, segments, memory use, OS load/save from disk, floppy and hard-disk layouts, peripheral set-up. Some of it is also emulator-traced. Nothing is hardware-tested, and whether an S3200 runs this image or an XL-class OS is open.",
+      "symbols": {
+        "s3200-v2.00": {
+          "count": 59,
+          "path": "machines/s3200/symbols/s3200-v2.00.csv"
+        }
+      }
+    },
+    {
       "coverage": "seed",
       "facts": [
         {

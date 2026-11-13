@@ -144,6 +144,50 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 - `mpc60-v1.12`: OS 1.12 (four program EPROMs)
 - `mpc60-panel-v1.1`: Panel EPROM OP v1.1 (IC2 on the panel board, 2764)
 
+## Akai S3200
+
+### Open questions
+
+| Priority | Area | Question | Needs |
+|---|---|---|---|
+| high | storage | [Disk images on real media](machines/s3200/questions/disk-images-on-hardware.md) | hardware |
+| high | boot | [A first hardware run of OS 2.00 and a disk-loaded image](machines/s3200/questions/first-hardware-run.md) | hardware |
+| high | memory | [Run-time writes and free space, on hardware](machines/s3200/questions/runtime-writes-and-free-space.md) | hardware, emulator, analysis |
+| high | hardware | [Is the S3200 an XL board, and does it run the OS 2.00 EPROM pair?](machines/s3200/questions/s3200-hardware-and-os.md) | hardware, document, firmware-image |
+| high | audio | [The sample engine, filter and effects DSPs](machines/s3200/questions/sample-engine.md) | analysis, emulator, hardware, document |
+| medium | panel | [Panel, data wheel and LCD](machines/s3200/questions/panel-and-lcd.md) | analysis, emulator, hardware |
+| medium | cpu | [Peripheral relocation order and the V53 registers](machines/s3200/questions/peripheral-relocation.md) | document, analysis, emulator |
+| low | boot | [Purpose and caller of the ROM serial loader](machines/s3200/questions/rom-serial-loader.md) | analysis, document, hardware |
+
+### Findings never run on real hardware
+
+- [How addresses work in OS 2.00 (reset, the RAM copy, segment:offset)](machines/s3200/findings/address-model.md) (static)
+- [Segments, code extents and indirect calls in OS 2.00](machines/s3200/findings/code-structure.md) (static)
+- [Floppy and hard-disk layouts as OS 2.00 reads and writes them](machines/s3200/findings/disk-formats.md) (static)
+- [The OS 2.00 EPROM pair, how to identify it, and why it has no ROM checksum](machines/s3200/findings/eprom-layout.md) (static)
+- [S3200 hardware overview, and why the board type is in doubt](machines/s3200/findings/hardware-overview.md) (documented)
+- [What OS 2.00 writes at run time, and why its zero areas are not free space](machines/s3200/findings/memory-use.md) (static)
+- [Loading and saving the OS from disk, and the power-on autoload](machines/s3200/findings/os-load-and-save.md) (static)
+- [Peripheral set-up in OS 2.00 (V53 units, interrupts, serial/MIDI, memory ID)](machines/s3200/findings/peripherals.md) (static)
+- [The second ROM entry DFE8:00D1, a serial byte loader](machines/s3200/findings/rom-serial-loader.md) (static)
+
+### Findings that contain unproven claims
+
+Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding.
+
+- [How addresses work in OS 2.00 (reset, the RAM copy, segment:offset)](machines/s3200/findings/address-model.md): 2
+- [Segments, code extents and indirect calls in OS 2.00](machines/s3200/findings/code-structure.md): 1
+- [Floppy and hard-disk layouts as OS 2.00 reads and writes them](machines/s3200/findings/disk-formats.md): 2
+- [The OS 2.00 EPROM pair, how to identify it, and why it has no ROM checksum](machines/s3200/findings/eprom-layout.md): 1
+- [S3200 hardware overview, and why the board type is in doubt](machines/s3200/findings/hardware-overview.md): 1
+- [What OS 2.00 writes at run time, and why its zero areas are not free space](machines/s3200/findings/memory-use.md): 1
+- [Peripheral set-up in OS 2.00 (V53 units, interrupts, serial/MIDI, memory ID)](machines/s3200/findings/peripherals.md): 3
+- [The second ROM entry DFE8:00D1, a serial byte loader](machines/s3200/findings/rom-serial-loader.md): 1
+
+### Machine facts that are not established
+
+- `os_image_applies_to_s3200` = The OS 2.00 EPROM pair (s3200-v2.00) is what an S3200 runs. Only the chip labels and the name of the file set support this. The image has the S3000 board's 256 KiB layout, contains 'S3000' but no 'S3200' string, and conflicts with MAME's XL statement (hypothesis)
+
 ## Akai S900
 
 ### Open questions
