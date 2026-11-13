@@ -6,14 +6,16 @@ area: hardware
 status: open
 priority: high
 needs: ["document", "firmware-image", "analysis"]
-summary: Nothing is recorded for this machine. This lists the foundations every later finding depends on.
+summary: Only documented hardware facts are recorded for this machine. This lists the foundations every later finding depends on.
 ---
 
 # Akai MPC60: the first things to establish
 
 ## What is unknown
 
-Everything. In the order it is needed:
+Progress so far: Items 1 and 2 are partly answered from MAME's driver source (`documented`, not checked against a machine). Still unknown: whole-image SHA-256 hashes from real dumps, how the four EPROMs form one linear image, the reset and boot path, and any way to run code from floppy. The OS 3.10 chipset from Roger Linn Design is not in any public ROM set.
+
+In the order it is needed:
 
 1. **The hardware.** Main CPU, any secondary processors, RAM, how the firmware is stored (EPROM, flash, disk-loaded), display, storage and audio chips. Source: the service manual parts list and board photos.
 2. **Firmware images.** Each OS version that exists, how it is packaged (one chip, an even/odd pair, a file on disk), and its hashes, recorded in `firmware.toml`.

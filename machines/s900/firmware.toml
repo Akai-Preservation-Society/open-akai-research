@@ -1,0 +1,45 @@
+# Firmware registry. Identifies images; never contains them.
+# Hashes are copied from MAME's ROM set and have not been checked against
+# a dump here. Linear image = LS even bytes, MS odd bytes, as MAME loads them. No-image layout is defined yet for this machine.
+
+[[image]]
+id = "s900-v1.2c"
+label = "OS 1.2c (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+size = 32768
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "ls-even"
+size = 16384
+crc32 = "d0925ed4"
+sha1 = "6c07a9baf4dfe59de5362e1f44e9a28e08c1b765"
+
+[[image.part]]
+role = "ms-odd"
+size = 16384
+crc32 = "24ccb3e0"
+sha1 = "bcdbfb590f894849716e40722f82b4302de3366b"
+
+[[image]]
+id = "s900-v1.2a"
+label = "OS 1.2a (EPROM pair)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+size = 32768
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "ls-even"
+size = 16384
+crc32 = "1077a91a"
+sha1 = "0cb91474300f3dc090375e33ca73dd4d7a438f88"
+
+[[image.part]]
+role = "ms-odd"
+size = 16384
+crc32 = "558e402d"
+sha1 = "6dce63a2216c4d4b015e0abf9b9ea492e776b201"

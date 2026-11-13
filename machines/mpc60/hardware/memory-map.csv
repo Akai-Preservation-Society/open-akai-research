@@ -1,0 +1,4 @@
+start,end,device,function,status,source
+0x00000,0x7FFFF,DRAM (4x 81C4256),Main RAM 512 KiB,documented,MAME mpc60.cpp mem_map
+0xBF000,0xBFFFF,Battery-backed NVRAM,Byte-wide at even addresses (umask 0x00FF),documented,MAME mpc60.cpp mem_map
+0xC0000,0xFFFFF,Program EPROMs IC2-IC5,"256 KiB; IC2/IC3 even/odd at region 0x00000, IC4/IC5 even/odd at region 0x20000",documented,MAME mpc60.cpp mem_map and ROM_START(mpc60)

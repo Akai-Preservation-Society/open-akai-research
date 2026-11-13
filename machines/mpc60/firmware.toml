@@ -1,0 +1,87 @@
+# Firmware registry. Identifies images; never contains them.
+# Hashes are copied from MAME's ROM set and have not been checked against
+# a dump here. No linear-image layout is defined yet for this machine.
+
+[[image]]
+id = "mpc60-v2.12"
+label = "OS 2.12 (four program EPROMs)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "IC2 even and IC3 odd form the first 128 KiB, IC4 even and IC5 odd the second, as MAME loads them."
+size = 262144
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "ic2-even-lo"
+size = 65536
+crc32 = "e71b1acb"
+sha1 = "b56ddfff1c546fc21341b1a614e18da9726312f4"
+
+[[image.part]]
+role = "ic3-odd-lo"
+size = 65536
+crc32 = "f068838b"
+sha1 = "42e815880d1c1a5b7d1c7933aad9c28410fc2627"
+
+[[image.part]]
+role = "ic4-even-hi"
+size = 65536
+crc32 = "1271bc73"
+sha1 = "99fd6fa4c04e5bdf868e78072fec5b55c01350da"
+
+[[image.part]]
+role = "ic5-odd-hi"
+size = 65536
+crc32 = "d922a66d"
+sha1 = "0f4bc0522b9826d617f4af72382d75853515d7f5"
+
+[[image]]
+id = "mpc60-v1.12"
+label = "OS 1.12 (four program EPROMs)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "Same layout as v2.12."
+size = 262144
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "ic2-even-lo"
+size = 65536
+crc32 = "ddf26146"
+sha1 = "987547198dc3984ab3dfa7f133ba7dca702cc269"
+
+[[image.part]]
+role = "ic3-odd-lo"
+size = 65536
+crc32 = "9725d193"
+sha1 = "6efda3d6760b3951c5036108106d446f6e128c59"
+
+[[image.part]]
+role = "ic4-even-hi"
+size = 65536
+crc32 = "f202dbb1"
+sha1 = "6fd82224a99b52b6c414b88d5c920abda32ffa32"
+
+[[image.part]]
+role = "ic5-odd-hi"
+size = 65536
+crc32 = "ba5a1640"
+sha1 = "1f9f49c49a3682b9a44d614ac411a7c043df399e"
+
+[[image]]
+id = "mpc60-panel-v1.1"
+label = "Panel EPROM OP v1.1 (IC2 on the panel board, 2764)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "Mapped at 0x4000-0x5FFF of the uPD78C11."
+size = 8192
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+
+[[image.part]]
+role = "panel"
+size = 8192
+crc32 = "f1332f47"
+sha1 = "dd5e917d16941fce3db4bfe21d37f722d6262561"

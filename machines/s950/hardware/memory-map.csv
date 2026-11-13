@@ -1,0 +1,3 @@
+start,end,device,function,status,source
+0x00000,0x3FFFF,Banked RAM windows,"Four 64 KiB windows into sample/program RAM, bank chosen per window by I/O 0x01C0-0x01DF; mirrored at 0x40000-0x7FFFF",documented,MAME s950_state::mem_map and bank_w
+0x80000,0xFFFFF,OS EPROMs IC11/IC12,64 KiB ROM at 0x80000-0x8FFFF mirrored every 64 KiB,documented,MAME s950_state::mem_map

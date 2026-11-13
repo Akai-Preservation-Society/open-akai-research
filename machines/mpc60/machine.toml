@@ -2,5 +2,53 @@ id = "mpc60"
 name = "Akai MPC60"
 family = "mpc"
 released = "1988"
-coverage = "none"
-summary = "Nothing has been published here yet."
+coverage = "seed"
+summary = "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published."
+
+[[fact]]
+key = "main_cpu"
+value = "Intel 80186-compatible (MBL80186-10), 20 MHz input clock, 10 MHz internal"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "panel_cpu"
+value = "NEC uPD78C11 at 12 MHz with internal mask ROM and an external 8 KiB panel EPROM"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "sound"
+value = "L4003 sound DSP at 35.84 MHz; up to 1024K 12-bit sample words"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "storage"
+value = "uPD72066 floppy controller (DS/DD); optional Marion Systems SCSI board with NCR5380"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "display"
+value = "LC7981-class graphic LCD controller (MAME emulates it as an HD61830) with 2 KiB display RAM"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "serial"
+value = "Two MB89371 dual UARTs for MIDI"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "os_storage"
+value = "Four 64 KiB EPROMs (IC2-IC5) forming 256 KiB of program ROM at 0xC0000-0xFFFFF, as two even/odd pairs"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working"
+
+[[fact]]
+key = "os_versions"
+value = "Akai OS v1.12 and v2.12 are in the MAME ROM set. Roger Linn Design sold a paid v3.10 EPROM set"
+status = "documented"
+source = "MAME src/mame/akai/mpc60.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working; rogerlinndesign.com support pages"

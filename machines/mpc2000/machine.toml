@@ -2,5 +2,23 @@ id = "mpc2000"
 name = "Akai MPC2000"
 family = "mpc"
 released = "1997"
-coverage = "none"
-summary = "Nothing has been published here yet."
+coverage = "seed"
+summary = "Only how the OS is distributed and its last version are recorded, from public documents. The hardware is said to be close to the MPC2000XL but nothing from that machine may be assumed here."
+
+[[fact]]
+key = "os_update"
+value = "An OS update is two files, mpc2000.exe and mpc2000.sys, on a DOS-format floppy"
+status = "documented"
+source = "Sweetwater SweetCare: MPC2000 Operating System Update Instructions"
+
+[[fact]]
+key = "os_final"
+value = "The final OS for the MPC2000 Classic is 1.72"
+status = "documented"
+source = "Gearnews, MPC2000 Mods article (2026)"
+
+[[fact]]
+key = "hardware_family"
+value = "Described together with the 2000XL as a cost-reduced MPC3000: NEC V53, uPD72068 floppy, MB89352 SCSI optional, LC7981 LCD, uPD78C10 panel CPU, L7A1045 DSP"
+status = "hypothesis"
+source = "MAME mpc2000.cpp header comment; MAME defines only the 2000XL, so this is unchecked for the Classic"

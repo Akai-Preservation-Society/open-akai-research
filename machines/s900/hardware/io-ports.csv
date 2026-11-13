@@ -1,0 +1,16 @@
+port_start,port_end,device,function,status,source
+0x0000,0x0007,uPD7265 floppy controller,FDC registers,documented,MAME s900.cpp s900_state::io_map
+0x0008,0x0008,Media control latch,"Bit 0 motor (active low), bit 2 FDC TC, bit 3 FDC reset release and ROM unmap",documented,MAME s900.cpp media_ctrl_w
+0x0040,0x0047,Drum trigger unit,Not emulated,documented,MAME s900.cpp (TODO comment)
+0x0050,0x0057,6850 ACIA,MIDI,documented,MAME s900.cpp io_map
+0x0058,0x005B,8251 USART,RS232,documented,MAME s900.cpp io_map
+0x0010,0x0027,Three 8254 timers,Sample-rate timers,documented,MAME s900.cpp common_map
+0x0028,0x003F,Three 8253 timers,Filter timers,documented,MAME s900.cpp common_map
+0x0048,0x004F,LCD controller,"0x48-0x4B write, 0x4C-0x4F read",documented,MAME s900.cpp common_map
+0x0060,0x0067,8255 PPI,Panel and misc I/O,documented,MAME s900.cpp common_map
+0x0068,0x006F,Data dial,"0x68 count read, 0x6A port read, writes reset the count",documented,MAME s900.cpp common_map
+0x0078,0x007F,Envelope latches,Per-voice envelope writes,documented,MAME s900.cpp common_map
+0x0080,0x009F,uPD71071 DMA #1,Sampling and transfers,documented,MAME s900.cpp common_map
+0x00A0,0x00DF,uPD71071 DMA #2 and #3,Voice playback,documented,MAME s900.cpp common_map
+0x00E0,0x00FF,8259 PIC,Interrupt controller,documented,MAME s900.cpp common_map
+0x0180,0x019F,ADC,Sample input read,documented,MAME s900.cpp common_map
