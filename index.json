@@ -2635,10 +2635,98 @@
           "source": "wiw.org/~meta/s2k.php (S900 OS v4.0 disk image)",
           "status": "documented",
           "value": "Later OS versions (2.0, 4.0) are distributed as boot floppies, so the machine loads an OS into RAM from disk"
+        },
+        {
+          "key": "cpu_board_parts",
+          "source": "Akai S900 Service Manual (Additional), CPU PCB IC table; findings/hardware-overview.md",
+          "status": "documented",
+          "value": "uPD70116C, uPD71011C clock, uPD71051C serial unit, uPD71059C ICU, uPD71071C DMA, uPD7265C FDC, SED9420C data separator, HD6850P ACIA, 28x MN41256A DRAM, TMM27128 (16 KiB) and TMM2764 (8 KiB) EPROMs"
+        },
+        {
+          "key": "memory",
+          "source": "Akai S900 Owner's Manual, Specifications",
+          "status": "documented",
+          "value": "750 KB internal memory; sampling 7.5-40 kHz"
+        },
+        {
+          "key": "user_code_entry",
+          "source": "S900FX README 2026.10.16; findings/boot-disks.md",
+          "status": "documented",
+          "value": "The stock ROM 1.2 loads a DD boot floppy into RAM at power-on or from DISK page 01; the OS 4.0 disk and S900FX use this. No ROM change is needed"
         }
       ],
       "family": "s-series",
-      "findings": [],
+      "findings": [
+        {
+          "area": "storage",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "s900-v1.2a",
+            "s900-v1.2b",
+            "s900-os4.0-disk",
+            "s900-fx-2026.10.16-disk"
+          ],
+          "hardware_tested": "no",
+          "id": "s900.boot-disks",
+          "last_verified": "2026-11-13",
+          "machine": "s900",
+          "path": "machines/s900/findings/boot-disks.md",
+          "sources": [
+            "S900FX README for release 2026.10.16 (Mike Feedback)",
+            "S900-OS4.img (s900fx.com, Akai-S900-OS4.zip) and S900FX-2026.10.16.img (disk images)"
+          ],
+          "status": "documented",
+          "summary": "An S900 with ROM 1.2 loads a boot disk at power-on or from DISK page 01, so a replacement OS needs no ROM change. Disks are 800 KB DD. The OS 4.0 disk and S900FX both boot from a 140-byte FIXUPS file at block 4 followed by an OS file of type F.",
+          "title": "Booting the S900 from floppy, and the layout of S900 boot disks"
+        },
+        {
+          "area": "hardware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "no",
+          "id": "s900.hardware-overview",
+          "last_verified": "2026-11-13",
+          "machine": "s900",
+          "path": "machines/s900/findings/hardware-overview.md",
+          "sources": [
+            "Akai S900 Service Manual (Additional), CPU PCB schematic addendum, 'Information of ICs' table, p. 1 (scanned; as hosted on s900fx.com, 2026-11-13)",
+            "Akai S900 Owner's Manual (28 pp., as hosted on s900fx.com), Specifications",
+            "MAME src/mame/akai/s900.cpp at commit c2caa8969adb"
+          ],
+          "status": "documented",
+          "summary": "Akai's S900 CPU-board addendum lists the main chips. They agree with MAME's driver - V30, uPD71071 DMA, uPD71059 ICU, 6850 ACIA, uPD7265 FDC - and add a uPD71051 serial unit, MN41256 DRAM and 16 KiB TMM27128 EPROMs.",
+          "title": "S900 hardware from Akai's service manual addendum and owner's manual"
+        },
+        {
+          "area": "firmware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "s900-v1.2a",
+            "s900-v1.2b",
+            "s900-v1.2c"
+          ],
+          "hardware_tested": "no",
+          "id": "s900.rom-images",
+          "last_verified": "2026-11-13",
+          "machine": "s900",
+          "path": "machines/s900/findings/rom-images.md",
+          "sources": [
+            "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (ROM sets)",
+            "s900fx.com resources: Akai-S900-ROM-V1.2A.zip, -V1.2B.zip (downloaded 2026-11-13)"
+          ],
+          "status": "static",
+          "summary": "The S900 OS 1.2A files on s900fx.com equal MAME's 1.2a. Its 1.2B set shares MAME's 1.2c LS chip but has another MS chip, and differs from 1.2a in two bytes. Both reset through MOV AX,F800h / MOV DS,AX / JMP FAR FFF8:0000.",
+          "title": "S900 OS EPROM images - identity, reset code, and the 1.2b set"
+        }
+      ],
       "firmware": [
         {
           "id": "s900-v1.2c",
@@ -2664,9 +2752,11 @@
           "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
         },
         {
+          "crc32": "be2de780",
           "id": "s900-v1.2a",
           "kind": "eprom-set",
           "label": "OS 1.2a (EPROM pair)",
+          "notes": "The chip files published on s900fx.com (Akai-S900-ROM-V1.2A.zip) equal MAME's set byte for byte. See findings/rom-images.md.",
           "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
           "origin": "manufacturer",
           "part": [
@@ -2674,17 +2764,72 @@
               "crc32": "1077a91a",
               "role": "ls-even",
               "sha1": "0cb91474300f3dc090375e33ca73dd4d7a438f88",
+              "sha256": "c140cac742c885b4ef3c31536caefa4edfa9127c9319bc4ece16012ebe60c92e",
               "size": 16384
             },
             {
               "crc32": "558e402d",
               "role": "ms-odd",
               "sha1": "6dce63a2216c4d4b015e0abf9b9ea492e776b201",
+              "sha256": "19f15e7a41374167629826bd59f6c6a0a4367f8ee3ff35c4054ed1e03f83f0a0",
               "size": 16384
             }
           ],
+          "sha1": "6514bd96e1c584e853034bfa480c9a2371aad842",
+          "sha256": "78a0619a46a67bef41b49b95de1e52100d67b88554dd24e4b413238a2b09bec2",
           "size": 32768,
-          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); whole-image and chip SHA-256 computed on 2026-11-13 from the s900fx.com files, which match MAME."
+        },
+        {
+          "crc32": "55ead203",
+          "id": "s900-v1.2b",
+          "kind": "eprom-set",
+          "label": "OS 1.2b (EPROM pair, as published on s900fx.com)",
+          "notes": "Not in MAME. Its LS chip is identical to MAME's 1.2c LS chip; its MS chip matches neither MAME set. Linear image differs from s900-v1.2a in two bytes (0x1404 and 0x2D05). Both carry the string 'AKAI S900 VERSION 1,2'. Relation to MAME's 1.2c is open: see findings/rom-images.md.",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "d0925ed4",
+              "role": "ls-even",
+              "sha1": "6c07a9baf4dfe59de5362e1f44e9a28e08c1b765",
+              "sha256": "00632242b363b2f227ccd531399bc883ee59c5fd73cc9cac8186ab0a57206741",
+              "size": 16384
+            },
+            {
+              "crc32": "6dbfd383",
+              "role": "ms-odd",
+              "sha1": "dc380615136f06bbbc66d5d09e19a23025a26d99",
+              "sha256": "598a5a1705d4a45c785d5bbeff028a606f492c302edc8ee0828bdd23102d32fe",
+              "size": 16384
+            }
+          ],
+          "sha1": "df45150202d891b0efdd844198b0cf9ef7e4b6a0",
+          "sha256": "d5d4379cbc44c603846c12c08b7bc13c1c1df991b61796c49f3113619038d01f",
+          "size": 32768,
+          "source": "Computed on 2026-11-13 from Akai-S900-ROM-V1.2B.zip on s900fx.com (files Akai-S900-V1.2B-L-IC12.BIN, Akai-S900-V1.2B-M-IC11.BIN)."
+        },
+        {
+          "id": "s900-os4.0-disk",
+          "kind": "floppy-image",
+          "label": "OS 4.0 boot floppy (800 KB raw image)",
+          "notes": "Origin disputed (described on forums as the S950 OS adapted for the S900); 'community' is used because no Akai release of it is documented. Holds two files: FIXUPS (type F, 140 bytes, block 4) and 'S900 4.0' (type F, 45,131 bytes, from block 5). See findings/boot-disks.md.",
+          "obtain": "Distributed as a disk image (s2kdie, s900fx.com). Check the hash.",
+          "origin": "community",
+          "sha256": "df9ce8389ff30e3298b821229c2435d791b747adf9868c4d74ab92c6f4a8568b",
+          "size": 819200,
+          "source": "Computed on 2026-11-13 from S900-OS4.img in Akai-S900-OS4.zip on s900fx.com."
+        },
+        {
+          "id": "s900-fx-2026.10.16-disk",
+          "kind": "floppy-image",
+          "label": "S900FX 2026.10.16 boot floppy (800 KB raw image)",
+          "notes": "Mike Feedback's real-time processing OS. Files: FIXUPS (type F, 140 bytes, block 4), S900FX (type F, 29,601 bytes, block 5), CONFIG (type C, 1,000 bytes, block 34), S900COPY (type F, 53,052 bytes, block 35). Only the disk layout is described here; the program was not examined.",
+          "obtain": "Free download from the S900FX SourceForge project (s900fx.com). Check the hash.",
+          "origin": "community",
+          "sha256": "f1788b8f79a6fd3138a6e189b9a3c53b83562590b9d5c243a3c258f27538ae73",
+          "size": 819200,
+          "source": "Computed on 2026-11-13 from S900FX-2026.10.16.img in the S900FX-2026.10.16 release."
         }
       ],
       "hardware_tables": {
@@ -2699,7 +2844,16 @@
       },
       "id": "s900",
       "name": "Akai S900",
-      "pins": {},
+      "pins": {
+        "s900-v1.2a": {
+          "count": 4,
+          "path": "machines/s900/pins/s900-v1.2a.csv"
+        },
+        "s900-v1.2b": {
+          "count": 4,
+          "path": "machines/s900/pins/s900-v1.2b.csv"
+        }
+      },
       "questions": [
         {
           "area": "hardware",
@@ -2718,7 +2872,7 @@
         }
       ],
       "released": "1986",
-      "summary": "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published.",
+      "summary": "Hardware from MAME and Akai's CPU-board addendum; ROM 1.2a whole-image hashes checked against a dump, and a 1.2b set and the OS 4.0 boot disk registered by hash. Booting a replacement OS from floppy is documented (S900FX, OS 4.0). Nothing about the OS code is published.",
       "symbols": {}
     },
     {
@@ -2789,15 +2943,112 @@
           "source": "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working (bank_w)",
           "status": "documented",
           "value": "The CPU sees RAM through four 64 KiB windows (0x00000-0x3FFFF, mirrored at 0x40000) whose banks are set by writes to ports 0x01C0-0x01DF"
+        },
+        {
+          "key": "cpu_board_parts",
+          "source": "Akai S950 Service Manual, CPU P.C board parts list, p. 13; findings/hardware-overview.md",
+          "status": "documented",
+          "value": "CPU PCB L6013A5010: uPD70116C-8, uPD71011C clock, 3x uPD71071C DMA, uPD71059C ICU, HD63B50P ACIA, uPD72066C FDC, SED9420CAC data separator, 2x MBM27C256 OS EPROMs (IC11/IC12), 7x MB81C4256 DRAM, 16 MHz crystal"
+        },
+        {
+          "key": "memory",
+          "source": "Akai S950 Service Manual p. 1; Operator's Manual, Overview",
+          "status": "documented",
+          "value": "750 KB internal, expandable to 2.25 MB with up to two EXM006 boards"
+        },
+        {
+          "key": "sysex_id",
+          "source": "Akai S950 Service Manual, MIDI implementation chart v1.0, p. 8",
+          "status": "documented",
+          "value": "System Exclusive sent and received with manufacturer ID 47h"
+        },
+        {
+          "key": "user_code_entry",
+          "source": "S950FX README 2026.10.20; findings/boot-disks.md",
+          "status": "documented",
+          "value": "The stock ROM (1.0a, 1.2a, 1.2b) loads a boot disk into RAM at power-on or from DISK page 02, from floppy (DD or HD) or a SCSI volume; S950FX uses this. No ROM change is needed"
         }
       ],
       "family": "s-series",
-      "findings": [],
+      "findings": [
+        {
+          "area": "storage",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "s950-v1.0a",
+            "s950-v1.2a",
+            "s950-v1.2b",
+            "s950-fx-2026.10.20-disk"
+          ],
+          "hardware_tested": "no",
+          "id": "s950.boot-disks",
+          "last_verified": "2026-11-13",
+          "machine": "s950",
+          "path": "machines/s950/findings/boot-disks.md",
+          "sources": [
+            "S950FX README for release 2026.10.20 (Mike Feedback)",
+            "Akai S950 Operator's Manual (as hosted on s950fx.com), Getting started and Disk chapters",
+            "S950FX-2026.10.20.img and S950FX-HD-2026.10.20.img (disk images)"
+          ],
+          "status": "documented",
+          "summary": "Every S950 ROM loads a boot disk at power-on (or from DISK page 02), from floppy or a SCSI volume, so a replacement OS needs no ROM change. DD and HD layouts are chosen from the drive's density line. Directory entries are 24 bytes and blocks 1 KiB.",
+          "title": "Booting the S950 from floppy or SCSI, and the disk layout boot disks use"
+        },
+        {
+          "area": "hardware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "hardware"
+          ],
+          "hardware_tested": "no",
+          "id": "s950.hardware-overview",
+          "last_verified": "2026-11-13",
+          "machine": "s950",
+          "path": "machines/s950/findings/hardware-overview.md",
+          "sources": [
+            "Akai S950 Service Manual (19 pp., scanned; as hosted on s950fx.com, 2026-11-13): specifications p. 1, parts location pp. 5-6, MIDI implementation chart p. 8, parts lists pp. 9-14",
+            "Akai S950 Operator's Manual (106 pp., as hosted on s950fx.com), Overview and Disk chapters",
+            "MAME src/mame/akai/s900.cpp at commit c2caa8969adb"
+          ],
+          "status": "documented",
+          "summary": "The S950 service manual's parts lists name every main chip. They agree with MAME's driver - V30, three uPD71071 DMA, uPD71059 ICU, 6850 MIDI ACIA, uPD72066 FDC, 8254/8253 timers - and add the board, EPROM, DRAM, panel PPI and LCD part numbers.",
+          "title": "S950 hardware from Akai's service manual and owner's manual"
+        },
+        {
+          "area": "firmware",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "firmware": [
+            "s950-v1.0a",
+            "s950-v1.2a",
+            "s950-v1.2a-variant",
+            "s950-v1.2b"
+          ],
+          "hardware_tested": "no",
+          "id": "s950.rom-images",
+          "last_verified": "2026-11-13",
+          "machine": "s950",
+          "path": "machines/s950/findings/rom-images.md",
+          "sources": [
+            "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (ROM sets)",
+            "s950fx.com resources: Akai-S950-ROM-V1.0A.zip, -V1.2A.zip, -V1.2B.zip (downloaded 2026-11-13)"
+          ],
+          "status": "static",
+          "summary": "S950 OS sets 1.0a and 1.2b published on s950fx.com equal MAME's. The \"1.2A\" files there have MAME's 1.2a LS chip but a different MS chip - 1.0a with 23 bytes changed. All sets reset to JMP FAR F000:FF80. 1.2b identifies itself as \"1.5\" in one string.",
+          "title": "S950 OS EPROM images - identity, reset vector, and the two different \"1.2a\" sets"
+        }
+      ],
       "firmware": [
         {
           "id": "s950-v1.2a",
           "kind": "eprom-set",
           "label": "OS 1.2a (EPROM pair)",
+          "notes": "The s950fx.com 1.2A files have this LS chip but a different MS chip: see s950-v1.2a-variant.",
           "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
           "origin": "manufacturer",
           "part": [
@@ -2805,6 +3056,7 @@
               "crc32": "21af5435",
               "role": "ls-even",
               "sha1": "df0f6bcadadb28af1ca72562b3cea91a67d2b221",
+              "sha256": "13a1fe5f3773a380731a78bd2f49c656e1acb6634484c03e24aa2a4b286ef4bf",
               "size": 32768
             },
             {
@@ -2818,9 +3070,11 @@
           "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
         },
         {
+          "crc32": "236dd410",
           "id": "s950-v1.0a",
           "kind": "eprom-set",
           "label": "OS 1.0a (EPROM pair)",
+          "notes": "The chip files published on s950fx.com equal MAME's set byte for byte.",
           "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
           "origin": "manufacturer",
           "part": [
@@ -2828,23 +3082,28 @@
               "crc32": "9745b78a",
               "role": "ls-even",
               "sha1": "b43aeaf2a08728a1a8c832a205de10c9372e8cc1",
+              "sha256": "cf9ef3efa64b29f08f97fb3dc0336d95bc90498f8b884f966d28118b3071ce1b",
               "size": 32768
             },
             {
               "crc32": "81dc95cb",
               "role": "ms-odd",
               "sha1": "2ef684e1211cfb0f9c8721f618c7944da2758dea",
+              "sha256": "59ce743708395b9a7202753318c7b631830756b3d5aab614467faa50564d0ea7",
               "size": 32768
             }
           ],
+          "sha1": "413570af31061b1e20ad04d8c141f6249174633b",
+          "sha256": "068205e03a3e2a9919c62c3f61e2ba46ac0e52267a1ff052b3407ad57a51fbe1",
           "size": 65536,
-          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); whole-image and chip SHA-256 computed on 2026-11-13 from the s950fx.com files, which match MAME."
         },
         {
+          "crc32": "3b1fddec",
           "id": "s950-v1.2b",
           "kind": "eprom-set",
           "label": "OS 1.2b (EPROM pair, SCSI-equipped units)",
-          "notes": "MAME uses this set for the S950 with SCSI.",
+          "notes": "MAME uses this set for the S950 with SCSI. The chip files published on s950fx.com equal MAME's set byte for byte.",
           "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
           "origin": "manufacturer",
           "part": [
@@ -2852,17 +3111,61 @@
               "crc32": "01e0c3ad",
               "role": "ls-even",
               "sha1": "a374289a6110d97ac0871bdfbe8defe0036dc928",
+              "sha256": "8290cd27a239c532b42d9455c4e20a1b4cf0c7cb910fef047452960999d29a81",
               "size": 32768
             },
             {
               "crc32": "5b5d25cf",
               "role": "ms-odd",
               "sha1": "05d9c4c21ed60c289ea6ec23308c6454b43b200e",
+              "sha256": "b795bbc222d109978b4e7c5b15e70215bab6c9e9c909f42524470379cb9b5805",
               "size": 32768
             }
           ],
+          "sha1": "50a03a8846cd46dea7b5b7fd0d597354f4a260ec",
+          "sha256": "2eaf5dd347abbbe5ba4d556ebfbf3723983e25a6132ca8f6130db7a2bf690b4e",
           "size": 65536,
-          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+          "source": "MAME ROM set (CRC32 and SHA-1 of each chip); whole-image and chip SHA-256 computed on 2026-11-13 from the s950fx.com files, which match MAME."
+        },
+        {
+          "crc32": "a237fff4",
+          "id": "s950-v1.2a-variant",
+          "kind": "eprom-set",
+          "label": "OS 1.2 EPROM pair published on s950fx.com as V1.2A (MS chip differs from MAME's 1.2a)",
+          "notes": "LS chip equals MAME's 1.2a LS chip; MS chip (crc32 2d96a2fb) does not match MAME's (e14ceba2). The linear image is s950-v1.0a with 23 bytes changed (version digit 0 -> 2 at 0x2BDD and 0x9FC0, a 14-byte routine at 0x004A-0x0057 in zero space, a patched sequence at 0x8693-0x8698, one byte at 0x3A0D). Which set Akai shipped as 1.2a is open: see findings/rom-images.md.",
+          "obtain": "Read the EPROMs of a machine you own with an EPROM programmer.",
+          "origin": "manufacturer",
+          "part": [
+            {
+              "crc32": "21af5435",
+              "role": "ls-even",
+              "sha1": "df0f6bcadadb28af1ca72562b3cea91a67d2b221",
+              "sha256": "13a1fe5f3773a380731a78bd2f49c656e1acb6634484c03e24aa2a4b286ef4bf",
+              "size": 32768
+            },
+            {
+              "crc32": "2d96a2fb",
+              "role": "ms-odd",
+              "sha1": "a9d810d73e95508fae92c21cfc38b6101cbf5e18",
+              "sha256": "049987ce8c87417b9c57e9cd57639ae44c202da8d97ff71191d12300d09756d5",
+              "size": 32768
+            }
+          ],
+          "sha1": "c3af671aceb97fabbb61779c64b53b512951b3f7",
+          "sha256": "c69e8107a9e608d5921eaea30e88447aff64e5455c6707a8b9b9a58e2d07e5fc",
+          "size": 65536,
+          "source": "Computed on 2026-11-13 from Akai-S950-ROM-V1.2A.zip on s950fx.com (S950-V1.2A-L.BIN, S950-V1.2A-M.BIN)."
+        },
+        {
+          "id": "s950-fx-2026.10.20-disk",
+          "kind": "floppy-image",
+          "label": "S950FX 2026.10.20 boot floppy (800 KB raw image)",
+          "notes": "Mike Feedback's real-time processing OS. Files: S950FX (type M, block 4), CONFIG (type C, 1,000 bytes, block 68), S950COPY (type M, block 69). The 1.6 MB HD image of the same release has sha256 810215c3fe0d0936bfa26ed83745af0a5184942e56a47655425305508a54b8aa. Only the disk layout is described here; the program was not examined.",
+          "obtain": "Free download from the S950FX SourceForge project (s950fx.com). Check the hash.",
+          "origin": "community",
+          "sha256": "6c34b7fd053f168c8c13289955d9855279089ccc5ba0f4c9fc76154b710e7151",
+          "size": 819200,
+          "source": "Computed on 2026-11-13 from S950FX-2026.10.20.img in the S950FX-2026.10.20 release."
         }
       ],
       "hardware_tables": {
@@ -2877,7 +3180,20 @@
       },
       "id": "s950",
       "name": "Akai S950",
-      "pins": {},
+      "pins": {
+        "s950-v1.0a": {
+          "count": 5,
+          "path": "machines/s950/pins/s950-v1.0a.csv"
+        },
+        "s950-v1.2a-variant": {
+          "count": 5,
+          "path": "machines/s950/pins/s950-v1.2a-variant.csv"
+        },
+        "s950-v1.2b": {
+          "count": 3,
+          "path": "machines/s950/pins/s950-v1.2b.csv"
+        }
+      },
       "questions": [
         {
           "area": "hardware",
@@ -2896,7 +3212,7 @@
         }
       ],
       "released": "1988",
-      "summary": "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published.",
+      "summary": "Hardware from MAME and Akai's service manual parts lists; ROM 1.0a and 1.2b whole-image hashes checked against dumps, and a second, different '1.2a' set found. Booting a replacement OS from floppy or SCSI is documented (S950FX). Nothing about the OS code is published.",
       "symbols": {}
     }
   ],

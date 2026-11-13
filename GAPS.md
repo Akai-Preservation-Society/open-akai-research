@@ -198,10 +198,23 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 |---|---|---|---|
 | high | hardware | [Akai S900: the first things to establish](machines/s900/questions/first-steps.md) | document, firmware-image, analysis |
 
+### Findings never run on real hardware
+
+- [Booting the S900 from floppy, and the layout of S900 boot disks](machines/s900/findings/boot-disks.md) (documented)
+- [S900 hardware from Akai's service manual addendum and owner's manual](machines/s900/findings/hardware-overview.md) (documented)
+- [S900 OS EPROM images - identity, reset code, and the 1.2b set](machines/s900/findings/rom-images.md) (static)
+
+### Findings that contain unproven claims
+
+Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding.
+
+- [Booting the S900 from floppy, and the layout of S900 boot disks](machines/s900/findings/boot-disks.md): 3
+- [S900 hardware from Akai's service manual addendum and owner's manual](machines/s900/findings/hardware-overview.md): 1
+- [S900 OS EPROM images - identity, reset code, and the 1.2b set](machines/s900/findings/rom-images.md): 2
+
 ### Firmware images without a complete SHA-256
 
 - `s900-v1.2c`: OS 1.2c (EPROM pair)
-- `s900-v1.2a`: OS 1.2a (EPROM pair)
 
 ## Akai S950
 
@@ -211,8 +224,20 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 |---|---|---|---|
 | high | hardware | [Akai S950: the first things to establish](machines/s950/questions/first-steps.md) | document, firmware-image, analysis |
 
+### Findings never run on real hardware
+
+- [Booting the S950 from floppy or SCSI, and the disk layout boot disks use](machines/s950/findings/boot-disks.md) (documented)
+- [S950 hardware from Akai's service manual and owner's manual](machines/s950/findings/hardware-overview.md) (documented)
+- [S950 OS EPROM images - identity, reset vector, and the two different "1.2a" sets](machines/s950/findings/rom-images.md) (static)
+
+### Findings that contain unproven claims
+
+Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding.
+
+- [Booting the S950 from floppy or SCSI, and the disk layout boot disks use](machines/s950/findings/boot-disks.md): 2
+- [S950 hardware from Akai's service manual and owner's manual](machines/s950/findings/hardware-overview.md): 1
+- [S950 OS EPROM images - identity, reset vector, and the two different "1.2a" sets](machines/s950/findings/rom-images.md): 2
+
 ### Firmware images without a complete SHA-256
 
 - `s950-v1.2a`: OS 1.2a (EPROM pair)
-- `s950-v1.0a`: OS 1.0a (EPROM pair)
-- `s950-v1.2b`: OS 1.2b (EPROM pair, SCSI-equipped units)

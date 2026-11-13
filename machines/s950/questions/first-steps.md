@@ -13,7 +13,7 @@ summary: Only documented hardware facts are recorded for this machine. This list
 
 ## What is unknown
 
-Progress so far: Items 1 to 3 are partly answered from MAME's driver source (`documented`, not checked against a machine), including the RAM banking scheme. Still unknown: whole-image SHA-256 hashes, the reset and boot path, and whether and how an OS or program can be loaded from floppy.
+Progress so far: Item 1 is answered from Akai's service manual parts lists and MAME ([hardware-overview](../findings/hardware-overview.md)). Item 2: 1.0a and 1.2b are hashed against dumps, and two different "1.2a" sets exist ([rom-images](../findings/rom-images.md)). Item 5: the ROM loads a boot disk into RAM from floppy or SCSI ([boot-disks](../findings/boot-disks.md)), but how it loads and starts the files is not traced. Still unknown: the address model beyond MAME's map, the reset and boot path in the ROM, and the boot-file format.
 
 In the order it is needed:
 

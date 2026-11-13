@@ -1,0 +1,5 @@
+file_offset,length,sha256,label,finding
+0x07FF0,10,337629ae4564a17d421f29218a109cf650013d453b419f3f143067f61c42200f,"reset code: MOV AX,F800h / MOV DS,AX / JMP FAR FFF8:0000",s900.rom-images
+0x07DA0,30,9ebc6fc3551604b3807f1598e3c2cc9aea1874e1195eb414e3232194af5e6b1a,"version string AKAI S900 VERSION 1,2",s900.rom-images
+0x01404,1,dabd3aff769f07eb2965401eb029974ebba3407afd02b26ddb564ea5f8efae72,byte that differs between 1.2a and 1.2b,s900.rom-images
+0x02D05,1,454349e422f05297191ead13e21d3db520e5abef52055e4964b82fb213f593a1,byte that differs between 1.2a and 1.2b,s900.rom-images

@@ -1,6 +1,5 @@
 # Firmware registry. Identifies images; never contains them.
-# Hashes are copied from MAME's ROM set and have not been checked against
-# a dump here. Linear image = LS even bytes, MS odd bytes, as MAME loads them. No-image layout is defined yet for this machine.
+# Hashes come from MAME's ROM set; where a dump was checked, the image says so. Linear image = LS even bytes, MS odd bytes, as MAME loads them. No-image layout is defined yet for this machine.
 
 [[image]]
 id = "s900-v1.2c"
@@ -29,17 +28,72 @@ label = "OS 1.2a (EPROM pair)"
 origin = "manufacturer"
 kind = "eprom-set"
 obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "The chip files published on s900fx.com (Akai-S900-ROM-V1.2A.zip) equal MAME's set byte for byte. See findings/rom-images.md."
 size = 32768
-source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+crc32 = "be2de780"
+sha1 = "6514bd96e1c584e853034bfa480c9a2371aad842"
+sha256 = "78a0619a46a67bef41b49b95de1e52100d67b88554dd24e4b413238a2b09bec2"
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); whole-image and chip SHA-256 computed on 2026-11-13 from the s900fx.com files, which match MAME."
 
 [[image.part]]
 role = "ls-even"
 size = 16384
 crc32 = "1077a91a"
 sha1 = "0cb91474300f3dc090375e33ca73dd4d7a438f88"
+sha256 = "c140cac742c885b4ef3c31536caefa4edfa9127c9319bc4ece16012ebe60c92e"
 
 [[image.part]]
 role = "ms-odd"
 size = 16384
 crc32 = "558e402d"
 sha1 = "6dce63a2216c4d4b015e0abf9b9ea492e776b201"
+sha256 = "19f15e7a41374167629826bd59f6c6a0a4367f8ee3ff35c4054ed1e03f83f0a0"
+
+[[image]]
+id = "s900-v1.2b"
+label = "OS 1.2b (EPROM pair, as published on s900fx.com)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "Not in MAME. Its LS chip is identical to MAME's 1.2c LS chip; its MS chip matches neither MAME set. Linear image differs from s900-v1.2a in two bytes (0x1404 and 0x2D05). Both carry the string 'AKAI S900 VERSION 1,2'. Relation to MAME's 1.2c is open: see findings/rom-images.md."
+size = 32768
+crc32 = "55ead203"
+sha1 = "df45150202d891b0efdd844198b0cf9ef7e4b6a0"
+sha256 = "d5d4379cbc44c603846c12c08b7bc13c1c1df991b61796c49f3113619038d01f"
+source = "Computed on 2026-11-13 from Akai-S900-ROM-V1.2B.zip on s900fx.com (files Akai-S900-V1.2B-L-IC12.BIN, Akai-S900-V1.2B-M-IC11.BIN)."
+
+[[image.part]]
+role = "ls-even"
+size = 16384
+crc32 = "d0925ed4"
+sha1 = "6c07a9baf4dfe59de5362e1f44e9a28e08c1b765"
+sha256 = "00632242b363b2f227ccd531399bc883ee59c5fd73cc9cac8186ab0a57206741"
+
+[[image.part]]
+role = "ms-odd"
+size = 16384
+crc32 = "6dbfd383"
+sha1 = "dc380615136f06bbbc66d5d09e19a23025a26d99"
+sha256 = "598a5a1705d4a45c785d5bbeff028a606f492c302edc8ee0828bdd23102d32fe"
+
+[[image]]
+id = "s900-os4.0-disk"
+label = "OS 4.0 boot floppy (800 KB raw image)"
+origin = "community"
+kind = "floppy-image"
+obtain = "Distributed as a disk image (s2kdie, s900fx.com). Check the hash."
+notes = "Origin disputed (described on forums as the S950 OS adapted for the S900); 'community' is used because no Akai release of it is documented. Holds two files: FIXUPS (type F, 140 bytes, block 4) and 'S900 4.0' (type F, 45,131 bytes, from block 5). See findings/boot-disks.md."
+size = 819200
+sha256 = "df9ce8389ff30e3298b821229c2435d791b747adf9868c4d74ab92c6f4a8568b"
+source = "Computed on 2026-11-13 from S900-OS4.img in Akai-S900-OS4.zip on s900fx.com."
+
+[[image]]
+id = "s900-fx-2026.10.16-disk"
+label = "S900FX 2026.10.16 boot floppy (800 KB raw image)"
+origin = "community"
+kind = "floppy-image"
+obtain = "Free download from the S900FX SourceForge project (s900fx.com). Check the hash."
+notes = "Mike Feedback's real-time processing OS. Files: FIXUPS (type F, 140 bytes, block 4), S900FX (type F, 29,601 bytes, block 5), CONFIG (type C, 1,000 bytes, block 34), S900COPY (type F, 53,052 bytes, block 35). Only the disk layout is described here; the program was not examined."
+size = 819200
+sha256 = "f1788b8f79a6fd3138a6e189b9a3c53b83562590b9d5c243a3c258f27538ae73"
+source = "Computed on 2026-11-13 from S900FX-2026.10.16.img in the S900FX-2026.10.16 release."

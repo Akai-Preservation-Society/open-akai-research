@@ -2,9 +2,8 @@
 
 Seed coverage: hardware facts, a memory map, an I/O port map and the hashes of the ROM images MAME knows (OS 1.2a and 1.2c), all taken from MAME's driver source. The S900 boots later OS versions from floppy, so a disk-loaded route for your own code probably exists, but it has not been studied.
 
-**No finding has been published for this machine.** Every fact here is
-`documented` or `hypothesis`; none has been checked on hardware or in a
-working emulator. Nothing recorded for another machine may be assumed to
+Findings: [hardware-overview](findings/hardware-overview.md) (Akai's documents), [rom-images](findings/rom-images.md) (which chip set you have) and [boot-disks](findings/boot-disks.md) (loading an OS from floppy). Nothing has been checked on hardware or in a
+working emulator here. Nothing recorded for another machine may be assumed to
 hold for this one, even where the two share a CPU or a file format.
 
 ## What is here

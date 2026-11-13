@@ -23,9 +23,9 @@ for what is missing. In brief:
 | [Akai MPC2000XL](machines/mpc2000xl/README.md) | OS 1.20 image and flash update, recovery, addressing, panel and LED protocols, MIDI output, calling conventions, SND/PGM layouts, and a tested route for patching and flashing the OS. Sample engine and sequencer are undocumented. |
 | [Akai MPC2000](machines/mpc2000/README.md) | OS 1.72 identified by hash; address model, OS services, in-RAM program and sequence layouts and disk services, from a published mod source checked against the bytes. Hardware and boot path undocumented; nothing hardware-tested. |
 | [Akai MPC60](machines/mpc60/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
-| [Akai S950](machines/s950/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
+| [Akai S950](machines/s950/README.md) | Hardware from MAME and Akai's service manual, ROM hashes checked against dumps (two different "1.2a" sets), and how the ROM boots a replacement OS from floppy or SCSI. No OS code research yet. |
 | [Akai S3200](machines/s3200/README.md) | The OS 2.00 EPROM pair labelled for the S3000 and S3200 (MAME's `s3000` set): image layout, reset and RAM relocation, segments, memory use, OS load and save from floppy and hard disk, disk layouts and peripheral set-up, mostly `static`. Not hardware-tested. Whether an S3200 runs this image or an XL-board OS is open. |
-| [Akai S900](machines/s900/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
+| [Akai S900](machines/s900/README.md) | Hardware from MAME and Akai's CPU-board addendum, ROM hashes checked against dumps, the OS 4.0 disk, and how the ROM boots a replacement OS from floppy. No OS code research yet. |
 
 For manuals, emulators, tools and free mods that live elsewhere, see
 [docs/external-resources.md](docs/external-resources.md).

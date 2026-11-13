@@ -1,6 +1,5 @@
 # Firmware registry. Identifies images; never contains them.
-# Hashes are copied from MAME's ROM set and have not been checked against
-# a dump here. Linear image = LS even bytes, MS odd bytes, as MAME loads them. No-image layout is defined yet for this machine.
+# Hashes come from MAME's ROM set; where a dump was checked, the image says so. Linear image = LS even bytes, MS odd bytes, as MAME loads them. No-image layout is defined yet for this machine.
 
 [[image]]
 id = "s950-v1.2a"
@@ -8,6 +7,7 @@ label = "OS 1.2a (EPROM pair)"
 origin = "manufacturer"
 kind = "eprom-set"
 obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "The s950fx.com 1.2A files have this LS chip but a different MS chip: see s950-v1.2a-variant."
 size = 65536
 source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
 
@@ -16,6 +16,7 @@ role = "ls-even"
 size = 32768
 crc32 = "21af5435"
 sha1 = "df0f6bcadadb28af1ca72562b3cea91a67d2b221"
+sha256 = "13a1fe5f3773a380731a78bd2f49c656e1acb6634484c03e24aa2a4b286ef4bf"
 
 [[image.part]]
 role = "ms-odd"
@@ -29,20 +30,26 @@ label = "OS 1.0a (EPROM pair)"
 origin = "manufacturer"
 kind = "eprom-set"
 obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "The chip files published on s950fx.com equal MAME's set byte for byte."
 size = 65536
-source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+crc32 = "236dd410"
+sha1 = "413570af31061b1e20ad04d8c141f6249174633b"
+sha256 = "068205e03a3e2a9919c62c3f61e2ba46ac0e52267a1ff052b3407ad57a51fbe1"
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); whole-image and chip SHA-256 computed on 2026-11-13 from the s950fx.com files, which match MAME."
 
 [[image.part]]
 role = "ls-even"
 size = 32768
 crc32 = "9745b78a"
 sha1 = "b43aeaf2a08728a1a8c832a205de10c9372e8cc1"
+sha256 = "cf9ef3efa64b29f08f97fb3dc0336d95bc90498f8b884f966d28118b3071ce1b"
 
 [[image.part]]
 role = "ms-odd"
 size = 32768
 crc32 = "81dc95cb"
 sha1 = "2ef684e1211cfb0f9c8721f618c7944da2758dea"
+sha256 = "59ce743708395b9a7202753318c7b631830756b3d5aab614467faa50564d0ea7"
 
 [[image]]
 id = "s950-v1.2b"
@@ -50,18 +57,61 @@ label = "OS 1.2b (EPROM pair, SCSI-equipped units)"
 origin = "manufacturer"
 kind = "eprom-set"
 obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
-notes = "MAME uses this set for the S950 with SCSI."
+notes = "MAME uses this set for the S950 with SCSI. The chip files published on s950fx.com equal MAME's set byte for byte."
 size = 65536
-source = "MAME ROM set (CRC32 and SHA-1 of each chip); no whole-image SHA-256 recorded yet."
+crc32 = "3b1fddec"
+sha1 = "50a03a8846cd46dea7b5b7fd0d597354f4a260ec"
+sha256 = "2eaf5dd347abbbe5ba4d556ebfbf3723983e25a6132ca8f6130db7a2bf690b4e"
+source = "MAME ROM set (CRC32 and SHA-1 of each chip); whole-image and chip SHA-256 computed on 2026-11-13 from the s950fx.com files, which match MAME."
 
 [[image.part]]
 role = "ls-even"
 size = 32768
 crc32 = "01e0c3ad"
 sha1 = "a374289a6110d97ac0871bdfbe8defe0036dc928"
+sha256 = "8290cd27a239c532b42d9455c4e20a1b4cf0c7cb910fef047452960999d29a81"
 
 [[image.part]]
 role = "ms-odd"
 size = 32768
 crc32 = "5b5d25cf"
 sha1 = "05d9c4c21ed60c289ea6ec23308c6454b43b200e"
+sha256 = "b795bbc222d109978b4e7c5b15e70215bab6c9e9c909f42524470379cb9b5805"
+
+[[image]]
+id = "s950-v1.2a-variant"
+label = "OS 1.2 EPROM pair published on s950fx.com as V1.2A (MS chip differs from MAME's 1.2a)"
+origin = "manufacturer"
+kind = "eprom-set"
+obtain = "Read the EPROMs of a machine you own with an EPROM programmer."
+notes = "LS chip equals MAME's 1.2a LS chip; MS chip (crc32 2d96a2fb) does not match MAME's (e14ceba2). The linear image is s950-v1.0a with 23 bytes changed (version digit 0 -> 2 at 0x2BDD and 0x9FC0, a 14-byte routine at 0x004A-0x0057 in zero space, a patched sequence at 0x8693-0x8698, one byte at 0x3A0D). Which set Akai shipped as 1.2a is open: see findings/rom-images.md."
+size = 65536
+crc32 = "a237fff4"
+sha1 = "c3af671aceb97fabbb61779c64b53b512951b3f7"
+sha256 = "c69e8107a9e608d5921eaea30e88447aff64e5455c6707a8b9b9a58e2d07e5fc"
+source = "Computed on 2026-11-13 from Akai-S950-ROM-V1.2A.zip on s950fx.com (S950-V1.2A-L.BIN, S950-V1.2A-M.BIN)."
+
+[[image.part]]
+role = "ls-even"
+size = 32768
+crc32 = "21af5435"
+sha1 = "df0f6bcadadb28af1ca72562b3cea91a67d2b221"
+sha256 = "13a1fe5f3773a380731a78bd2f49c656e1acb6634484c03e24aa2a4b286ef4bf"
+
+[[image.part]]
+role = "ms-odd"
+size = 32768
+crc32 = "2d96a2fb"
+sha1 = "a9d810d73e95508fae92c21cfc38b6101cbf5e18"
+sha256 = "049987ce8c87417b9c57e9cd57639ae44c202da8d97ff71191d12300d09756d5"
+
+[[image]]
+id = "s950-fx-2026.10.20-disk"
+label = "S950FX 2026.10.20 boot floppy (800 KB raw image)"
+origin = "community"
+kind = "floppy-image"
+obtain = "Free download from the S950FX SourceForge project (s950fx.com). Check the hash."
+notes = "Mike Feedback's real-time processing OS. Files: S950FX (type M, block 4), CONFIG (type C, 1,000 bytes, block 68), S950COPY (type M, block 69). The 1.6 MB HD image of the same release has sha256 810215c3fe0d0936bfa26ed83745af0a5184942e56a47655425305508a54b8aa. Only the disk layout is described here; the program was not examined."
+size = 819200
+sha256 = "6c34b7fd053f168c8c13289955d9855279089ccc5ba0f4c9fc76154b710e7151"
+source = "Computed on 2026-11-13 from S950FX-2026.10.20.img in the S950FX-2026.10.20 release."

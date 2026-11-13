@@ -1,0 +1,6 @@
+file_offset,length,sha256,label,finding
+0x0FFF0,5,824f7c8a135237ee1a88f47a61b164e18d1984fb36705d57e4f63e14bebe3021,reset vector JMP FAR F000:FF80,s950.rom-images
+0x02BCA,20,ad9c06097f31d13a6230e6993e17bf393a71def8067c3c7adfdfa805111b3461,model and version string MS950  1.x,s950.rom-images
+0x09FB4,18,b79c64934e887f9b86898aaee815995ee9cf57a5bf5db7ca1ac6bce5a3453160,boot banner AKAI S950 1.x,s950.rom-images
+0x0004A,14,d3c63d8bcf34e38ee18ed13cdc756a75d35bbd0e528c6a75cc71cd5298c7e87e,"0x004A-0x0057 (zero in 1.0a, code in the 1.2a variant)",s950.rom-images
+0x08693,6,2a9aee1c79c9969f6cc69a4250b1d6c3abffed24425e71b8d617e408a6aa1589,0x8693-0x8698 (differs between 1.0a and the 1.2a variant),s950.rom-images
