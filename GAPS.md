@@ -11,6 +11,21 @@ What this repository does not know. Read this before promising a user that somet
 | Priority | Area | Question | Needs |
 |---|---|---|---|
 | high | hardware | [Akai MPC2000: the first things to establish](machines/mpc2000/questions/first-steps.md) | document, firmware-image, analysis |
+| high | boot | [How OS 1.72 is loaded and where it runs](machines/mpc2000/questions/os-load-path.md) | analysis, document, hardware |
+
+### Findings never run on real hardware
+
+- [Disk services in OS 1.72 (INT 2Ch, INT 2Dh, the F000 workspace, 16-character names)](machines/mpc2000/findings/filesystem.md) (documented)
+- [OS 1.72 is two MZ files, and how a runtime address maps to a file offset](machines/mpc2000/findings/os-files.md) (static)
+- [OS 1.72 services used by added code (software interrupts, screen, voice and editor routines)](machines/mpc2000/findings/os-services.md) (documented)
+- [Programs, note records, sequences, voices and the pitch table in OS 1.72 RAM](machines/mpc2000/findings/program-and-voice-data.md) (static)
+
+### Findings that contain unproven claims
+
+Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding.
+
+- [OS 1.72 is two MZ files, and how a runtime address maps to a file offset](machines/mpc2000/findings/os-files.md): 2
+- [OS 1.72 services used by added code (software interrupts, screen, voice and editor routines)](machines/mpc2000/findings/os-services.md): 1
 
 ### Machine facts that are not established
 
@@ -30,6 +45,10 @@ What this repository does not know. Read this before promising a user that somet
 | medium | cpu | [Clock and timing on real hardware](machines/mpc2000xl/questions/tick-and-clock.md) | hardware |
 | low | panel | [Commands from the main CPU to the panel](machines/mpc2000xl/questions/panel-commands.md) | analysis, hardware |
 | low | memory | [The PGR5 gap at cold boot](machines/mpc2000xl/questions/pgr5-gap.md) | analysis, hardware |
+
+### Findings never run on real hardware
+
+- [OS 1.20 routines, software interrupts and RAM structures used by the vubeatz mods](machines/mpc2000xl/findings/os-services-from-mods.md) (documented)
 
 ### Findings that contain unproven claims
 

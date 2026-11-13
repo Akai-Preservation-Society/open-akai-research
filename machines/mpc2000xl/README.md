@@ -15,6 +15,7 @@ Entry point for the MPC2000XL (1999). One-line facts are in
 | Drive the 13 panel LEDs | Every port confirmed on hardware | [findings/panel-protocol.md](findings/panel-protocol.md) |
 | Send MIDI from added code | Works on hardware (OUT B) | [findings/midi-output.md](findings/midi-output.md) |
 | Draw text and soft keys | Inline OS services; a pop-up has run on hardware | [findings/abi-and-hooks.md](findings/abi-and-hooks.md) |
+| Call screen, editor, voice and DSP routines; read programs and sounds in RAM | Entry points checked; arguments from a mod source, untested here | [findings/os-services-from-mods.md](findings/os-services-from-mods.md) |
 | Read or write .SND files on a computer | Layout complete, checked against machine-written files | [findings/file-formats.md](findings/file-formats.md) |
 
 ## What you cannot do yet from this repository
@@ -35,7 +36,7 @@ The full list is in [../../GAPS.md](../../GAPS.md).
 3. [findings/address-model.md](findings/address-model.md): **required** before using any address. Different from the MPC3000's.
 4. [findings/disassembler-pitfalls.md](findings/disassembler-pitfalls.md) and [findings/abi-and-hooks.md](findings/abi-and-hooks.md): **required** before writing code.
 5. [findings/code-space.md](findings/code-space.md), then [findings/build-a-patch.md](findings/build-a-patch.md).
-6. As needed: [findings/boot-and-panel-handshake.md](findings/boot-and-panel-handshake.md), [findings/panel-protocol.md](findings/panel-protocol.md), [findings/midi-output.md](findings/midi-output.md), [findings/file-formats.md](findings/file-formats.md).
+6. As needed: [findings/os-services-from-mods.md](findings/os-services-from-mods.md), [findings/boot-and-panel-handshake.md](findings/boot-and-panel-handshake.md), [findings/panel-protocol.md](findings/panel-protocol.md), [findings/midi-output.md](findings/midi-output.md), [findings/file-formats.md](findings/file-formats.md).
 
 ## Firmware images
 

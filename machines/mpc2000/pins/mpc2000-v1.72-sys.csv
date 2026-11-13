@@ -1,0 +1,31 @@
+file_offset,length,sha256,label,finding
+0x02810,16,c7aaafbf92dc46a3899a0ce84c1d4451d02c731871af3fcf3372b2144f77ce0a,sys_entry (3000:0010),mpc2000.os-files
+0x0281C,16,bf0f16ddc9f134ec7f7cfb4e211c114f75f35317e0f384b0f4d212ae442df2fb,div32 (3000:001C),mpc2000.os-services
+0x0460E,16,b47e672e9704968d5897b25836ff78cf5601ff2e486ecd3874da66eb2b789d45,draw_resource (3000:1E0E),mpc2000.os-services
+0x046DE,16,3018f0fe330aa7e0348823e53c18d76abbad8869a195f0ee4bc6fe628c237de5,register_events (3000:1EDE),mpc2000.os-services
+0x04740,16,6a1e65d2ce93ce7eb37d1bc1eb8c78eaa73c77adcf2ae2988ad8c82aaacf28b9,int35_note_dispatch (3000:1F40),mpc2000.os-services
+0x04D34,16,34541dcaef3145222fd235ad7bea5ac471aafbd08e3714527075781c5f736926,pool_alloc (3000:2534),mpc2000.os-services
+0x04DCA,16,8bc089f1da98211daa8701f6f9f93b8f2f8065a8a6aa619095f1c70d66d17d80,pool_release (3000:25CA),mpc2000.os-services
+0x051F8,16,fe648ca9dc2ebc08a7fc3676d66a16bd351dfa85396539a131dc5227a5787da7,note_on (3000:29F8),mpc2000.os-services
+0x07C78,16,280447308d427fcd8a966384f733cb74c0195693c3de11f92aafa2d76b293aed,enter_assign (3000:5478),mpc2000.os-services
+0x08340,16,f0a6ed4b644a4e671f88a47de714c0e325930e0b63428c61d466815badc1d495,enter_params (3000:5B40),mpc2000.os-services
+0x0E1A0,16,66a455966bd5a4f4f2d7a430e17c166d01a86244b94825c1ab005e0018705631,draw_unsigned (3B7C:01E0),mpc2000.os-services
+0x0E1D8,16,cab27ecded9e9d996b63559edb8235c0d1d655dab00e826839c0c4e9fe0d5daa,draw_signed (3B7C:0218),mpc2000.os-services
+0x0E5F8,16,ff07c942b38bea31854b229e5feb22a9f2653bbc8a99ff602b1b939b23a81217,sys_init_last (3B7C:0638),mpc2000.os-services
+0x0EFF6,16,bcd5de2251c1cdaae9313d49719d3db6ef6e531f00b929e3b703217a92dca2c7,pcm_dma_copy (3B7C:1036),mpc2000.os-services
+0x0F19A,16,9ce627dbe5cd82311c90b805d8b92159a7ae53f2c335cd5d1c5761c08b76d359,pcm_zero (3B7C:11DA),mpc2000.os-services
+0x0FEFC,16,bcef9abffb95ad75c7d40ee165df4f0c12486762d146ecffd2537007dfd01242,note_off (3B7C:1F3C),mpc2000.os-services
+0x1055A,16,809231e714889fadc012b79be88339286b0969dd7c4ee9c5ca1c77cd317edffb,voice_overlap_stop (3B7C:259A),mpc2000.os-services
+0x1079E,16,0591a9d0191d5558b41753ee784111fec36595ecf70fefe76824717988c5d9da,voice_stop_now (3B7C:27DE),mpc2000.os-services
+0x107D0,16,3b3029682f54cadebb47a06410840a8dad79422aa3dd57b83fcc65d26ace2906,voice_stop (3B7C:2810),mpc2000.os-services
+0x10D6E,16,ff3529a31315e90caca232272ab6daefdc9b5a1c5e1a5348b5d78cd1ff999987,editor_disable (3B7C:2DAE),mpc2000.os-services
+0x10DB0,8,2a1ed461985221ba7b4833a21141bb241fa30627d818b3e872d023bea2f429ec,editor_draw (3B7C:2DF0),mpc2000.os-services
+0x10E22,16,19417ba92a99e4cb7ce8343fb25bd0f91d7e5a3f99b87d78d6249442d4c54702,editor_commit_value32 (3B7C:2E62),mpc2000.os-services
+0x1133C,16,aa5b763ec048becba16a480a6d243e97473d1a9403db966fb389d765567950b9,edit_signed_byte (3B7C:337C),mpc2000.os-services
+0x1137A,16,1854cc518aeb2f99201398ea24b9d56201ebdd3138b225def4fdadb78f8911a3,text_editor_commit (3B7C:33BA),mpc2000.os-services
+0x13868,16,2a5be93859778e7cc0f05bfa0371de642b406b7e6255c81383bb0a99d43b20e1,select_program (3B7C:58A8),mpc2000.os-services
+0x14284,16,e967b3d4c92abf0cb818d157c4996e7a0f11c8898667478565eecd6578499e69,audition_stop (3B7C:62C4),mpc2000.os-services
+0x1623E,16,dc13ff8cd4f63bf5530d92f576153a06302d3607545be5f2b3a84d4c071d7c85,trim_minmax (3B7C:827E),mpc2000.os-services
+0x1BF18,962,de7db3c95ccaa10b0d9203b4ef66c3f2eaae192e8e46adf96eeb641aa500fda9,pitch_ratio_table (491A:0578),mpc2000.program-and-voice-data
+0x00000,28,cfcf7f242f919e4f5923eda60cc1989ccb146838d5f13c87ec274b641db76ff2,MZ header fields,mpc2000.os-files
+0x20B1D,4,1203a188641dbd6fde35d5eec4b4629afcbf5d67e7c5c17d5792a21320fd6f6a,version text 1.72 at the end of the file,mpc2000.os-files

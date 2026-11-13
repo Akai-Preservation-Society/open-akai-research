@@ -1,0 +1,32 @@
+name,kind,address,file_offset,size,status,finding,notes
+retf_gate_main,code,0000:046B,0x0126B,1,static,mpc2000.os-files,A lone RETF used to enter near routines from other segments
+retf_gate_main_2,code,0000:0626,0x01426,1,static,mpc2000.os-files,RETF
+after_down_handler,code,0000:09A4,0x017A4,,documented,mpc2000.os-services,Default AFTER key-down callback
+noop_callback,code,0000:0EC0,0x01CC0,1,static,mpc2000.os-services,RET; the default empty callback
+int2a_handler,code,0000:0EF7,0x01CF7,,documented,mpc2000.os-services,Original INT 2Ah handler: fatal error back to the main screen
+arena_segment_use,code,0000:3752,0x04552,,static,mpc2000.program-and-voice-data,"SUB AX,5A00h: one of four places that name the program arena segment"
+note_to_record,code,0000:A610,0x0B410,,static,mpc2000.program-and-voice-data,(note - 35) x 29: note number to note record
+fader_handler,code,0000:A82A,0x0B62A,,documented,mpc2000.os-services,Default NOTE VARIATION slider callback
+load_page_softkeys,code,0000:E1B5,0x0EFB5,,documented,mpc2000.os-services,LOAD page soft-key set-up (INT 6Bh table)
+load_filetype_filter,code,0000:E3E7,0x0F1E7,,documented,mpc2000.filesystem,Reads the type filter [78C0]
+file_list_draw,code,0000:E49A,0x0F29A,,documented,mpc2000.filesystem,FILE LIST draw
+load_do_it,code,0000:E98F,0x0F78F,,static,mpc2000.filesystem,LOAD DO IT: INT 2Ch BL=11h on drive [78A8]
+retf_gate_aux,code,0FE8:0359,0x10FD9,1,static,mpc2000.os-files,RETF
+int2f_bridge,code,0FE8:0490,0x11110,,documented,mpc2000.os-services,INT 2Fh handler
+int2c_handler,code,0FE8:06BE,0x1133E,,documented,mpc2000.filesystem,Original INT 2Ch filesystem service handler
+floppy_write_result,code,0FE8:1A17,0x12697,,static,mpc2000.filesystem,Tests F000:F8F4 bits 6-7 after a floppy write
+midi_route_send,code,0FE8:5A94,0x16714,,documented,mpc2000.os-services,Sends to external MIDI
+pad_audition,code,0FE8:5DA6,0x16A26,,documented,mpc2000.os-services,Audition
+build_empty_programs,code,0FE8:97E6,0x1A466,,documented,mpc2000.program-and-voice-data,Far: writes 24 empty program records and the sequence terminator into the arena
+program_arena_init,code,0FE8:982E,0x1A4AE,,static,mpc2000.program-and-voice-data,"MOV AX,5A00h; MOV ES,AX"
+empty_program_template,data,1F31:2061,0x22171,32,static,mpc2000.program-and-voice-data,"Word 2, '(Unused)' padded, '.PRG'"
+ui_redraw_request,ram,1F31:0B12,,1,documented,mpc2000.os-services,
+ui_sequence_index,ram,1F31:0B20,,1,documented,mpc2000.program-and-voice-data,0-based
+ui_selected_track,ram,1F31:0B21,,1,documented,mpc2000.program-and-voice-data,
+softkey_callbacks,ram,1F31:0D84,,24,documented,mpc2000.os-services,F1-F6 far pointers
+current_sequence_segment,ram,1F31:1D0A,,2,documented,mpc2000.program-and-voice-data,
+current_drive,ram,1F31:78A8,,1,documented,mpc2000.filesystem,INT 2Ch BH value
+file_type_filter,ram,1F31:78C0,,1,documented,mpc2000.filesystem,
+file_list_row,ram,1F31:78C1,,1,documented,mpc2000.filesystem,Highlighted row 0-4
+file_list_name,ram,1F31:78C9,,20,documented,mpc2000.filesystem,16 + '.' + 3
+lcd_planes,ram,1F31:DD90,,5760,documented,mpc2000.os-services,"3 x 1920-byte bitplanes, 32 bytes per row"

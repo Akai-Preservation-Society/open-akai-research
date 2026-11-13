@@ -21,7 +21,7 @@ for what is missing. In brief:
 |---|---|
 | [Akai MPC3000](machines/mpc3000/README.md) | Hardware, addressing, boot path, BIOS services, a tested route for running your own program from floppy, and a map of OS 3.16 with a tested method for extending it. Sequencer, sampling and MIDI internals are mostly undocumented. |
 | [Akai MPC2000XL](machines/mpc2000xl/README.md) | OS 1.20 image and flash update, recovery, addressing, panel and LED protocols, MIDI output, calling conventions, SND/PGM layouts, and a tested route for patching and flashing the OS. Sample engine and sequencer are undocumented. |
-| [Akai MPC2000](machines/mpc2000/README.md) | OS distribution format and final version only. |
+| [Akai MPC2000](machines/mpc2000/README.md) | OS 1.72 identified by hash; address model, OS services, in-RAM program and sequence layouts and disk services, from a published mod source checked against the bytes. Hardware and boot path undocumented; nothing hardware-tested. |
 | [Akai MPC60](machines/mpc60/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
 | [Akai S950](machines/s950/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |
 | [Akai S900](machines/s900/README.md) | Hardware, memory and I/O maps and ROM hashes from MAME's driver source (documented, unverified). No OS research yet. |

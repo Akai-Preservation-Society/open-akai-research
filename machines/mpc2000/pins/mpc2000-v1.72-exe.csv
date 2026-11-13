@@ -1,0 +1,24 @@
+file_offset,length,sha256,label,finding
+0x0126B,1,383e5d7d58caa41ce723cf16af471b38f6ee9065c032d07fa6bef1678cb72f1d,retf_gate_main (0000:046B),mpc2000.os-files
+0x01426,1,383e5d7d58caa41ce723cf16af471b38f6ee9065c032d07fa6bef1678cb72f1d,retf_gate_main_2 (0000:0626),mpc2000.os-files
+0x017A4,16,978c66dec81c90a362df494bef8f698f7576fa041d6e1e51d9210fb84b23285d,after_down_handler (0000:09A4),mpc2000.os-services
+0x01CC0,1,ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e,noop_callback (0000:0EC0),mpc2000.os-services
+0x01CF7,16,23cf0191ea3c1ffe570efcf6b58f84db4649870968fefeabe645026ffb187f28,int2a_handler (0000:0EF7),mpc2000.os-services
+0x04552,8,50e60e8a7ae32ad56dae450eedbb2317cd46b1a53d1f8db1e79975cf0db5d0ca,arena_segment_use (0000:3752),mpc2000.program-and-voice-data
+0x0B410,8,349f011f21632718db0257e231bf96ce01d803b834b8ab6280832da5fd78357a,note_to_record (0000:A610),mpc2000.program-and-voice-data
+0x0B62A,16,3f26877167b6a06fc6b98b299f3e4a97c654935d6c018ac1a214c1c8c80d5c9d,fader_handler (0000:A82A),mpc2000.os-services
+0x0EFB5,16,ede79355aeb10d2196752ab82c04f4008ba856de7a973bacbef7cd32d1745626,load_page_softkeys (0000:E1B5),mpc2000.os-services
+0x0F1E7,16,7dc771d7c54aa3851c8efe2de84e6f64de2b3e3a7155a34da92141a7679728be,load_filetype_filter (0000:E3E7),mpc2000.filesystem
+0x0F29A,16,c2cf36eb62a6317f8dfd3312f5a31f963b09c3924c8ca9a13ebfef2167865a6d,file_list_draw (0000:E49A),mpc2000.filesystem
+0x0F78F,10,86da7a9b0dff1a83bc15d696a9f5a3bef82d651ca66fa6558d602465f4a25fe6,load_do_it (0000:E98F),mpc2000.filesystem
+0x10FD9,1,383e5d7d58caa41ce723cf16af471b38f6ee9065c032d07fa6bef1678cb72f1d,retf_gate_aux (0FE8:0359),mpc2000.os-files
+0x11110,16,2200a288f7bb87d94e28da766b35717e8138071f30057a41f45f9119e3cd1b0a,int2f_bridge (0FE8:0490),mpc2000.os-services
+0x1133E,16,c57d91cbb7ec7f79f9d0eee15e3ab00e9fc701d2aa049f106c1aabc4373251f6,int2c_handler (0FE8:06BE),mpc2000.filesystem
+0x12697,10,6013b1e4f04bd1827baf7b925ae2b14b376aec9b24134d266134b02142623ea8,floppy_write_result (0FE8:1A17),mpc2000.filesystem
+0x16714,16,225ea32055e03af472a2abdbefcb5b3fc0097453be1844501e5654558d23732e,midi_route_send (0FE8:5A94),mpc2000.os-services
+0x16A26,16,9698e0bd784909776fbef03193aa7fb1ec3e0cb9154e94e8de3f390b84f087d2,pad_audition (0FE8:5DA6),mpc2000.os-services
+0x1A466,16,c9cf3b13e40e1be2dbc43b139f4c60698678f043db68bec100f3feecb209b2cf,build_empty_programs (0FE8:97E6),mpc2000.program-and-voice-data
+0x1A4AE,8,e80a0d0aed10261cea83248ebb4136b7426600262168fd4a4593bc72d35fb6ff,program_arena_init (0FE8:982E),mpc2000.program-and-voice-data
+0x22171,32,0f1b1842ea74bbc49144a8a49ac54072b361ae6751b0939fb9a2a696b2199da3,empty_program_template (1F31:2061),mpc2000.program-and-voice-data
+0x00000,28,dc13338c42437adfa4f326293798c67a63ae9d361570782ad121a5d34e0bd9d4,MZ header fields,mpc2000.os-files
+0x20B7D,42,1d07391ff22456c6e72db2f8c10f894548e0af139bff411d7e5cfd273a4b9588,"version text 'MPC2000 Ver 1.72' and build date 'May 14,1999'",mpc2000.os-files
