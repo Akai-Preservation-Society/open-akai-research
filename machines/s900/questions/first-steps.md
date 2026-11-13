@@ -13,7 +13,7 @@ summary: Only documented hardware facts are recorded for this machine. This list
 
 ## What is unknown
 
-Progress so far: Items 1 to 3 are partly answered from MAME's driver source (`documented`, not checked against a machine). Item 5 looks promising: OS 2.0 and 4.0 were distributed as boot floppies and MAME models a ROM-unmap bit, but the floppy boot format is undocumented. Still unknown: whole-image SHA-256 hashes, the reset and boot path, and the disk OS format.
+Progress so far: Item 1 is answered in outline from MAME and Akai's CPU-board addendum ([hardware-overview](../findings/hardware-overview.md)). Item 2: ROM 1.2a is hashed against a dump, a 1.2b set and the OS 4.0 disk are registered ([rom-images](../findings/rom-images.md)). Item 5: the ROM loads a boot floppy into RAM ([boot-disks](../findings/boot-disks.md)), but how it loads and starts the files is not traced. Still unknown: the address model beyond MAME's map, the reset and boot path in the ROM, and the boot-file format.
 
 In the order it is needed:
 

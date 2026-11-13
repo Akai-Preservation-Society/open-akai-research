@@ -3,7 +3,7 @@ name = "Akai S950"
 family = "s-series"
 released = "1988"
 coverage = "seed"
-summary = "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published."
+summary = "Hardware from MAME and Akai's service manual parts lists; ROM 1.0a and 1.2b whole-image hashes checked against dumps, and a second, different '1.2a' set found. Booting a replacement OS from floppy or SCSI is documented (S950FX). Nothing about the OS code is published."
 
 [[fact]]
 key = "main_cpu"
@@ -70,3 +70,27 @@ key = "ram_banking"
 value = "The CPU sees RAM through four 64 KiB windows (0x00000-0x3FFFF, mirrored at 0x40000) whose banks are set by writes to ports 0x01C0-0x01DF"
 status = "documented"
 source = "MAME src/mame/akai/s900.cpp at commit c2caa8969adb (2026-11-13); emulator source, driver flagged not working (bank_w)"
+
+[[fact]]
+key = "cpu_board_parts"
+value = "CPU PCB L6013A5010: uPD70116C-8, uPD71011C clock, 3x uPD71071C DMA, uPD71059C ICU, HD63B50P ACIA, uPD72066C FDC, SED9420CAC data separator, 2x MBM27C256 OS EPROMs (IC11/IC12), 7x MB81C4256 DRAM, 16 MHz crystal"
+status = "documented"
+source = "Akai S950 Service Manual, CPU P.C board parts list, p. 13; findings/hardware-overview.md"
+
+[[fact]]
+key = "memory"
+value = "750 KB internal, expandable to 2.25 MB with up to two EXM006 boards"
+status = "documented"
+source = "Akai S950 Service Manual p. 1; Operator's Manual, Overview"
+
+[[fact]]
+key = "sysex_id"
+value = "System Exclusive sent and received with manufacturer ID 47h"
+status = "documented"
+source = "Akai S950 Service Manual, MIDI implementation chart v1.0, p. 8"
+
+[[fact]]
+key = "user_code_entry"
+value = "The stock ROM (1.0a, 1.2a, 1.2b) loads a boot disk into RAM at power-on or from DISK page 02, from floppy (DD or HD) or a SCSI volume; S950FX uses this. No ROM change is needed"
+status = "documented"
+source = "S950FX README 2026.10.20; findings/boot-disks.md"

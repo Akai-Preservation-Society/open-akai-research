@@ -3,7 +3,7 @@ name = "Akai S900"
 family = "s-series"
 released = "1986"
 coverage = "seed"
-summary = "Hardware, memory map, I/O ports and known ROM images are recorded from MAME's driver source (documented, not verified here). Nothing about the OS code is published."
+summary = "Hardware from MAME and Akai's CPU-board addendum; ROM 1.2a whole-image hashes checked against a dump, and a 1.2b set and the OS 4.0 boot disk registered by hash. Booting a replacement OS from floppy is documented (S900FX, OS 4.0). Nothing about the OS code is published."
 
 [[fact]]
 key = "main_cpu"
@@ -76,3 +76,21 @@ key = "os_from_disk"
 value = "Later OS versions (2.0, 4.0) are distributed as boot floppies, so the machine loads an OS into RAM from disk"
 status = "documented"
 source = "wiw.org/~meta/s2k.php (S900 OS v4.0 disk image)"
+
+[[fact]]
+key = "cpu_board_parts"
+value = "uPD70116C, uPD71011C clock, uPD71051C serial unit, uPD71059C ICU, uPD71071C DMA, uPD7265C FDC, SED9420C data separator, HD6850P ACIA, 28x MN41256A DRAM, TMM27128 (16 KiB) and TMM2764 (8 KiB) EPROMs"
+status = "documented"
+source = "Akai S900 Service Manual (Additional), CPU PCB IC table; findings/hardware-overview.md"
+
+[[fact]]
+key = "memory"
+value = "750 KB internal memory; sampling 7.5-40 kHz"
+status = "documented"
+source = "Akai S900 Owner's Manual, Specifications"
+
+[[fact]]
+key = "user_code_entry"
+value = "The stock ROM 1.2 loads a DD boot floppy into RAM at power-on or from DISK page 01; the OS 4.0 disk and S900FX use this. No ROM change is needed"
+status = "documented"
+source = "S900FX README 2026.10.16; findings/boot-disks.md"

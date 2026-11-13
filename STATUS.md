@@ -11,8 +11,8 @@ How much is known about each machine, and how well it is established. Evidence c
 | [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 15 | 7 | 186 | 8 | 18 |
 | [Akai MPC60](machines/mpc60/README.md) | seed | 8 | 0 | 0 | 0 | 3 | 1 |
 | [Akai S3200](machines/s3200/README.md) | partial | 15 | 9 | 0 | 59 | 1 | 8 |
-| [Akai S900](machines/s900/README.md) | seed | 12 | 0 | 0 | 0 | 2 | 1 |
-| [Akai S950](machines/s950/README.md) | seed | 11 | 0 | 0 | 0 | 3 | 1 |
+| [Akai S900](machines/s900/README.md) | seed | 15 | 3 | 0 | 0 | 5 | 1 |
+| [Akai S950](machines/s950/README.md) | seed | 15 | 3 | 0 | 0 | 5 | 1 |
 
 ## Akai MPC2000
 
@@ -74,3 +74,19 @@ How much is known about each machine, and how well it is established. Evidence c
 | firmware | [The OS 2.00 EPROM pair, how to identify it, and why it has no ROM checksum](machines/s3200/findings/eprom-layout.md) | static | no | v2.00 | 2026-11-13 |
 | os | [Segments, code extents and indirect calls in OS 2.00](machines/s3200/findings/code-structure.md) | static | no | v2.00 | 2026-11-02 |
 | storage | [Floppy and hard-disk layouts as OS 2.00 reads and writes them](machines/s3200/findings/disk-formats.md) | static | no | v2.00 | 2026-11-02 |
+
+## Akai S900
+
+| Area | Finding | Evidence | Hardware tested | Firmware | Last verified |
+|---|---|---|---|---|---|
+| hardware | [S900 hardware from Akai's service manual addendum and owner's manual](machines/s900/findings/hardware-overview.md) | documented | no | hardware | 2026-11-13 |
+| firmware | [S900 OS EPROM images - identity, reset code, and the 1.2b set](machines/s900/findings/rom-images.md) | static | no | v1.2a, v1.2b, v1.2c | 2026-11-13 |
+| storage | [Booting the S900 from floppy, and the layout of S900 boot disks](machines/s900/findings/boot-disks.md) | documented | no | v1.2a, v1.2b, os4.0-disk, fx-2026.10.16-disk | 2026-11-13 |
+
+## Akai S950
+
+| Area | Finding | Evidence | Hardware tested | Firmware | Last verified |
+|---|---|---|---|---|---|
+| hardware | [S950 hardware from Akai's service manual and owner's manual](machines/s950/findings/hardware-overview.md) | documented | no | hardware | 2026-11-13 |
+| firmware | [S950 OS EPROM images - identity, reset vector, and the two different "1.2a" sets](machines/s950/findings/rom-images.md) | static | no | v1.0a, v1.2a, v1.2a-variant, v1.2b | 2026-11-13 |
+| storage | [Booting the S950 from floppy or SCSI, and the disk layout boot disks use](machines/s950/findings/boot-disks.md) | documented | no | v1.0a, v1.2a, v1.2b, fx-2026.10.20-disk | 2026-11-13 |
