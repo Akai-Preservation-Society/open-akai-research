@@ -1,0 +1,154 @@
+file_offset,length,sha256,label,finding
+0x00000,62,ca8cea1bb35fd086f4088fadbafda22ddc871d58b9a64183fdb4f0b0401b9ee1,MZ header (3K PLUS 1.0),mpc3000.3kplus-structure
+0x7792C,11,3f49381d27ca078052c71dcad7caf923f6d370a822949c1dc5b9eec3c5edeb47,'3K PLUS 1.0' string,mpc3000.3kplus-structure
+0x7A09B,71,2297ce9112d2a1bb3a45cf9880c069ac7e1bcfa25cfac94da299be48c0b323c4,cave entry: resident copy (51AEh words) and pool fix,mpc3000.3kplus-structure
+0x7A0E2,240,e179ee438e25e6a2b77c730c0b647c06f97488483b9d17cd6781cd53fae77b81,cave entry: move from L>6900h down to 6900h,mpc3000.3kplus-structure
+0x7A1D6,6,4a127534b6a74820610607ade8ab0611023fcaa62a7af86e828ff4b56d37c528,"mover parameters: paragraphs, entry count, minimum delta",mpc3000.3kplus-structure
+0x744F4,92,a101bea658284a9461c42b205d04efabfee9c82bf1ce0b6a22e42ea8a5ebce91,SCSI partition reader wrapper (private stack below the OS),mpc3000.3kplus-structure
+0x79F56,102,340b2c673d2fa5cb2264a89268d9af1764aee4bc39fa00cef041108ab2b40dfd,"MIDI Remote key bitmap update (cs:A34C, no upper bound)",mpc3000.3kplus-structure
+0x136B0,5,2677bd88ee99ca50264226f25b6f47d33cf1bc5ae42a8b55312cd2f48b350151,hook: lcd_put_char -> cave,mpc3000.3kplus-structure
+0x136D5,5,b9553578813f4156ada24af6853ef49c69b4cddaf10cc45f5eb9c721688606a9,hook: lcd_put_string -> cave,mpc3000.3kplus-structure
+0x2FFA2,5,09469beb8320f7c3b75fbd3f525c64f7422558a595bde43b242b48cf224f1412,hook: wave_transfer -> cave,mpc3000.3kplus-structure
+0x31D8F,5,57d36834ec6659e397c8d740714f217b79526a1d8a88396663a53b3d93642eb8,hook: sound_free -> cave 1AD2,mpc3000.3kplus-structure
+0x31F8D,5,c3cea71113ebf5e6823b0870547c52370cabccd528eb1f708101a4caaed62036,hook: sound_find -> cave,mpc3000.3kplus-structure
+0x328D0,5,bdc39bb56750328efeba8db390236193f76e3e7f44adc1c28d535c9857a697ae,hook: dsp_channel_stop -> cave,mpc3000.3kplus-structure
+0x3A417,5,bd76421de5e5534a6a7e8cf68d7fd95221bcfb957ffd5e4999d60075b7560657,hook: scsi_partition_reader -> cave 47B4,mpc3000.3kplus-structure
+0x41C99,5,fcd9d1e5f1b4ffdfba6149966d3ae06867dfd61abb157a73409a9b8393133d84,hook: midi_buffer_send -> cave,mpc3000.3kplus-structure
+0x28493,5,0c9afd4af08c31ae5d8e85d4f22d5f1fb96fa7feeab4e6733c37812d2cc0e9ad,hook: program_init (207C:02D3) -> cave 20FC,mpc3000.3kplus-structure
+0x2338D,5,1392980297798f75696fe0bab0a30a945a40931113929b75c119b44b9171333f,hook: program copy (19F9) -> cave 211D,mpc3000.3kplus-structure
+0x1B778,5,c3864fdb05840217934e49ad7adc2d0678320e8e3a3cae57e89c99002c1dfb5f,hook: PGM load file_close -> cave 2177,mpc3000.3kplus-lazy-chop
+0x1BB32,5,f53a75b25a5b295a92dc7ce926ad7b196cd975b33eb6ce6e6b6b02311fc809b1,hook: APS load file_close -> cave 21AE,mpc3000.3kplus-lazy-chop
+0x4655A,5,f4a23ae5257dca63944e7b36fc536142de23b9dde503b036bb7467e045d0732c,hook: PGM save file_close -> cave 21F1,mpc3000.3kplus-lazy-chop
+0x469BA,5,9b8a81bb4c2cf9d2168cffc33f235a694381f8be331229686852ed1855c940f3,hook: APS save file_close -> cave 221B,mpc3000.3kplus-lazy-chop
+0x758BC,20,2fd3142417f1718019860caa0bb6edad6aaf5f0731756a1662edc96ab63d660b,Zones to Program page entry,mpc3000.3kplus-lazy-chop
+0x758C2,6,db5e0d7435468dbc7ef8f570c4f51f0c5eca7ce5cf247656eb35d7c331aecb5c,patch site 1: mute default store,mpc3000.3kplus-lazy-chop
+0x75961,9,3243efd386411a9167a164d60fb7280fe4e8d30a8600e54e04926fe092a0b236,patch site 2: field 0 select,mpc3000.3kplus-lazy-chop
+0x7596A,9,9383bb0b1e7824ba15ee1c385c185df6720721c12e5fbd28ac9a0b9cc21726d2,patch site 3: field 1 select,mpc3000.3kplus-lazy-chop
+0x75973,8,961b611c9ca423b5be4ef28c725925c7297317217d7561d7a28d6120360fdee3,patch site 4: +/- dispatch,mpc3000.3kplus-lazy-chop
+0x759A9,8,2500bcf0edfe2af7df6327d6c76a512740b861db78c03c8f47dc6983c5b05ad1,patch site 5: digit dispatch,mpc3000.3kplus-lazy-chop
+0x75A2D,7,6f645f8cdad27b3a83de3416f9f3e79325ebc04cb85268388960b87d3d31a181,"patch site 6: Do it, empty-program test",mpc3000.3kplus-lazy-chop
+0x75DAE,6,176125f4bdb7b80b90403373cff6e7c3c746da09b45fd4d5ca2c9a821abdf975,patch site 7: Pads line,mpc3000.3kplus-lazy-chop
+0x75E35,8,8b8ef8ba1f5d8caa60ef3bdf1e2edc32f8c40c13d986b7bc3e417ce938028081,patch site 8: field cursor,mpc3000.3kplus-lazy-chop
+0x75F18,17,81121919eb181a92c745da94747a02361df64adff8b923961a0746dadcc63d79,patch site 9: wipe and rename,mpc3000.3kplus-lazy-chop
+0x75F4E,120,7d5f4084862b92ca077396462981f399a694caed46d7a335be696b83e6025bfa,patch site 10: assignment loop,mpc3000.3kplus-lazy-chop
+0x75AEF,43,b4341e3b639935a5d811cafb09dda927cb32fa5b78421bab5e0014b6922d3b68,key flush and time stamp for the Do it guard,mpc3000.3kplus-lazy-chop
+0x75B1A,12,bd43c542e24ca6fd2cdf68ee93cd4da195d9f86755b3b98c00bfb99531c230cf,Do it guard: 100 ticks of DS:D38C,mpc3000.3kplus-lazy-chop
+0x75C5B,18,c2d03e3a5c42d10618e299150616482786ba8fa63bcfb8def9341be7470463c6,program number -> record (ZF if none),mpc3000.3kplus-lazy-chop
+0x75C6D,30,74af9e87ae45d2aa986345a6569790cc4ee9e4355d7dd22ced555d43e4658c40,program empty test (64 entries FFh),mpc3000.3kplus-lazy-chop
+0x75C8B,42,582282bd62edc1a044d27dad725b116947aaf43eae594dde7764bf14d255c895,next empty program after the current one,mpc3000.3kplus-lazy-chop
+0x75E9F,398,121e75a76477cd22f12d621f8f4462cece8c9a0d09b74a8c043b1397172ca863,To program executor,mpc3000.3kplus-lazy-chop
+0x71812,27,3798820e80a25c806dd591970cc9c48fa19baded52bb7dd322b6857f82d7e372,sound_free hook body,mpc3000.3kplus-lazy-chop
+0x7182D,836,3e6c224c5a424319cfb474c2f1b3c50627248db5ddc0eb9fcff3f1cbb099d037,"make one Sound per zone (checks, allocation, rollback)",mpc3000.3kplus-lazy-chop
+0x71BBC,100,430f782835b2c2af8d99f47fb490000e6a5df672a82323fa3954386fb5f38f49,ZONEnnn default naming,mpc3000.3kplus-lazy-chop
+0x756E6,204,7afbec5edd7a59b86f27cab5f2ba62cefde8c26b0f97cc15101030c095af58b1,base name + number naming with sound_find,mpc3000.3kplus-lazy-chop
+0x71DAA,146,1a58295a888f82aa125c8082c702474a4219e1f99fb4254e3d686ab6e2a43de7,"mute group table helpers (enable, set nibble, fill, address, clear)",mpc3000.3kplus-lazy-chop
+0x71E3C,33,9ee3823cbec089d5a9a953087ceebc3da3b195a6aa774ad83c36813898131e09,program_init wrapper (clears the program's mute groups),mpc3000.3kplus-lazy-chop
+0x71E5D,75,7db844eda599d37d8224d81e5306ad3bd80314e7cabce9e2e115593de282fcf4,program copy wrapper (copies mute groups),mpc3000.3kplus-lazy-chop
+0x71EB7,211,0d81fb4384ef7272335e42a5ba2de78b869d0026bd16591b0ab221bd50dd1300,PGM/APS load and save wrappers,mpc3000.3kplus-lazy-chop
+0x71F8A,151,04ad41350b6679c3f7988cdcf04dc86c292bea700b027bc243a347a3b774fa3a,mute trailer reader,mpc3000.3kplus-lazy-chop
+0x72021,114,c8d4715f13b6eaca70279d9b9ce76ce00afcdd8b80f7fc871089aa831c488edc,mute trailer writer,mpc3000.3kplus-lazy-chop
+0x720C2,32,f63da096b8fb659caadb85dda91143a5bdc8205beff7e3f6f2666f504f386f9a,MUTEGP35 PGM and APS trailer headers,mpc3000.3kplus-lazy-chop
+0x76066,13,dbb349ada96b62373fc6bab46a7b17afc9c3bda9c6405e0086c3da473b74e71a,'<To program>' string,mpc3000.3kplus-lazy-chop
+0x37D19,36,1b5f311892e969bfa227c68b2f8ca60e0c3005a82881bae9eef132a009da27bb,program_record (302F:0029),mpc3000.program-records-and-pad-maps
+0x23583,134,ff2de04637912aad67bfd54c60950bbcb6005cc210a2e2ead3639d4e8988fcd5,program_select (19F9:1BF3),mpc3000.program-records-and-pad-maps
+0x28499,264,e5e2dac55b45349a2680939f1dde173179c7bec5f27a8cf26cdc7bbaa7e39668,program_init body (207C:02D9-03E0),mpc3000.program-records-and-pad-maps
+0x2839F,123,ba70a8788ccb7682882e21285e83c5f54197212a279d37ba8efee73bf4c7781a,program entry init (207C:01DF),mpc3000.program-records-and-pad-maps
+0x37BDA,49,d1883d61a5c90fd991d4782ecb56fa726a3df227644a1b73b74b39fd1720cb11,pad_note_effective (301D:000A),mpc3000.program-records-and-pad-maps
+0x37C0B,53,05ae69abe21eba05f6d917e3dae94d45d01040f0787dda7947019004dbf04635,pad_first_for_note (301D:003B),mpc3000.program-records-and-pad-maps
+0x37C40,59,03bc75a363299de54269aad91b668a21dcdca8c8f0e9ee5b9cf172670a325ff1,"pad_note_set (301D:0070), clamps 22h-62h",mpc3000.program-records-and-pad-maps
+0x1D870,44,cb79fafc231be4f15c565e7456b3d0043f5cf15a4a57cbf1203ffbea570ea463,Assign Pads page: Mode field on DS:8063,mpc3000.program-records-and-pad-maps
+0x0C4BF,5,7b58ead5c24544f2dc3ddfd53692d3258ceec9267b736f34cc9211747d248587,DS:8063 default PROGRAM,mpc3000.program-records-and-pad-maps
+0x6CF20,15,078da3a0a6300783c937d2c56017724b9f5caba6737fae06a35ad6e4c0866a60,'PROGRAM' and 'MASTER' choices,mpc3000.program-records-and-pad-maps
+0x6D008,28,f41e1c67c369e4f4e90c8809fa742dd08e41b4f3790f9dedfddefa55eaf9f767,'Assign Pads to Note Numbers' title,mpc3000.program-records-and-pad-maps
+0x72912,57,c7258003bc28371b5fa0cc96cdb382ea914c6b5013ae81d0f4da92659a1a16c9,cave note -> first pad (honours DS:8063),mpc3000.program-records-and-pad-maps
+0x07A00,8,ba816b1e178f25ede8721f818596150c5f08b7d08dfb29fd40c44a127390cd52,"same bytes as 3.16: c_startup, first 8 bytes",mpc3000.3kplus-structure
+0x07A96,8,50da18c7a3dcb4d8e7a4347cd3498a4e089da2818f5ce89bb229b5c431fa3634,"same bytes as 3.16: bios_init, first 8 bytes",mpc3000.3kplus-structure
+0x07BB1,22,b67d89acab8438d4eefeac0d5eeb22f470cc9d5dcbb370bc7fca5b770c2434b9,same bytes as 3.16: bios banner,mpc3000.3kplus-structure
+0x09B50,8,4f1edf531d377aed6ea9f1b6f752cab3f3db5a401bc293deefdca8a7ea8631c1,"same bytes as 3.16: mul32, first 8 bytes",mpc3000.3kplus-structure
+0x09B86,8,3a2308440747791578618966d43876c524e7d3e55847a7880033ef4a7e1ee668,"same bytes as 3.16: div32_signed, first 8 bytes",mpc3000.3kplus-structure
+0x09B8D,8,835531bec02fb2b4ee16609e092b53a7fa5db4fdeec61fd1b75ad84478e96de4,"same bytes as 3.16: div32_unsigned, first 8 bytes",mpc3000.3kplus-structure
+0x0A244,8,92cbae74713c8a4d6125de0a192e4324e058008da1c3042aa22d816469a5956e,"same bytes as 3.16: ui_main, first 8 bytes",mpc3000.3kplus-structure
+0x0A777,8,fe0509bdbbe88b5face5cc254d0b5c8c8a1dd2fc9b5259aa860f8c7c143d3b4c,"same bytes as 3.16: field_list_reset, first 8 bytes",mpc3000.3kplus-structure
+0x0A7D5,8,137b47f72d025ea999895d7ea4039a80cf4431d058465a6ac5f00105a1b30c00,"same bytes as 3.16: field_select, first 8 bytes",mpc3000.3kplus-structure
+0x0A986,8,e56f0da1f1f897d9ec4d789b0aa83a6254e73a2806bec81efc728456e9e89d6e,"same bytes as 3.16: field_init, first 8 bytes",mpc3000.3kplus-structure
+0x0AAC7,8,a9360a3a2753da50faf20ab8eeeba1b89fdeda654ce7a310615c68c31cfe36f4,"same bytes as 3.16: field_key_loop, first 8 bytes",mpc3000.3kplus-structure
+0x0AE7F,8,78e302a6c163cb97ccd2826671fc361ac737df1d8e0747ebc276c38904304768,"same bytes as 3.16: field_commit, first 8 bytes",mpc3000.3kplus-structure
+0x0B243,8,a20bf95ba993165213a824f80c6c3d5340c1b206cdb74c953cca6402325038df,"same bytes as 3.16: field_redraw, first 8 bytes",mpc3000.3kplus-structure
+0x0BC7C,8,9bac397b1443dfbf5cc09e9c88a6b8e8b473cd0a5f602ee53c5cce8faede83dc,"same bytes as 3.16: lcd_clear_text, first 8 bytes",mpc3000.3kplus-structure
+0x0BC82,8,04640fa36b93954a5730919cb256504d6e5b43e0a8a89c095df60009bdbcc1e0,"same bytes as 3.16: lcd_cursor_shape, first 8 bytes",mpc3000.3kplus-structure
+0x0BCA0,8,d2d7945fc68db7803442fee4134832ae52d2b3d3a557c23cb46938ab7e5659e6,"same bytes as 3.16: lcd_cursor_pos, first 8 bytes",mpc3000.3kplus-structure
+0x0BCC9,8,d23ac7836334c34d433ebcf26ba65dd43c9be06c3c6012412b1e64e2667d4a23,"same bytes as 3.16: lcd_save_text, first 8 bytes",mpc3000.3kplus-structure
+0x0BF18,8,78e302a6c163cb97ccd2826671fc361ac737df1d8e0747ebc276c38904304768,"same bytes as 3.16: lcd_printf, first 8 bytes",mpc3000.3kplus-structure
+0x0C166,8,9360ffb3978be26c8be4aa9f81cbc61cde27c0991188c3312ad3f661bce575c0,"same bytes as 3.16: lcd_pad_spaces, first 8 bytes",mpc3000.3kplus-structure
+0x0D2FB,8,78e302a6c163cb97ccd2826671fc361ac737df1d8e0747ebc276c38904304768,"same bytes as 3.16: field_numeric_editor, first 8 bytes",mpc3000.3kplus-structure
+0x0D84A,8,c558a96b7abba49fcb03f9d4c281d744abdea42e92254129278f627a94856e5a,"same bytes as 3.16: field_add_choice, first 8 bytes",mpc3000.3kplus-structure
+0x0DA35,8,b41238e6b22ca4e56883888f2e03880fb15d417a8aa7795cbc5e5987f3be013d,"same bytes as 3.16: field_add_numeric, first 8 bytes",mpc3000.3kplus-structure
+0x0DDBB,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: error_box, first 8 bytes",mpc3000.3kplus-structure
+0x0E11A,8,b528230d18ae51a64d19569a1bdbbb15023e21b154ce9d1aa875388e8e1c3d51,"same bytes as 3.16: song_page, first 8 bytes",mpc3000.3kplus-structure
+0x0F5FD,8,c716c30eaafc86eb581a7020d1f72ea8eb207c6e5e9982ef760b9d91c86b99cc,"same bytes as 3.16: Disk page prologue (SUB SP,3652h)",mpc3000.3kplus-structure
+0x0F5FD,8,c716c30eaafc86eb581a7020d1f72ea8eb207c6e5e9982ef760b9d91c86b99cc,"same bytes as 3.16: disk_page, first 8 bytes",mpc3000.3kplus-structure
+0x10B1D,8,77e7f36f427a9630e66caab754b28ca174acad8e7c275beba36afea8b9cd63c0,"same bytes as 3.16: file_name_format, first 8 bytes",mpc3000.3kplus-structure
+0x10C05,8,8107c8045cc181e5ef025d806636acf50d74d2ca504d37eaf4f3a51b98bfb723,"same bytes as 3.16: page_new, first 8 bytes",mpc3000.3kplus-structure
+0x1444B,8,44a3b1aba23942c7d1337ef769a0c3a63cc61387f37f8f5d7d6d92c6da1a2724,"same bytes as 3.16: edit_sound_redraw, first 8 bytes",mpc3000.3kplus-structure
+0x1446F,8,3e153c25b475d0558726fa21f089e465517711b35de82e2459b2b06322093725,"same bytes as 3.16: sound_stereo_tag, first 8 bytes",mpc3000.3kplus-structure
+0x14F11,8,942cca13d1024bfe68113226a7edace638eed3bd80b2c0fc987929411ae6de6f,"same bytes as 3.16: sound_delete_frames, first 8 bytes",mpc3000.3kplus-structure
+0x15244,8,76909bfdbf408ee97375ba463c5d763f71f90ed46d152bea2b509fd974c1f0a1,"same bytes as 3.16: frames_from_triple, first 8 bytes",mpc3000.3kplus-structure
+0x15298,8,3dcd9af91c633ef061626527bf4fff4df2307d8b1844cf3f14970119113479de,"same bytes as 3.16: triple_from_frames, first 8 bytes",mpc3000.3kplus-structure
+0x1541D,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: sound_list_rebuild, first 8 bytes",mpc3000.3kplus-structure
+0x170B9,8,92abd6e87d00f87c15a50f7508db2d1448951e6500279134d0615b31fabb4131,"same bytes as 3.16: key_next_filtered, first 8 bytes",mpc3000.3kplus-structure
+0x172B6,8,fe05a34b3129acffbd60b2ce8bbb5b525fc76d88634f6992f09a30e2406238dc,"same bytes as 3.16: mixer_apply_params, first 8 bytes",mpc3000.3kplus-structure
+0x1B369,8,476309e4229368e3ef2fe2caa50b04051ce6f2729e52f06046b5eb612ceb8297,"same bytes as 3.16: pgm_load, first 8 bytes",mpc3000.3kplus-structure
+0x1B85C,8,1310b3622c47d24f32c66003b90c5d2834cbc0dbd1b2b8b913126be0fd7a413d,"same bytes as 3.16: aps_load, first 8 bytes",mpc3000.3kplus-structure
+0x1E2FD,8,70b7564d757367646ea5d1143155382298423376cf5778a3c54dace7fb3a38a0,"same bytes as 3.16: lcd_text_mode_clear, first 8 bytes",mpc3000.3kplus-structure
+0x1EE01,8,560c22cfead12bfe1f997655ec816ac2e0f99e7bfd2f1ccd4b0fab09e918f493,"same bytes as 3.16: lcd_blit, first 8 bytes",mpc3000.3kplus-structure
+0x1FE9F,8,2ee4c53f9a8a621532122e2dfcf4764d705c00b63cd4b0dbd60c30edf2eb45f7,"same bytes as 3.16: sample_new_sound_page, first 8 bytes",mpc3000.3kplus-structure
+0x27B5C,8,357321193d5f4c615c7b53388765436ea9549ac9fbf2fdb02ee14dfc5621d889,"same bytes as 3.16: file_close, first 8 bytes",mpc3000.3kplus-structure
+0x27B98,8,e2cf0f05432357585c4a104aa685003adb207d9ad39786b4561216a11fc5c28f,"same bytes as 3.16: file_delete, first 8 bytes",mpc3000.3kplus-structure
+0x27C4B,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: file_find_first, first 8 bytes",mpc3000.3kplus-structure
+0x27CB7,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: file_find_next, first 8 bytes",mpc3000.3kplus-structure
+0x27D3C,8,69e59f925b5f8a09672b2c9d7e2088c5ddccf3bda4d0931b02bc4721d0ca6eb7,"same bytes as 3.16: int41_call, first 8 bytes",mpc3000.3kplus-structure
+0x27D8C,8,8599a887d8dc19e035a9da6b64de95329a28492c356528118b23096a726bda71,"same bytes as 3.16: int41_fn8, first 8 bytes",mpc3000.3kplus-structure
+0x27DA9,8,47d14cdfc801d8a1adc875e6898ef4ad8b8e4323073a1d32e2d25aa5b646b85f,"same bytes as 3.16: file_read, first 8 bytes",mpc3000.3kplus-structure
+0x27DCC,8,47d14cdfc801d8a1adc875e6898ef4ad8b8e4323073a1d32e2d25aa5b646b85f,"same bytes as 3.16: file_write, first 8 bytes",mpc3000.3kplus-structure
+0x27FE8,8,2056923f185013a043c61851c21efe140b7eff8fd80622262ff4714d2a1412a4,"same bytes as 3.16: voice_allocate, first 8 bytes",mpc3000.3kplus-structure
+0x288DD,8,77e7f36f427a9630e66caab754b28ca174acad8e7c275beba36afea8b9cd63c0,"same bytes as 3.16: note_on, first 8 bytes",mpc3000.3kplus-structure
+0x295BF,8,24df58b72a4c945bd377478bdcc3dc8fbe8f97e03bc144a2189c6126d9ef309f,"same bytes as 3.16: sound_play_index, first 8 bytes",mpc3000.3kplus-structure
+0x2964B,8,57266d83817aab300ff762fb80362211b6a58705d3ae3a3074e78d2a71704713,"same bytes as 3.16: voice_any_pending, first 8 bytes",mpc3000.3kplus-structure
+0x29669,8,b3cacfa0e72f104b34300cfa73bf6e4257750ce9458054ad59ea4ea6aebe9bc9,"same bytes as 3.16: voice_stop_all, first 8 bytes",mpc3000.3kplus-structure
+0x29AAC,8,8442ddf34b28666ac60f43b70eb91358813cb6e47bf0b49a643828e185643cfe,"same bytes as 3.16: sound_free_words, first 8 bytes",mpc3000.3kplus-structure
+0x29E87,8,67ad9ff2569fc180b9e9c38372c6e996f7d0c11bd2ad1f0c8c5d17d86dbf510a,"same bytes as 3.16: sound_allocate, first 8 bytes",mpc3000.3kplus-structure
+0x2A0C3,8,ebc7904eb902de25bf3af2f35f59de3ced6da208be8f5d4b3a4d3a0a01f8ee3f,"same bytes as 3.16: sound_free_records, first 8 bytes",mpc3000.3kplus-structure
+0x2A0E5,8,2ee4c53f9a8a621532122e2dfcf4764d705c00b63cd4b0dbd60c30edf2eb45f7,"same bytes as 3.16: sound_alloc_rebuild, first 8 bytes",mpc3000.3kplus-structure
+0x2A6C6,8,1c421a97704ea70ccb93c73f242e0d71decabf58e4d89504eb4999963d55a092,"same bytes as 3.16: wave_copy, first 8 bytes",mpc3000.3kplus-structure
+0x2AD80,8,2e9758d9d481094ac0bd7e80db841ca04e31579222fe95d63efbd1d367fd77db,"same bytes as 3.16: dsp_reg1_all, first 8 bytes",mpc3000.3kplus-structure
+0x32072,8,4d40b782dce559836b1d8ae07ecec045b28f1577f8727d3ebb56aa1583d1bdbf,"same bytes as 3.16: scsi_controller_init, first 8 bytes",mpc3000.3kplus-structure
+0x32722,8,58562e6f8dbebdbcff96727ef27a67d119ddeb3ac56bf63c171afed281684cd9,"same bytes as 3.16: scsi_sector_read, first 8 bytes",mpc3000.3kplus-structure
+0x32742,8,dc50964068f97ddd92f22cdeb793f2831d7e63959a61d11ffb87025dfd5746ba,"same bytes as 3.16: scsi_sector_write, first 8 bytes",mpc3000.3kplus-structure
+0x3281A,8,a9360a3a2753da50faf20ab8eeeba1b89fdeda654ce7a310615c68c31cfe36f4,"same bytes as 3.16: scsi_read_capacity, first 8 bytes",mpc3000.3kplus-structure
+0x32D6A,8,a2310a20a031c3ffafba39d80202527a9eca889fc5bb40fca1967405f2b8a7e0,"same bytes as 3.16: scsi_command, first 8 bytes",mpc3000.3kplus-structure
+0x32DF1,8,cbfce79fa394c4d285db94014fab4ba876c234deac1c5754f4121da181a851c6,"same bytes as 3.16: scsi_error_map, first 8 bytes",mpc3000.3kplus-structure
+0x33094,8,7e547c35ba02c4a1a4f1c6dca529b84bef7a802c8edbbfdb0ab2a69c81e148d5,"same bytes as 3.16: timer_timestamp, first 8 bytes",mpc3000.3kplus-structure
+0x348C5,8,6224f2a00b82dc7f6942437929c5c45b7cb8c001a2e9143fb1ee59b2530c9f37,"same bytes as 3.16: io_expansion_probe, first 8 bytes",mpc3000.3kplus-structure
+0x34AB2,8,db47d7ae37f292d041b9c179f6307ca1cc4159498d65e84835511218d29e4e33,"same bytes as 3.16: key_wait, first 8 bytes",mpc3000.3kplus-structure
+0x34B3D,8,db47d7ae37f292d041b9c179f6307ca1cc4159498d65e84835511218d29e4e33,"same bytes as 3.16: key_drop_softkeys, first 8 bytes",mpc3000.3kplus-structure
+0x34BF0,8,f016c858cd5bfd21cb75ec5a52451c29144aed5fcd3080e24cedb1ceb9c79833,"same bytes as 3.16: key_count, first 8 bytes",mpc3000.3kplus-structure
+0x3688E,8,e74e748b5e4372bac782d5cabc2e1b08f0f1621103958cd07bb083eda5c5dac0,"same bytes as 3.16: ring_read, first 8 bytes",mpc3000.3kplus-structure
+0x37D3E,8,8b4a55112429d6671044a76e9cb12ac5f8d42805c3c78a9479ca2b4d4a698a0e,"same bytes as 3.16: midi_out_queue_byte, first 8 bytes",mpc3000.3kplus-structure
+0x37E5B,8,c68d4480739a3aef772ddab5014ff0a53829de448a82dc75193025ffbb31ef89,"same bytes as 3.16: pad_event_reader, first 8 bytes",mpc3000.3kplus-structure
+0x38348,8,f576bedbc9b071c447aec2b4ecffdbe098cb91b371135d7f407364cc0050a99f,"same bytes as 3.16: midi_in_reader, first 8 bytes",mpc3000.3kplus-structure
+0x3C21E,8,2ee4c53f9a8a621532122e2dfcf4764d705c00b63cd4b0dbd60c30edf2eb45f7,"same bytes as 3.16: key_filter, first 8 bytes",mpc3000.3kplus-structure
+0x3FDB7,8,22b7262483971e6d2b7abbd8a68ed61b3d201cf599558eb69e2b41f4f3d98246,"same bytes as 3.16: seq_free_bytes, first 8 bytes",mpc3000.3kplus-structure
+0x40892,8,1a0dbb7d9c8928ea804a9811d01bee4437a936f30ebc202700743137d6a0fc79,"same bytes as 3.16: track_slot_map, first 8 bytes",mpc3000.3kplus-structure
+0x42979,8,3c5d3916ee9de4a9788f38e4e11e3340be942b7b25370577b1f62c2896703dcc,"same bytes as 3.16: track_name, first 8 bytes",mpc3000.3kplus-structure
+0x44C53,8,2196d7e47ee2073cd7e563925230983db95aa6a1543fb46be9d0795e98b2fddd,"same bytes as 3.16: transport_stop_wait, first 8 bytes",mpc3000.3kplus-structure
+0x46C68,8,09c75d8895d6cf8871c5eb3c66b9f542a0677481af7c331c299804e3f6db83ea,"same bytes as 3.16: sound_save, first 8 bytes",mpc3000.3kplus-structure
+0x49932,8,05b4b9be4110215685e3525088b2d3d7aeeb023e65eca69cb5bf5bf39fdffeb3,"same bytes as 3.16: select_option_digit, first 8 bytes",mpc3000.3kplus-structure
+0x4F5F9,38,68cca53080444a6484691eddb50096fad6c9175c05707e9578f782d658d515c1,same bytes as 3.16: kadak copyright,mpc3000.3kplus-structure
+0x4F931,8,01132981ab943d9bed70dde993059386cadc61519a629d32cbc154db75c3f264,"same bytes as 3.16: amx_install_vector, first 8 bytes",mpc3000.3kplus-structure
+0x4F99D,8,68a3eb755e1b7e7b8a7a5cf994ab0cc569f58415d418c6487875cf15de1a2b08,"same bytes as 3.16: amx_post, first 8 bytes",mpc3000.3kplus-structure
+0x4FA96,8,cf4a597f36da61fa3425c68674fbcb3095f1433ac11ae586ea65bd816c85ea0c,"same bytes as 3.16: amx_wake, first 8 bytes",mpc3000.3kplus-structure
+0x4FCA3,8,994ff03b845290085ab37a501958d3cff1e20d22b5b80df32321a587a017c707,"same bytes as 3.16: amx_queue_push_front, first 8 bytes",mpc3000.3kplus-structure
+0x4FD4C,146,65611d910c95215dccde77fe4d1e4ae6530213f7c42a956f64dd92acd321c42f,same bytes as 3.16: amx task table,mpc3000.3kplus-structure
+0x4FF26,6,cce0cbe4f9c425537da5f1b31400063cf9635688b020cc38cecbfbf729ef0703,"same bytes as 3.16: MOV AX,7DFA / SUB AX,7DF9 before the pool bound",mpc3000.3kplus-structure
+0x4FF34,3,216d9c1ec816692ffe95feb2e7fb1bb078d6dde1d0112848e898e41fc28f765f,"same bytes as 3.16: sequence pool end immediate (MOV BX,6FFFh)",mpc3000.3kplus-structure
+0x68C3F,64,77f3d40f59d27678267ccaa495f382f829a45e9fd3d3a92fc1b094e1cc9f2837,same bytes as 3.16: pad note defaults,mpc3000.3kplus-structure

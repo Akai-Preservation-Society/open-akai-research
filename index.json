@@ -959,6 +959,57 @@
       "family": "mpc",
       "findings": [
         {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.3kplus-structure",
+            "mpc3000.program-records-and-pad-maps"
+          ],
+          "firmware": [
+            "mpc3000-3kplus-1.0-sys"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.3kplus-lazy-chop",
+          "last_verified": "2026-11-16",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/3kplus-lazy-chop.md",
+          "sources": [
+            "3K PLUS 1.0 README.txt (release folder, 2026)"
+          ],
+          "status": "static",
+          "summary": "In 3K PLUS 1.0, <To program> makes one Sound per zone (checking records and memory first, freeing them again on failure), wipes and renames the chosen program, and puts zone i on pad slot i. Mute groups live in a cave table and are saved as a MUTEGP35 trailer after PGM/APS data.",
+          "title": "How 3K PLUS 1.0 turns zones into a program (Lazy Chop \"To program\") and stores mute groups"
+        },
+        {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.os316-structure",
+            "mpc3000.os316-extending",
+            "mpc3000.os316-defects",
+            "mpc3000.floppy-sys-loader"
+          ],
+          "firmware": [
+            "mpc3000-3kplus-1.0-sys",
+            "mpc3000-v3.16-sys"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.3kplus-structure",
+          "last_verified": "2026-11-16",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/3kplus-structure.md",
+          "sources": [
+            "3K PLUS 1.0 README.txt (release folder, 2026)"
+          ],
+          "status": "static",
+          "summary": "3K PLUS 1.0 (STARTUP.SYS) is OS 3.16 with a 41,820-byte resident code segment (the cave) that runs at E700:0000 on every examined EPROM. 91 of 3.16's pins still match. RAM above the cave, logical F1370-F3FFF, is not referenced by its code.",
+          "title": "3K PLUS 1.0 is OS 3.16 plus an appended code segment, and how it starts and hooks 3.16"
+        },
+        {
           "area": "cpu",
           "contributors": [
             "open-akai-research"
@@ -1266,6 +1317,28 @@
           "title": "OS 3.16 (M3K316.SYS) structure, memory and named routines"
         },
         {
+          "area": "os",
+          "contributors": [
+            "open-akai-research"
+          ],
+          "depends_on": [
+            "mpc3000.os316-structure",
+            "mpc3000.3kplus-structure"
+          ],
+          "firmware": [
+            "mpc3000-3kplus-1.0-sys",
+            "mpc3000-v3.16-sys"
+          ],
+          "hardware_tested": "no",
+          "id": "mpc3000.program-records-and-pad-maps",
+          "last_verified": "2026-11-16",
+          "machine": "mpc3000",
+          "path": "machines/mpc3000/findings/program-records-and-pad-maps.md",
+          "status": "static",
+          "summary": "A program record holds 64 per-note entries (notes 35-98, 18h bytes each; first byte = Sound number, FFh = none) at +3Eh and its own 64-byte pad-to-note map at +73Eh. DS:8063 selects that map (PROGRAM) or the global one at DS:8064 (MASTER).",
+          "title": "Program records, per-note entries and pad-to-note maps in OS 3.16 (and 3K PLUS)"
+        },
+        {
           "area": "modding",
           "contributors": [
             "open-akai-research"
@@ -1483,6 +1556,19 @@
           "sha256": "f8348bb8200acc2f0ab5855598288cef40fef13089f57707b05ef25456545e53",
           "size": 555491,
           "source": "Computed from the released file on 2026-11-13."
+        },
+        {
+          "crc32": "cf3f39f9",
+          "id": "mpc3000-3kplus-1.0-sys",
+          "kind": "floppy-sys",
+          "label": "3K PLUS 1.0 (STARTUP.SYS, floppy-loaded)",
+          "notes": "A DOS MZ executable built on OS 3.16 by appending a code segment (findings/3kplus-structure.md). The release README states no licence ('Provided as is'). File offsets for this id are offsets into the .SYS file itself (the load image starts at 7A00h). The release's 3K_PLUS.img has sha256 253e580f9fd2fa64df9a5ed718e4ca958622c5d85e6a9d9be2e995517850a73a.",
+          "obtain": "Released as a floppy upgrade (STARTUP.SYS plus a 3K_PLUS.img disk image and a SHA256SUMS file). Obtain it from its author's release and check the hash.",
+          "origin": "community",
+          "sha1": "a1a76f5ebf1f5376515ad329ffbf6f5533972ee8",
+          "sha256": "322d883aa20a72357da8f1d3559e092fa3cfb59bfb01f1e260dc8dbbd0bbdced",
+          "size": 507974,
+          "source": "Computed from the released file on 2026-11-15; equals the release's own SHA256SUMS."
         }
       ],
       "hardware_tables": {
@@ -1502,6 +1588,10 @@
       "id": "mpc3000",
       "name": "Akai MPC3000",
       "pins": {
+        "mpc3000-3kplus-1.0-sys": {
+          "count": 153,
+          "path": "machines/mpc3000/pins/mpc3000-3kplus-1.0-sys.csv"
+        },
         "mpc3000-tme-3.41-sys": {
           "count": 106,
           "path": "machines/mpc3000/pins/mpc3000-tme-3.41-sys.csv"
@@ -1528,6 +1618,24 @@
         }
       },
       "questions": [
+        {
+          "area": "memory",
+          "id": "mpc3000.q.3kplus-free-ram-at-runtime",
+          "machine": "mpc3000",
+          "needs": [
+            "emulator",
+            "analysis"
+          ],
+          "path": "machines/mpc3000/questions/3kplus-free-ram-at-runtime.md",
+          "priority": "high",
+          "related": [
+            "mpc3000.3kplus-structure",
+            "mpc3000.os316-extending"
+          ],
+          "status": "open",
+          "summary": "Static analysis finds no 3K PLUS reference to logical F135C-F3FFF, but pointer writes, DMA and one unbounded MIDI Remote table index have not been ruled out at run time.",
+          "title": "Is RAM above the 3K PLUS cave free at run time?"
+        },
         {
           "area": "memory",
           "id": "mpc3000.q.bios-data-area",
@@ -1782,6 +1890,24 @@
           "title": "Running a patched copy of a stock EPROM OS from RAM"
         },
         {
+          "area": "os",
+          "id": "mpc3000.q.program-entry-fields",
+          "machine": "mpc3000",
+          "needs": [
+            "analysis",
+            "emulator"
+          ],
+          "path": "machines/mpc3000/questions/program-entry-fields.md",
+          "priority": "medium",
+          "related": [
+            "mpc3000.program-records-and-pad-maps",
+            "mpc3000.3kplus-lazy-chop"
+          ],
+          "status": "open",
+          "summary": "The program record size (believed 77Eh), the meaning of per-note entry bytes 1-17h (including byte 6, which 3K PLUS sets with a mute group) and of record fields +11h-+3Dh and +63Eh are not established.",
+          "title": "Program entry fields and record size"
+        },
+        {
           "area": "storage",
           "id": "mpc3000.q.real-drives-and-other-disk-sizes",
           "machine": "mpc3000",
@@ -1858,6 +1984,10 @@
       "released": "1994",
       "summary": "Hardware, addressing, boot path and the floppy route for running your own code are documented. The operating system's internals (sequencer, sampling, MIDI, file formats, front-panel protocol) are not.",
       "symbols": {
+        "mpc3000-3kplus-1.0-sys": {
+          "count": 46,
+          "path": "machines/mpc3000/symbols/mpc3000-3kplus-1.0-sys.csv"
+        },
         "mpc3000-v3.08": {
           "count": 12,
           "path": "machines/mpc3000/symbols/mpc3000-v3.08.csv"

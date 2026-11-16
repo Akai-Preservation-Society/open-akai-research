@@ -65,8 +65,12 @@ class Repository(unittest.TestCase):
                 if row["kind"] not in ("code", "vector", "table") or not row["address"] or not row["file_offset"]:
                     continue
                 seg, off = (int(part, 16) for part in row["address"].split(":"))
-                if firmware == "mpc3000-v3.16-sys":
+                if firmware in ("mpc3000-v3.16-sys", "mpc3000-3kplus-1.0-sys"):
                     # Relative seg:off in the load image, which follows the 7A00h-byte MZ header.
+                    if firmware == "mpc3000-3kplus-1.0-sys" and seg == 0x7E00:
+                        # The 3K PLUS cave runs at relative 7E00h but is stored at 6834h
+                        # (findings/3kplus-structure.md, "Address forms").
+                        seg = 0x6834
                     expected = 0x7A00 + (seg << 4) + off
                 else:
                     expected = ((seg << 4) + off) & 0x7FFFF

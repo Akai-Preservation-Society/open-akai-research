@@ -1,0 +1,47 @@
+name,kind,address,file_offset,size,status,finding,notes
+kplus_entry,code,7E00:A35B,0x7A09B,,static,mpc3000.3kplus-structure,"MZ entry: copies A35Ch bytes of the cave to L+7E00h, pool fix, enters OS 3.16; moves L>6900h down first"
+kplus_mover,code,7E00:A3A2,0x7A0E2,,static,mpc3000.3kplus-structure,"Moves the image from L>6900h to 6900h with the table at 7E00:A49C, then re-enters"
+kplus_mover_params,table,7E00:A496,0x7A1D6,6,static,mpc3000.3kplus-structure,"Paragraphs to move (7465h), table entries (1D10h), minimum move (01FCh)"
+kplus_reloc_table,table,7E00:A49C,0x7A1DC,,static,mpc3000.3kplus-structure,Byte/word-delta relocation list (7439 fix-ups + one 64 KiB skip); ends at the end of the file
+kplus_banner,string,,0x7792C,11,static,mpc3000.3kplus-structure,3K PLUS 1.0
+kplus_resident_end,range,7E00:A35C,0x7A09C,,static,mpc3000.3kplus-structure,First byte not copied home; RAM from logical F135C is not referenced by the cave (static)
+scsi_reader_wrapper,code,7E00:47B4,0x744F4,,static,mpc3000.3kplus-structure,Runs scsi_partition_reader on a private 1200h stack at pool_end+1 (below the OS)
+sound_free_hook,code,7E00:1AD2,0x71812,,static,mpc3000.3kplus-structure,"sound_free entry hook: clears zone state when the zone source is freed, continues at 21E7:0B25"
+midi_remote_key_bits,ram,7E00:A34C,0x7A08C,8,static,mpc3000.3kplus-structure,MIDI Remote key bitmap; index (byte-40h)>>3 has no upper bound (up to A363 for bytes >= 80h)
+program_init_wrapper,code,7E00:20FC,0x71E3C,,static,mpc3000.3kplus-lazy-chop,"Hooked from 207C:02D3: clears the program's mute groups, then OS 3.16 program_init"
+program_copy_wrapper,code,7E00:211D,0x71E5D,,static,mpc3000.3kplus-lazy-chop,Hooked from 19F9: copies mute groups with the program
+zones_to_program_page,code,7E00:5B7C,0x758BC,,static,mpc3000.3kplus-lazy-chop,Lazy Chop <To program> page
+to_program_execute,code,7E00:615F,0x75E9F,,static,mpc3000.3kplus-lazy-chop,"Make Sounds, wipe+rename, select, assign zone i -> slot i, summary"
+to_program_assign_loop,code,7E00:620E,0x75F4E,120,static,mpc3000.3kplus-lazy-chop,"Assignment loop (zone i -> pad slot i), ends at 6286"
+make_zone_sounds,code,7E00:1AED,0x7182D,,static,mpc3000.3kplus-lazy-chop,One Sound per zone; checks before allocation; frees on failure; result in cs:26BA
+zone_sound_name,code,7E00:59A6,0x756E6,,static,mpc3000.3kplus-lazy-chop,Base name + number; +100 while sound_find finds the name
+program_record_or_none,code,7E00:5F1B,0x75C5B,,static,mpc3000.3kplus-lazy-chop,"AL program -> ES:BX record, ZF=1 if none"
+program_is_empty,code,7E00:5F2D,0x75C6D,,static,mpc3000.3kplus-lazy-chop,AL program -> ZF=1 if all 64 entries are FFh
+next_empty_program,code,7E00:5F4B,0x75C8B,,static,mpc3000.3kplus-lazy-chop,Default destination: next empty program after the current one
+do_it_stamp,code,7E00:5DAF,0x75AEF,,static,mpc3000.3kplus-lazy-chop,"Drop queued Enter/exit/Do-it keys, stamp tick time"
+do_it_guard,code,7E00:5DDA,0x75B1A,,static,mpc3000.3kplus-lazy-chop,CF=0 when 100 ticks of DS:D38C passed since the stamp
+mute_group_enable,code,7E00:206A,0x71DAA,,static,mpc3000.3kplus-lazy-chop,"AL program, DL 0/1: groups on/off"
+mute_group_set,code,7E00:207C,0x71DBC,,static,mpc3000.3kplus-lazy-chop,"AL program, BL pad slot, DL group 0-4"
+mute_group_table,ram,7E00:23A2,0x720E2,792,static,mpc3000.3kplus-lazy-chop,"24 x 21h: on flag, then one nibble per pad slot"
+mute_trailer_headers,data,7E00:2382,0x720C2,32,static,mpc3000.3kplus-lazy-chop,MUTEGP35 headers for PGM (type 1) and APS (type 2)
+mute_trailer_read,code,7E00:224A,0x71F8A,,static,mpc3000.3kplus-lazy-chop,"Read and check the trailer, copy into the table, close"
+mute_trailer_write,code,7E00:22E1,0x72021,,static,mpc3000.3kplus-lazy-chop,"Write header and table data, close"
+zp_dest_program,ram,7E00:6517,0x76257,1,static,mpc3000.3kplus-lazy-chop,Zones to Program: destination program 0-23
+zp_mute_group,ram,7E00:6518,0x76258,1,static,mpc3000.3kplus-lazy-chop,"Zones to Program: mute group 0=OFF,1-4"
+zp_field,ram,7E00:6519,0x76259,1,static,mpc3000.3kplus-lazy-chop,Zones to Program: cursor field 0-1
+zp_skipped,ram,7E00:651C,0x7625C,1,static,mpc3000.3kplus-lazy-chop,Zones not placed (Pads skipped)
+zp_new_sounds,ram,7E00:66A2,0x763E2,64,static,mpc3000.3kplus-lazy-chop,New Sound number per zone
+zone_count,ram,7E00:15B3,0x712F3,1,static,mpc3000.3kplus-lazy-chop,Number of zones 1-64
+zone_table,ram,7E00:15D8,0x71318,512,static,mpc3000.3kplus-lazy-chop,"Zones: start and end frames, 8 bytes each"
+tick_counter,ram,609C:D38C,,2,static,mpc3000.3kplus-lazy-chop,Incremented by the vector-08h handler (2B50:0028)
+program_table,table,485F:0000,0x4FFF0,,static,mpc3000.program-records-and-pad-maps,"Word record size, word program count (both set at run time), records from +4"
+program_init,code,207C:02D3,0x28493,,static,mpc3000.program-records-and-pad-maps,Initialise a program record (hooked by 3K PLUS at its first bytes)
+program_entry_init,code,207C:01DF,0x2839F,,static,mpc3000.program-records-and-pad-maps,Initialise one 18h-byte per-note entry; byte 0 = FFh (no Sound)
+pad_note_set,code,301D:0070,0x37C40,,static,mpc3000.program-records-and-pad-maps,"(slot, note): clamps note to 22h-62h; global or program map by DS:8063"
+pad_assign_mode,ram,609C:8063,,1,static,mpc3000.program-records-and-pad-maps,"Assign Pads Mode: 0 PROGRAM, 1 MASTER"
+current_program_record,ram,609C:E2E6,,4,static,mpc3000.program-records-and-pad-maps,Far pointer to the current program record (set by program_select)
+kplus_note_first_pad,code,7E00:2BD2,0x72912,,static,mpc3000.program-records-and-pad-maps,"Note -> first pad slot, honours DS:8063"
+program_record,code,302F:0029,0x37D19,,static,mpc3000.program-records-and-pad-maps,"OS 3.16 routine, unchanged in 3K PLUS"
+program_select,code,19F9:1BF3,0x23583,,static,mpc3000.program-records-and-pad-maps,OS 3.16; sets DS:E2E6/E2E8 and DS:E2FB
+pad_note_effective,code,301D:000A,0x37BDA,,static,mpc3000.program-records-and-pad-maps,OS 3.16; slot>=40h -> 23h; MASTER global map; PROGRAM record+73Eh
+pad_first_for_note,code,301D:003B,0x37C0B,,static,mpc3000.program-records-and-pad-maps,OS 3.16

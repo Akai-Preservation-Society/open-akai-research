@@ -165,3 +165,16 @@ crc32 = "591c99ef"
 sha1 = "41d9569b47caf1b74c315d1bb12998888adbc58f"
 sha256 = "f8348bb8200acc2f0ab5855598288cef40fef13089f57707b05ef25456545e53"
 source = "Computed from the released file on 2026-11-13."
+
+[[image]]
+id = "mpc3000-3kplus-1.0-sys"
+label = "3K PLUS 1.0 (STARTUP.SYS, floppy-loaded)"
+origin = "community"
+kind = "floppy-sys"
+obtain = "Released as a floppy upgrade (STARTUP.SYS plus a 3K_PLUS.img disk image and a SHA256SUMS file). Obtain it from its author's release and check the hash."
+notes = "A DOS MZ executable built on OS 3.16 by appending a code segment (findings/3kplus-structure.md). The release README states no licence ('Provided as is'). File offsets for this id are offsets into the .SYS file itself (the load image starts at 7A00h). The release's 3K_PLUS.img has sha256 253e580f9fd2fa64df9a5ed718e4ca958622c5d85e6a9d9be2e995517850a73a."
+size = 507974
+crc32 = "cf3f39f9"
+sha1 = "a1a76f5ebf1f5376515ad329ffbf6f5533972ee8"
+sha256 = "322d883aa20a72357da8f1d3559e092fa3cfb59bfb01f1e260dc8dbbd0bbdced"
+source = "Computed from the released file on 2026-11-15; equals the release's own SHA256SUMS."
