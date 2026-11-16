@@ -8,7 +8,7 @@ How much is known about each machine, and how well it is established. Evidence c
 |---|---|---|---|---|---|---|---|
 | [Akai MPC2000](machines/mpc2000/README.md) | partial | 8 | 4 | 0 | 69 | 2 | 2 |
 | [Akai MPC2000XL](machines/mpc2000xl/README.md) | partial | 14 | 13 | 12 | 77 | 3 | 8 |
-| [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 15 | 7 | 186 | 8 | 18 |
+| [Akai MPC3000](machines/mpc3000/README.md) | partial | 17 | 18 | 7 | 232 | 9 | 20 |
 | [Akai MPC60](machines/mpc60/README.md) | seed | 8 | 0 | 0 | 0 | 3 | 1 |
 | [Akai S3200](machines/s3200/README.md) | partial | 15 | 9 | 0 | 59 | 1 | 8 |
 | [Akai S900](machines/s900/README.md) | seed | 15 | 3 | 0 | 0 | 5 | 1 |
@@ -50,11 +50,14 @@ How much is known about each machine, and how well it is established. Evidence c
 | memory | [MPC3000 memory map, I/O ports, interrupts and DMA](machines/mpc3000/findings/memory-and-io-map.md) | documented | no | hardware | 2026-09-21 |
 | boot | [The ROM floppy loader that runs a .SYS file at power-on](machines/mpc3000/findings/floppy-sys-loader.md) | emulator | partial | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-09-25 |
 | firmware | [MPC3000 OS EPROM layout and how to identify an image](machines/mpc3000/findings/eprom-layout.md) | static | partial | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-11-13 |
+| os | [How 3K PLUS 1.0 turns zones into a program (Lazy Chop "To program") and stores mute groups](machines/mpc3000/findings/3kplus-lazy-chop.md) | static | no | 3kplus-1.0-sys | 2026-11-16 |
+| os | [3K PLUS 1.0 is OS 3.16 plus an appended code segment, and how it starts and hooks 3.16](machines/mpc3000/findings/3kplus-structure.md) | static | no | 3kplus-1.0-sys, v3.16-sys | 2026-11-16 |
 | os | [BIOS software-interrupt services (LCD text, files, program load)](machines/mpc3000/findings/bios-services.md) | static | partial | vailixi-3.50 | 2026-09-25 |
 | os | [Calling conventions used by the OS, kernel and BIOS](machines/mpc3000/findings/calling-conventions.md) | static | no | vailixi-3.50 | 2026-09-21 |
 | os | [Interrupt vector table after boot](machines/mpc3000/findings/interrupt-vectors.md) | static | no | vailixi-3.50 | 2026-09-21 |
 | os | [Two memory defects in stock OS 3.16, and their fixes](machines/mpc3000/findings/os316-defects.md) | emulator | partial | v3.16-sys | 2026-10-17 |
 | os | [OS 3.16 (M3K316.SYS) structure, memory and named routines](machines/mpc3000/findings/os316-structure.md) | static | partial | v3.16-sys | 2026-11-13 |
+| os | [Program records, per-note entries and pad-to-note maps in OS 3.16 (and 3K PLUS)](machines/mpc3000/findings/program-records-and-pad-maps.md) | static | no | 3kplus-1.0-sys, v3.16-sys | 2026-11-16 |
 | os | [OS 3.41 Track Mute Edition is built on OS 3.16](machines/mpc3000/findings/tme341-structure.md) | static | no | tme-3.41-sys, v3.16-sys | 2026-11-13 |
 | modding | [Recipe: build and run your own program from floppy](machines/mpc3000/findings/build-a-floppy-sys.md) | hardware | partial | v3.08, v3.11, v3.12, vailixi-3.50 | 2026-10-01 |
 | modding | [Recipe: add code to OS 3.16 and load it from floppy](machines/mpc3000/findings/os316-extending.md) | hardware | partial | v3.16-sys | 2026-10-22 |

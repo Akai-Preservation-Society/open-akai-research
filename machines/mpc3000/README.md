@@ -15,6 +15,8 @@ images are in [firmware.toml](firmware.toml).
 | Understand any address in the firmware | Documented | [findings/address-model.md](findings/address-model.md) |
 | Plan an EPROM modification | Free space and its catch are documented; nobody has burned one from this information | [findings/rom-free-space.md](findings/rom-free-space.md) |
 | Add pages or behaviour to the OS, from floppy | Works, run on real hardware: extend OS 3.16, using its 111 named routines | [findings/os316-extending.md](findings/os316-extending.md), [findings/os316-structure.md](findings/os316-structure.md) |
+| Change 3K PLUS 1.0 (Lazy Chop, mute groups, pads) | Mapped from the code; free RAM and safe change points found; nothing run in MAME or on hardware | [findings/3kplus-structure.md](findings/3kplus-structure.md), [findings/3kplus-lazy-chop.md](findings/3kplus-lazy-chop.md) |
+| Assign Sounds to pads from code | Program record and pad-map layout mapped (OS 3.16 code) | [findings/program-records-and-pad-maps.md](findings/program-records-and-pad-maps.md) |
 | Run stock OS 3.16 safely on 3.12 / 3.50 EPROMs | Two defects found, with fixes | [findings/os316-defects.md](findings/os316-defects.md) |
 
 ## What you cannot do yet from this repository
@@ -46,6 +48,7 @@ The full list, with priorities, is in [../../GAPS.md](../../GAPS.md).
 7. [findings/bios-services.md](findings/bios-services.md), [findings/interrupt-vectors.md](findings/interrupt-vectors.md), [findings/calling-conventions.md](findings/calling-conventions.md): what your code can call, and how the OS is put together.
 8. [findings/os316-structure.md](findings/os316-structure.md), [findings/os316-defects.md](findings/os316-defects.md), [findings/os316-extending.md](findings/os316-extending.md): OS 3.16, the base for floppy-delivered features.
 9. [findings/rom-free-space.md](findings/rom-free-space.md): for EPROM work.
+10. [findings/3kplus-structure.md](findings/3kplus-structure.md), [findings/3kplus-lazy-chop.md](findings/3kplus-lazy-chop.md), [findings/program-records-and-pad-maps.md](findings/program-records-and-pad-maps.md): 3K PLUS 1.0, and programs and pads in OS 3.16.
 
 ## Firmware images
 
@@ -58,6 +61,7 @@ The full list, with priorities, is in [../../GAPS.md](../../GAPS.md).
 | `mpc3000-vailixi-3.50` | Vailixi OS 3.50 (independent developer), reference dump | Most code-level findings |
 | `mpc3000-v3.16-sys` | OS 3.16 maintenance upgrade (independent developer), floppy file | Structure, two defects, 111 symbols |
 | `mpc3000-tme-3.41-sys` | OS 3.41 Track Mute Edition (Deep88), floppy file built on 3.16 | Relation to 3.16; 103 shared pins ([findings/tme341-structure.md](findings/tme341-structure.md)) |
+| `mpc3000-3kplus-1.0-sys` | 3K PLUS 1.0 (STARTUP.SYS), floppy file built on 3.16 | Start-up, hooks, free RAM, Lazy Chop, mute groups; 153 pins ([findings/3kplus-structure.md](findings/3kplus-structure.md)) |
 | `mpc3000-panel-v1.0` | Front-panel microcontroller program | Identified only |
 
 Most code-level findings were made on the Vailixi 3.50 reference dump
@@ -76,3 +80,11 @@ MAME has an `mpc3000` driver. Its author marks it as not working, but it
 boots the EPROM OS to the main screen and runs the floppy loader, which
 is enough to test much of what is described here. Remember that the CPU
 core runs at 16 MHz on the real machine.
+
+MAME 0.289 (`mame -listbios mpc3000`, seen 2026-11-16) offers the sets
+`default` (3.12), `vailixi` (3.50), `v311` and `v310`; it has **no 3.08
+set**. Every set also needs the front-panel MCU ROM (`ic602`, see
+[firmware.toml](firmware.toml)). The macOS arm64 build from
+sdlmame.lngn.net needs the SDL3 framework of the version it was linked
+against (3.4.12 for 0.289); it can be pointed at a local copy with
+`DYLD_FRAMEWORK_PATH` instead of installing it system-wide.

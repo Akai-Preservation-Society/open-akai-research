@@ -75,6 +75,7 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 
 | Priority | Area | Question | Needs |
 |---|---|---|---|
+| high | memory | [Is RAM above the 3K PLUS cave free at run time?](machines/mpc3000/questions/3kplus-free-ram-at-runtime.md) | emulator, analysis |
 | high | os | [Unmapped areas of OS 3.16](machines/mpc3000/questions/os316-unmapped.md) | analysis, emulator |
 | high | panel | [Front-panel protocol (pads, keys, data wheel)](machines/mpc3000/questions/panel-protocol.md) | firmware-image, analysis, hardware |
 | high | modding | [Running a patched copy of a stock EPROM OS from RAM](machines/mpc3000/questions/patched-rom-os-from-ram.md) | firmware-image, analysis, emulator, hardware |
@@ -89,6 +90,7 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 | medium | memory | [NVRAM layout and what a RAM program may do to it](machines/mpc3000/questions/nvram-layout.md) | analysis, hardware |
 | medium | boot | [OS 3.16 builds on real 3.08, 3.11 and 3.12 EPROMs](machines/mpc3000/questions/os316-on-other-eproms.md) | hardware |
 | medium | hardware | [PAL address decode](machines/mpc3000/questions/pal-address-decode.md) | document, hardware |
+| medium | os | [Program entry fields and record size](machines/mpc3000/questions/program-entry-fields.md) | analysis, emulator |
 | low | hardware | [What is on DMA channel 2](machines/mpc3000/questions/dma2-ic31.md) | document, hardware |
 | low | firmware | [OS 3.10 has not been examined](machines/mpc3000/questions/os-3.10-image.md) | firmware-image, analysis |
 | low | cpu | [Page-register writes at run time](machines/mpc3000/questions/page-register-writes-at-runtime.md) | analysis, emulator |
@@ -96,12 +98,15 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 
 ### Findings never run on real hardware
 
+- [How 3K PLUS 1.0 turns zones into a program (Lazy Chop "To program") and stores mute groups](machines/mpc3000/findings/3kplus-lazy-chop.md) (static)
+- [3K PLUS 1.0 is OS 3.16 plus an appended code segment, and how it starts and hooks 3.16](machines/mpc3000/findings/3kplus-structure.md) (static)
 - [How addresses work on the MPC3000 (V53 extended addressing)](machines/mpc3000/findings/address-model.md) (static)
 - [Calling conventions used by the OS, kernel and BIOS](machines/mpc3000/findings/calling-conventions.md) (static)
 - [Disassembler pitfalls on V53 firmware](machines/mpc3000/findings/disassembler-pitfalls.md) (static)
 - [MPC3000 hardware overview](machines/mpc3000/findings/hardware-overview.md) (documented)
 - [Interrupt vector table after boot](machines/mpc3000/findings/interrupt-vectors.md) (static)
 - [MPC3000 memory map, I/O ports, interrupts and DMA](machines/mpc3000/findings/memory-and-io-map.md) (documented)
+- [Program records, per-note entries and pad-to-note maps in OS 3.16 (and 3K PLUS)](machines/mpc3000/findings/program-records-and-pad-maps.md) (static)
 - [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md) (static)
 - [OS 3.41 Track Mute Edition is built on OS 3.16](machines/mpc3000/findings/tme341-structure.md) (static)
 
@@ -109,6 +114,8 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 
 Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding.
 
+- [How 3K PLUS 1.0 turns zones into a program (Lazy Chop "To program") and stores mute groups](machines/mpc3000/findings/3kplus-lazy-chop.md): 2
+- [3K PLUS 1.0 is OS 3.16 plus an appended code segment, and how it starts and hooks 3.16](machines/mpc3000/findings/3kplus-structure.md): 2
 - [How addresses work on the MPC3000 (V53 extended addressing)](machines/mpc3000/findings/address-model.md): 3
 - [BIOS software-interrupt services (LCD text, files, program load)](machines/mpc3000/findings/bios-services.md): 4
 - [Recipe: build and run your own program from floppy](machines/mpc3000/findings/build-a-floppy-sys.md): 1
@@ -120,6 +127,7 @@ Each line counts the claims tagged `[hypothesis]` or `[open]` inside the finding
 - [Two memory defects in stock OS 3.16, and their fixes](machines/mpc3000/findings/os316-defects.md): 2
 - [Recipe: add code to OS 3.16 and load it from floppy](machines/mpc3000/findings/os316-extending.md): 1
 - [OS 3.16 (M3K316.SYS) structure, memory and named routines](machines/mpc3000/findings/os316-structure.md): 3
+- [Program records, per-note entries and pad-to-note maps in OS 3.16 (and 3K PLUS)](machines/mpc3000/findings/program-records-and-pad-maps.md): 3
 - [Unused space in the OS EPROMs](machines/mpc3000/findings/rom-free-space.md): 2
 - [OS 3.41 Track Mute Edition is built on OS 3.16](machines/mpc3000/findings/tme341-structure.md): 2
 
